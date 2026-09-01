@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +10,38 @@
       --primary: #2563eb;
       --primary-dark: #1d4ed8;
       --accent: #0ea5e9;
-      --bg: #0f172a;
-      --card: #1e293b;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
       --success: #22c55e;
       --warning: #f59e0b;
+    }
+
+    /* ===== ТЁМНАЯ ТЕМА (по умолчанию) ===== */
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --card-hover: #243044;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.12);
+      --nav-bg: rgba(15, 23, 42, 0.85);
+      --header-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+      --shadow: rgba(0,0,0,0.35);
+      --script-bg: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.08));
+      --example-bg: rgba(14, 165, 233, 0.1);
+    }
+
+    /* ===== СВЕТЛАЯ ТЕМА ===== */
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --card-hover: #f1f5f9;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: rgba(15, 23, 42, 0.1);
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --header-gradient: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 40%, #e0e7ff 100%);
+      --shadow: rgba(0,0,0,0.08);
+      --script-bg: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(16,185,129,0.08));
+      --example-bg: rgba(14, 165, 233, 0.1);
     }
 
     * {
@@ -31,16 +57,18 @@
       line-height: 1.65;
       overflow-x: hidden;
       perspective: 1200px;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
     /* ===== HEADER ===== */
     header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+      background: var(--header-gradient);
       padding: 80px 20px 100px;
       text-align: center;
       position: relative;
       overflow: hidden;
       transform-style: preserve-3d;
+      transition: background 0.4s ease;
     }
 
     .header-bg {
@@ -51,6 +79,12 @@
         radial-gradient(circle at 80% 20%, rgba(14,165,233,0.2) 0%, transparent 45%),
         radial-gradient(circle at 50% 80%, rgba(99,102,241,0.15) 0%, transparent 50%);
       animation: headerPulse 10s ease-in-out infinite alternate;
+    }
+
+    [data-theme="light"] .header-bg {
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(37,99,235,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(14,165,233,0.12) 0%, transparent 45%);
     }
 
     @keyframes headerPulse {
@@ -66,7 +100,9 @@
       animation: float 12s ease-in-out infinite;
     }
 
-    .orb1 { width: 280px; height: 280px; background: #2563eb; top: -80px; left: 10%; animation-delay: 0s; }
+    [data-theme="light"] .floating-orb { opacity: 0.25; }
+
+    .orb1 { width: 280px; height: 280px; background: #2563eb; top: -80px; left: 10%; }
     .orb2 { width: 200px; height: 200px; background: #0ea5e9; bottom: -40px; right: 15%; animation-delay: -4s; }
     .orb3 { width: 160px; height: 160px; background: #6366f1; top: 40%; right: 5%; animation-delay: -7s; }
 
@@ -114,6 +150,12 @@
       animation: textShine 5s linear infinite, titleIn 1s ease both;
     }
 
+    [data-theme="light"] h1 {
+      background: linear-gradient(90deg, #1d4ed8, #0284c7, #4f46e5);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+    }
+
     @keyframes textShine {
       to { background-position: 200% center; }
     }
@@ -136,15 +178,42 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* ===== THEME TOGGLE ===== */
+    .theme-toggle {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px var(--shadow);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.12) rotate(15deg);
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.3);
+    }
+
     /* ===== NAV ===== */
     nav {
-      background: rgba(15, 23, 42, 0.85);
+      background: var(--nav-bg);
       backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: background 0.4s ease;
     }
 
     .nav-inner {
@@ -157,8 +226,8 @@
     }
 
     .nav-btn {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.15);
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border);
       color: var(--muted);
       padding: 12px 20px;
       border-radius: 12px;
@@ -167,35 +236,31 @@
       font-weight: 500;
       white-space: nowrap;
       transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      transform-style: preserve-3d;
       position: relative;
       overflow: hidden;
     }
 
-    .nav-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(14,165,233,0.2));
-      opacity: 0;
-      transition: opacity 0.3s;
+    [data-theme="light"] .nav-btn {
+      background: rgba(241, 245, 249, 0.8);
     }
 
     .nav-btn:hover {
-      color: #93c5fd;
+      color: #60a5fa;
       transform: translateY(-4px) scale(1.05);
       box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
       border-color: rgba(37, 99, 235, 0.4);
     }
 
-    .nav-btn:hover::before { opacity: 1; }
+    [data-theme="light"] .nav-btn:hover {
+      color: #1d4ed8;
+    }
 
     .nav-btn.active {
       background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: white;
       border-color: transparent;
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45), 0 0 20px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45);
     }
 
     .nav-btn:active {
@@ -206,7 +271,7 @@
     main {
       max-width: 980px;
       margin: 0 auto;
-      padding: 50px 20px 100px;
+      padding: 50px 20px 80px;
     }
 
     section {
@@ -234,28 +299,26 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      animation: fadeUp 0.6s ease both;
     }
 
     .section-desc {
       color: var(--muted);
       margin-bottom: 40px;
       font-size: 1.05rem;
-      animation: fadeUp 0.6s 0.1s ease both;
     }
 
-    /* ===== TECHNIQUE CARDS (3D) ===== */
+    /* ===== TECHNIQUE CARDS ===== */
     .technique {
-      background: linear-gradient(145deg, #1e293b, #162032);
+      background: var(--card);
       border-radius: 20px;
       padding: 32px;
       margin-bottom: 32px;
-      border: 1px solid rgba(148, 163, 184, 0.12);
+      border: 1px solid var(--border);
       transform-style: preserve-3d;
-      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+      transition: transform 0.15s ease-out, box-shadow 0.3s ease, background 0.4s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+      box-shadow: 0 15px 35px var(--shadow);
     }
 
     .technique::before {
@@ -271,7 +334,7 @@
     .technique:hover::before { opacity: 1; }
 
     .technique:hover {
-      box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 40px rgba(37,99,235,0.15);
+      box-shadow: 0 30px 60px var(--shadow), 0 0 40px rgba(37,99,235,0.12);
     }
 
     .technique h3 {
@@ -305,8 +368,14 @@
     .technique p,
     .technique ul,
     .technique li {
-      color: #cbd5e1;
+      color: var(--muted);
       transform: translateZ(20px);
+    }
+
+    [data-theme="light"] .technique p,
+    [data-theme="light"] .technique ul,
+    [data-theme="light"] .technique li {
+      color: #475569;
     }
 
     .technique ul {
@@ -319,13 +388,12 @@
     }
 
     .technique li:hover {
-      color: #e2e8f0;
+      color: var(--text);
       transform: translateX(6px);
     }
 
-    /* Example & Script boxes */
     .example-box {
-      background: rgba(14, 165, 233, 0.1);
+      background: var(--example-bg);
       border-left: 4px solid var(--accent);
       padding: 18px 22px;
       border-radius: 0 14px 14px 0;
@@ -337,14 +405,15 @@
     }
 
     .example-box:hover {
-      background: rgba(14, 165, 233, 0.16);
       transform: translateZ(35px) scale(1.01);
     }
 
-    .example-box strong { color: #38bdf8; }
+    .example-box strong { color: #0ea5e9; }
+
+    [data-theme="light"] .example-box strong { color: #0284c7; }
 
     .script-box {
-      background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.08));
+      background: var(--script-bg);
       border: 1px solid rgba(34, 197, 94, 0.3);
       border-radius: 14px;
       padding: 20px 24px;
@@ -356,7 +425,7 @@
 
     .script-box:hover {
       transform: translateZ(40px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(34,197,94,0.2);
+      box-shadow: 0 20px 40px rgba(34,197,94,0.18);
       border-color: rgba(34, 197, 94, 0.5);
     }
 
@@ -378,15 +447,8 @@
       background: rgba(14, 165, 233, 0.15);
       color: var(--accent);
       transform: translateZ(15px);
-      transition: all 0.3s;
     }
 
-    .technique:hover .tag {
-      background: rgba(14, 165, 233, 0.25);
-      box-shadow: 0 0 15px rgba(14,165,233,0.3);
-    }
-
-    /* Warning */
     .warning {
       background: rgba(245, 158, 11, 0.1);
       border: 1px solid rgba(245, 158, 11, 0.35);
@@ -396,7 +458,6 @@
       display: flex;
       gap: 16px;
       align-items: flex-start;
-      transform-style: preserve-3d;
       transition: all 0.4s;
       animation: warningPulse 3s ease-in-out infinite;
     }
@@ -432,15 +493,16 @@
       .two-col { grid-template-columns: 1fr; }
       .technique { padding: 24px 18px; }
       .nav-btn { padding: 10px 14px; font-size: 0.88rem; }
+      .theme-toggle { top: 12px; right: 12px; width: 44px; height: 44px; }
     }
 
-    /* Footer */
+    /* ===== FOOTER ===== */
     footer {
       text-align: center;
-      padding: 40px 20px;
+      padding: 40px 20px 30px;
       color: var(--muted);
       font-size: 0.9rem;
-      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      border-top: 1px solid var(--border);
       position: relative;
     }
 
@@ -455,9 +517,23 @@
       background: linear-gradient(90deg, transparent, #2563eb, transparent);
     }
 
+    .creator {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      opacity: 0.85;
+      letter-spacing: 0.3px;
+    }
+
+    .creator span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(#2563eb, #0ea5e9);
       border-radius: 10px;
@@ -466,6 +542,9 @@
 </head>
 <body>
 
+<!-- Кнопка переключения темы -->
+<button class="theme-toggle" id="themeToggle" title="Сменить тему">🌙</button>
+
 <header>
   <div class="header-bg"></div>
   <div class="floating-orb orb1"></div>
@@ -473,11 +552,11 @@
   <div class="floating-orb orb3"></div>
 
   <div class="header-content">
-    <div class="badge">3D + мощные анимации + полные скрипты</div>
+    <div class="badge">3D + анимации + тёмная/светлая тема</div>
     <h1>Техники продаж<br>и правильные манипуляции</h1>
     <p class="subtitle">
       Каждая кнопка открывает полный практический разбор с примерами фраз, 
-      алгоритмами и готовыми скриптами. Всё усилено 3D-эффектами.
+      алгоритмами и готовыми скриптами.
     </p>
   </div>
 </header>
@@ -494,7 +573,7 @@
 
 <main>
 
-  <!-- ==================== КЛАССИКА ==================== -->
+  <!-- КЛАССИКА -->
   <section id="classic" class="active">
     <h2 class="section-title">📈 Классические техники продаж</h2>
     <p class="section-desc">Проверенные методы с полными алгоритмами и готовыми фразами.</p>
@@ -508,20 +587,10 @@
         <li><strong>I — Implication</strong> — цена бездействия (самое важное!)</li>
         <li><strong>N — Need-payoff</strong> — клиент сам формулирует ценность</li>
       </ul>
-
-      <div class="example-box">
-        <strong>Situation:</strong> «Как сейчас организован процесс…?», «Сколько человек этим занимается?»
-      </div>
-      <div class="example-box">
-        <strong>Problem:</strong> «Что больше всего раздражает?», «Где чаще всего сбои?»
-      </div>
-      <div class="example-box">
-        <strong>Implication:</strong> «Если проблема останется — какие потери через 6 месяцев?», «Сколько денег/времени теряете?»
-      </div>
-      <div class="example-box">
-        <strong>Need-payoff:</strong> «Если сократить потери на 40–50% — насколько это важно?»
-      </div>
-
+      <div class="example-box"><strong>Situation:</strong> «Как сейчас организован процесс…?», «Сколько человек этим занимается?»</div>
+      <div class="example-box"><strong>Problem:</strong> «Что больше всего раздражает?», «Где чаще всего сбои?»</div>
+      <div class="example-box"><strong>Implication:</strong> «Если проблема останется — какие потери через 6 месяцев?»</div>
+      <div class="example-box"><strong>Need-payoff:</strong> «Если сократить потери на 40–50% — насколько это важно?»</div>
       <div class="script-box">
         <div class="label">Готовый мини-скрипт</div>
         «Я правильно понимаю, что главная боль — это …, и если её не решить, то через полгода вы можете потерять …? А если уберём проблему — команда сможет …?»
@@ -531,7 +600,7 @@
 
     <div class="technique" data-tilt>
       <h3><span class="icon">🗣️</span> AIDA — полная воронка</h3>
-      <p>Attention → Interest → Desire → Action. Структура любого продающего разговора и текста.</p>
+      <p>Attention → Interest → Desire → Action.</p>
       <div class="script-box">
         <div class="label">Пример письма / сообщения</div>
         <strong>Attention:</strong> «Вы теряете 18% клиентов из-за медленного ответа?»<br>
@@ -543,7 +612,6 @@
 
     <div class="technique" data-tilt>
       <h3><span class="icon">🤝</span> Техника «Да-лестница»</h3>
-      <p>Серия вопросов с почти гарантированным «да». Каждое согласие повышает вероятность финального «да».</p>
       <div class="script-box">
         <div class="label">Пример диалога</div>
         — Вам важно, чтобы клиенты получали ответ быстро? → Да<br>
@@ -555,7 +623,6 @@
 
     <div class="technique" data-tilt>
       <h3><span class="icon">💰</span> Якорение цены</h3>
-      <p>Первая названная цифра сильно влияет на восприятие всех остальных. Всегда начинайте с более высокой позиции.</p>
       <div class="example-box">
         «Есть три варианта. Полный пакет — 890 000 ₽. Стандартный (его берёт большинство) — 540 000 ₽. Базовый — 320 000 ₽. Большинству компаний вашего размера оптимален стандартный.»
       </div>
@@ -563,34 +630,23 @@
 
     <div class="technique" data-tilt>
       <h3><span class="icon">🔁</span> Feel — Felt — Found</h3>
-      <p>Мягкий способ обходить возражения без спора.</p>
       <div class="script-box">
         <div class="label">Универсальный шаблон</div>
         «Я понимаю, как вы себя <strong>чувствуете</strong>… Многие клиенты <strong>чувствовали</strong> то же самое… Но они <strong>обнаружили</strong>, что после внедрения…»
       </div>
-      <div class="example-box">
-        <strong>На «Дорого»:</strong> «Понимаю, сумма выглядит значительной. Многие сначала чувствовали то же самое. Потом посчитали потери и увидели, что окупаемость на 3–4 месяц.»
-      </div>
     </div>
   </section>
 
-  <!-- ==================== ВЛИЯНИЕ ==================== -->
+  <!-- ВЛИЯНИЕ -->
   <section id="influence">
     <h2 class="section-title">🧠 Техники влияния (Чалдини)</h2>
-    <p class="section-desc">Шесть принципов с готовыми формулировками, которые можно использовать сразу.</p>
+    <p class="section-desc">Шесть принципов с готовыми формулировками.</p>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">🔄</span> 1. Взаимность</h3>
-      <p>Дайте ценность до просьбы о покупке. Люди чувствуют себя обязанными ответить.</p>
-      <ul>
-        <li>Бесплатный аудит / разбор</li>
-        <li>Полезный чек-лист или шаблон</li>
-        <li>Персональная рекомендация</li>
-        <li>Демо на реальных данных клиента</li>
-      </ul>
       <div class="script-box">
         <div class="label">Как предлагать</div>
-        «Давайте я бесплатно разберу ваши показатели и покажу 2–3 точки роста. Без обязательств. Если будет полезно — обсудим, как помочь. Удобно на этой неделе?»
+        «Давайте я бесплатно разберу ваши показатели и покажу 2–3 точки роста. Без обязательств. Если будет полезно — обсудим, как помочь.»
       </div>
     </div>
 
@@ -598,34 +654,29 @@
       <h3><span class="icon">👥</span> 2. Социальное доказательство</h3>
       <div class="example-box">
         «Уже 187 компаний вашей отрасли используют…»<br>
-        «Средний рост выручки у клиентов — 34% за 6 месяцев»<br>
-        «Вот что написал директор компании X после 3 месяцев…»
+        «Средний рост выручки у клиентов — 34% за 6 месяцев»
       </div>
-      <p>Чем ближе доказательство к клиенту (отрасль, размер, город) — тем сильнее эффект.</p>
     </div>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">👑</span> 3. Авторитет</h3>
       <div class="script-box">
         <div class="label">Фраза для начала</div>
-        «Мы специализируемся именно на компаниях вашего размера в этой нише. За 2 года провели 40+ внедрений и собрали данные, которые обычно не лежат на поверхности…»
+        «Мы специализируемся именно на компаниях вашего размера в этой нише. За 2 года провели 40+ внедрений…»
       </div>
     </div>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">❤️</span> 4. Симпатия</h3>
-      <p>Общие интересы, искренние комплименты, зеркалирование речи и темпа.</p>
       <div class="example-box">
-        «Заметил, что вы тоже вышли из операционки в стратегию — у меня был похожий путь. Поэтому особенно понимаю, как важно разгрузить команду…»
+        «Заметил, что вы тоже вышли из операционки в стратегию — у меня был похожий путь…»
       </div>
     </div>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">⏳</span> 5. Дефицит</h3>
-      <p>Работает только когда дефицит настоящий.</p>
       <div class="example-box">
         «Сейчас осталось 2 слота на запуск в этом месяце»<br>
-        «До конца недели действует специальное условие для вашего сегмента»<br>
         «После 15-го команда внедрения загружена до ноября»
       </div>
     </div>
@@ -634,98 +685,66 @@
       <h3><span class="icon">🔗</span> 6. Последовательность</h3>
       <div class="script-box">
         <div class="label">Цепочка микро-обязательств</div>
-        1. «Могу задать несколько вопросов, чтобы понять ситуацию?» → Да<br>
-        2. «Если покажу, как это решается — будет полезно?» → Да<br>
-        3. «Подготовлю короткий разбор именно под вас?» → Да<br>
-        4. «После разбора обсудим следующие шаги?» → Да
+        1. «Могу задать несколько вопросов?» → Да<br>
+        2. «Если покажу решение — будет полезно?» → Да<br>
+        3. «Подготовлю разбор под вас?» → Да<br>
+        4. «После разбора обсудим шаги?» → Да
       </div>
     </div>
   </section>
 
-  <!-- ==================== ПСИХОЛОГИЯ ==================== -->
+  <!-- ПСИХОЛОГИЯ -->
   <section id="psychology">
     <h2 class="section-title">🧩 Психологические приёмы</h2>
-    <p class="section-desc">Работа с восприятием, эмоциями и когнитивными искажениями.</p>
+    <p class="section-desc">Работа с восприятием и когнитивными искажениями.</p>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">🪞</span> Зеркалирование и раппорт</h3>
-      <p>Подстраивайтесь под темп речи, громкость и ключевые слова клиента. Повторяйте важные формулировки.</p>
-      <ul>
-        <li>Говорит быстро и конкретно → отвечайте так же</li>
-        <li>Говорит медленно → не торопите</li>
-        <li>«Вы сказали “прозрачность процессов” — именно это мы и усиливаем»</li>
-      </ul>
+      <p>Подстраивайтесь под темп речи и ключевые слова клиента.</p>
     </div>
 
     <div class="technique" data-tilt>
-      <h3><span class="icon">📉</span> Loss Aversion (потеря сильнее выгоды)</h3>
+      <h3><span class="icon">📉</span> Loss Aversion</h3>
       <div class="two-col">
         <div class="example-box"><strong>Слабо:</strong><br>«Получите +400 000 ₽ в год»</div>
         <div class="example-box"><strong>Сильно:</strong><br>«Каждый месяц теряете ≈ 35 000 ₽»</div>
       </div>
-      <div class="script-box">
-        <div class="label">Готовая фраза</div>
-        «Давайте честно посчитаем: сколько теряете прямо сейчас? И что будет через полгода, если ничего не менять?»
-      </div>
-    </div>
-
-    <div class="technique" data-tilt>
-      <h3><span class="icon">🎭</span> Эффект ореола</h3>
-      <p>Одно сильное впечатление переносится на всё остальное. Сайт, первый кейс и личный бренд должны быть безупречны.</p>
     </div>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">📖</span> Storytelling</h3>
       <div class="script-box">
-        <div class="label">Структура рабочей истории</div>
-        1. Было плохо (конкретная ситуация)<br>
-        2. Что сделали<br>
-        3. Что стало (цифры + эмоция)<br>
-        4. Связка: «У вас похожая ситуация…»
+        <div class="label">Структура истории</div>
+        1. Было плохо → 2. Что сделали → 3. Что стало (цифры) → 4. «У вас похожая ситуация…»
       </div>
     </div>
 
     <div class="technique" data-tilt>
-      <h3><span class="icon">⚖️</span> Принцип контраста</h3>
-      <div class="example-box">
-        «Большинство компаний в вашей нише тратят 180–220 часов в месяц. После внедрения наши клиенты — 35–40 часов.»
-      </div>
-    </div>
-
-    <div class="technique" data-tilt>
-      <h3><span class="icon">🛡️</span> Снятие риска (Risk Reversal)</h3>
-      <ul>
-        <li>Гарантия возврата</li>
-        <li>Пилот 2–4 недели</li>
-        <li>«Платите только после результата»</li>
-        <li>Поэтапная оплата</li>
-      </ul>
+      <h3><span class="icon">🛡️</span> Снятие риска</h3>
       <div class="script-box">
         <div class="label">Сильная фраза</div>
-        «Мы настолько уверены, что предлагаем начать с пилота. Если через 30 дней не увидите понятный эффект — просто останавливаемся, вы ничего не должны.»
+        «Предлагаем начать с пилота. Если через 30 дней не увидите эффект — просто останавливаемся, вы ничего не должны.»
       </div>
     </div>
   </section>
 
-  <!-- ==================== СОВРЕМЕННЫЕ ==================== -->
+  <!-- СОВРЕМЕННЫЕ -->
   <section id="modern">
-    <h2 class="section-title">🚀 Современные подходы 2024–2026</h2>
+    <h2 class="section-title">🚀 Современные подходы</h2>
     <p class="section-desc">Консультативные продажи, Challenger и value-based selling.</p>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">🧭</span> Консультативные продажи</h3>
-      <p>80% времени — вопросы и диагностика. 20% — предложение. Никогда не начинайте с продукта.</p>
       <div class="script-box">
         <div class="label">Правильное начало</div>
-        «Прежде чем что-то предлагать, мне важно глубоко понять вашу ситуацию. Можно задать несколько вопросов? Это займёт 10–12 минут и поможет не тратить время на ненужное.»
+        «Прежде чем что-то предлагать, мне важно понять вашу ситуацию. Можно задать несколько вопросов? Это займёт 10–12 минут.»
       </div>
     </div>
 
     <div class="technique" data-tilt>
       <h3><span class="icon">💎</span> Value-Based Selling</h3>
       <div class="example-box">
-        Вместо: «У нас CRM с ИИ»<br>
-        Говорите: «Сокращаем цикл сделки в среднем на 19 дней и поднимаем конверсию на 22–28%»
+        Вместо «У нас CRM с ИИ» → «Сокращаем цикл сделки на 19 дней и поднимаем конверсию на 22–28%»
       </div>
     </div>
 
@@ -734,9 +753,9 @@
       <div class="script-box">
         <div class="label">Структура</div>
         1. «Большинство думают, что проблема в …»<br>
-        2. «На самом деле данные показывают другое…»<br>
+        2. «Данные показывают другое…»<br>
         3. «Вот что происходит на самом деле…»<br>
-        4. «Поэтому решение должно выглядеть вот так…»
+        4. «Поэтому решение должно быть таким…»
       </div>
     </div>
 
@@ -745,28 +764,15 @@
       <ul>
         <li>«Как вам кажется, это может закрыть задачу?»</li>
         <li>«Что ещё нужно увидеть, чтобы принять решение?»</li>
-        <li>«Если уберём вот этот риск — готовы двигаться?»</li>
-        <li>«Подготовлю коммерческое на два варианта, скажете какой ближе?»</li>
+        <li>«Если уберём этот риск — готовы двигаться?»</li>
       </ul>
-    </div>
-
-    <div class="technique" data-tilt>
-      <h3><span class="icon">📱</span> Social Selling</h3>
-      <p>Экспертный контент → помощь без продажи → мягкое предложение разговора.</p>
-    </div>
-
-    <div class="technique" data-tilt>
-      <h3><span class="icon">🧪</span> Микро-обязательства</h3>
-      <div class="example-box">
-        «Прислать короткий PDF?» → «Созвониться на 15 минут?» → «Подготовить КП?» → «Запустить пилот?»
-      </div>
     </div>
   </section>
 
-  <!-- ==================== ЭТИКА ==================== -->
+  <!-- ЭТИКА -->
   <section id="ethics">
     <h2 class="section-title">⚖️ Этика и границы</h2>
-    <p class="section-desc">Где заканчивается сильное влияние и начинается вредная манипуляция.</p>
+    <p class="section-desc">Где заканчивается влияние и начинается манипуляция.</p>
 
     <div class="warning">
       <div class="warning-icon">⚠️</div>
@@ -778,11 +784,10 @@
     </div>
 
     <div class="technique" data-tilt>
-      <h3><span class="icon">✅</span> Что можно и нужно</h3>
+      <h3><span class="icon">✅</span> Что можно</h3>
       <ul>
         <li>Показывать реальные цифры и кейсы</li>
         <li>Создавать срочность, когда она настоящая</li>
-        <li>Усиливать осознание проблемы вопросами</li>
         <li>Снимать риски клиента</li>
         <li>Отказываться от сделки, если продукт не подходит</li>
       </ul>
@@ -792,9 +797,8 @@
       <h3><span class="icon">❌</span> Что нельзя</h3>
       <ul>
         <li>Врать о дефиците</li>
-        <li>Давить на страх, вину или стыд</li>
+        <li>Давить на страх или вину</li>
         <li>Скрывать важные ограничения</li>
-        <li>Использовать фейковые отзывы</li>
         <li>Продавать то, что клиенту не нужно</li>
       </ul>
     </div>
@@ -802,17 +806,11 @@
     <div class="technique" data-tilt>
       <h3><span class="icon">🧭</span> Золотой фильтр</h3>
       <p>Три вопроса перед сделкой:</p>
-      <ol style="margin: 12px 0 0 22px; color: #cbd5e1;">
+      <ol style="margin: 12px 0 0 22px; color: var(--muted);">
         <li>Если бы я был клиентом и знал всё — я бы купил?</li>
         <li>Эта покупка улучшит его бизнес через 6–12 месяцев?</li>
         <li>Мне не будет стыдно, если он расскажет, как проходила продажа?</li>
       </ol>
-      <p style="margin-top: 16px;">Хотя бы один «нет» — лучше отказаться.</p>
-    </div>
-
-    <div class="technique" data-tilt>
-      <h3><span class="icon">🌱</span> Почему этика выгодна</h3>
-      <p>Клиенты, которых «продавили», не возвращаются и не рекомендуют. Те, кому реально помогли — становятся источником повторных продаж и тёплых рекомендаций.</p>
     </div>
   </section>
 
@@ -820,10 +818,28 @@
 
 <footer>
   <p>Используй эти техники с уважением к клиенту. Лучшие продажи — те, после которых говорят «спасибо».</p>
+  <div class="creator">Creator: <span>Баграмов Владислав Витальевич</span></div>
 </footer>
 
 <script>
-  // Переключение секций
+  // ===== Переключение темы =====
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  // Загружаем сохранённую тему
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', savedTheme);
+  themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+  themeToggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+
+  // ===== Переключение секций =====
   const buttons = document.querySelectorAll('.nav-btn');
   const sections = document.querySelectorAll('section');
 
@@ -831,7 +847,6 @@
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
       sections.forEach(s => s.classList.remove('active'));
-
       btn.classList.add('active');
       const target = document.getElementById(btn.dataset.section);
       if (target) {
@@ -841,22 +856,18 @@
     });
   });
 
-  // ===== 3D Tilt Effect =====
+  // ===== 3D Tilt =====
   document.querySelectorAll('[data-tilt]').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-
       const rotateX = ((y - centerY) / centerY) * -9;
       const rotateY = ((x - centerX) / centerX) * 9;
-
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
     });
-
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
     });
