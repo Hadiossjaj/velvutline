@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Техники продаж и этичные манипуляции</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>Техники продаж и этичные манипуляции — Полная версия</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -17,25 +16,21 @@
       --muted: #94a3b8;
       --success: #22c55e;
       --warning: #f59e0b;
+      --danger: #ef4444;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    /* Header */
     header {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-      padding: 80px 20px 100px;
+      padding: 70px 20px 90px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -44,40 +39,33 @@
     header::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 60%);
-      animation: pulse 12s ease-in-out infinite;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 60%);
+      animation: pulse 14s ease-in-out infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.6; }
-      50% { transform: scale(1.1); opacity: 1; }
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 1; }
     }
 
-    .header-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+    .header-content { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-size: clamp(2rem, 5vw, 3.3rem);
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       background: linear-gradient(90deg, #60a5fa, #38bdf8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .subtitle {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto 32px;
+      max-width: 640px;
+      margin: 0 auto 28px;
     }
 
     .badge {
@@ -89,24 +77,24 @@
       font-size: 0.9rem;
       font-weight: 500;
       border: 1px solid rgba(34, 197, 94, 0.3);
+      margin-bottom: 18px;
     }
 
-    /* Navigation */
     nav {
-      background: rgba(15, 23, 42, 0.9);
-      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(14px);
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
     }
 
     .nav-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
-      gap: 8px;
-      padding: 12px 20px;
+      gap: 6px;
+      padding: 10px 16px;
       overflow-x: auto;
     }
 
@@ -114,8 +102,8 @@
       background: transparent;
       border: none;
       color: var(--muted);
-      padding: 10px 18px;
-      border-radius: 8px;
+      padding: 11px 18px;
+      border-radius: 9px;
       cursor: pointer;
       font-size: 0.95rem;
       font-weight: 500;
@@ -123,95 +111,114 @@
       transition: all 0.2s;
     }
 
-    .nav-btn:hover,
+    .nav-btn:hover { background: rgba(37, 99, 235, 0.15); color: #93c5fd; }
     .nav-btn.active {
-      background: rgba(37, 99, 235, 0.2);
+      background: rgba(37, 99, 235, 0.25);
       color: #60a5fa;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
     }
 
-    /* Main */
     main {
-      max-width: 1100px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 60px 20px 100px;
+      padding: 50px 20px 90px;
     }
 
     section {
       display: none;
-      animation: fadeIn 0.4s ease;
+      animation: fadeIn 0.35s ease;
     }
 
-    section.active {
-      display: block;
-    }
+    section.active { display: block; }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .section-title {
-      font-size: 1.8rem;
-      margin-bottom: 12px;
+      font-size: 1.75rem;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .section-desc {
       color: var(--muted);
-      margin-bottom: 40px;
-      max-width: 700px;
+      margin-bottom: 36px;
+      font-size: 1.05rem;
     }
 
-    /* Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
+    /* Большие блоки техник */
+    .technique {
       background: var(--card);
       border-radius: 16px;
-      padding: 28px;
+      padding: 32px;
+      margin-bottom: 28px;
       border: 1px solid rgba(148, 163, 184, 0.1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(37, 99, 235, 0.4);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    .technique h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(37, 99, 235, 0.15);
-      border-radius: 12px;
+    .technique .icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(37, 99, 235, 0.18);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 18px;
+      font-size: 1.3rem;
+      flex-shrink: 0;
     }
 
-    .card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
+    .technique p { color: #cbd5e1; margin-bottom: 14px; }
+
+    .technique ul {
+      margin: 12px 0 16px 20px;
+      color: #cbd5e1;
     }
 
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
+    .technique li { margin-bottom: 8px; }
+
+    .example-box {
+      background: rgba(14, 165, 233, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 18px 0;
+      font-size: 0.97rem;
     }
 
-    .card .tag {
+    .example-box strong { color: #38bdf8; }
+
+    .script-box {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin: 18px 0;
+    }
+
+    .script-box .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--success);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .tag {
       display: inline-block;
-      margin-top: 16px;
+      margin-top: 12px;
       font-size: 0.8rem;
       padding: 4px 12px;
       border-radius: 20px;
@@ -219,340 +226,508 @@
       color: var(--accent);
     }
 
-    /* Warning box */
     .warning {
       background: rgba(245, 158, 11, 0.1);
       border: 1px solid rgba(245, 158, 11, 0.3);
       border-radius: 12px;
-      padding: 20px 24px;
-      margin-bottom: 40px;
+      padding: 18px 22px;
+      margin-bottom: 32px;
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: flex-start;
     }
 
-    .warning-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
+    .warning-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
     }
 
-    /* Footer */
+    @media (max-width: 700px) {
+      .two-col { grid-template-columns: 1fr; }
+      .technique { padding: 24px 18px; }
+    }
+
     footer {
       text-align: center;
-      padding: 40px 20px;
+      padding: 36px 20px;
       color: var(--muted);
       font-size: 0.9rem;
       border-top: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      header { padding: 60px 16px 80px; }
-      .cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="header-content">
-      <div class="badge">Этичные техники влияния</div>
-      <h1>Техники продаж<br>и правильные манипуляции</h1>
-      <p class="subtitle">
-        Классические и современные методы убеждения, которые работают на доверии, а не на обмане.
-        Используй только этично.
-      </p>
+<header>
+  <div class="header-content">
+    <div class="badge">Полные рабочие скрипты и алгоритмы</div>
+    <h1>Техники продаж<br>и правильные манипуляции</h1>
+    <p class="subtitle">
+      Каждая кнопка открывает полный практический разбор с примерами фраз, 
+      пошаговыми алгоритмами и готовыми скриптами. Всё, что реально работает.
+    </p>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" data-section="classic">Классика продаж</button>
+    <button class="nav-btn" data-section="influence">Техники влияния</button>
+    <button class="nav-btn" data-section="psychology">Психология</button>
+    <button class="nav-btn" data-section="modern">Современные</button>
+    <button class="nav-btn" data-section="ethics">Этика и границы</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ==================== КЛАССИКА ==================== -->
+  <section id="classic" class="active">
+    <h2 class="section-title">📈 Классические техники продаж</h2>
+    <p class="section-desc">Проверенные методы, которые дают результат в B2B и B2C. Здесь — полные алгоритмы и готовые фразы.</p>
+
+    <!-- SPIN -->
+    <div class="technique">
+      <h3><span class="icon">🎯</span> SPIN-продажи (полный алгоритм)</h3>
+      <p>Самая мощная система вопросов. Вместо того чтобы «продавать», вы помогаете клиенту самому осознать проблему и захотеть её решить.</p>
+      
+      <p><strong>4 этапа вопросов:</strong></p>
+      <ul>
+        <li><strong>S — Situation (Ситуация)</strong> — собираем факты о текущем положении клиента.</li>
+        <li><strong>P — Problem (Проблема)</strong> — выявляем трудности и боли.</li>
+        <li><strong>I — Implication (Извлечение / Последствия)</strong> — усиливаем боль, показываем цену бездействия.</li>
+        <li><strong>N — Need-payoff (Нужда / Выгода)</strong> — клиент сам формулирует ценность решения.</li>
+      </ul>
+
+      <div class="example-box">
+        <strong>Примеры вопросов Situation:</strong><br>
+        «Расскажите, как у вас сейчас организован процесс…?»<br>
+        «Сколько человек занимается этим?»<br>
+        «Какие инструменты вы используете сейчас?»
+      </div>
+
+      <div class="example-box">
+        <strong>Примеры Problem:</strong><br>
+        «Что вас больше всего раздражает в текущей системе?»<br>
+        «Где чаще всего возникают сбои?»<br>
+        «Насколько это влияет на скорость работы команды?»
+      </div>
+
+      <div class="example-box">
+        <strong>Примеры Implication (самое важное!):</strong><br>
+        «Если эта проблема останется, к каким потерям это может привести через 3–6 месяцев?»<br>
+        «Как это влияет на мотивацию сотрудников?»<br>
+        «Сколько примерно денег/времени вы теряете из-за этого?»
+      </div>
+
+      <div class="example-box">
+        <strong>Примеры Need-payoff:</strong><br>
+        «Если бы вы могли сократить эти потери на 40–50%, насколько это было бы важно?»<br>
+        «Что изменилось бы в работе команды, если бы эта проблема исчезла?»
+      </div>
+
+      <div class="script-box">
+        <div class="label">Готовый мини-скрипт перехода</div>
+        «Я правильно понимаю, что сейчас главная боль — это …, и если её не решить, то через полгода вы можете потерять …? А если мы уберём эту проблему, то команда сможет …?»
+      </div>
+      <span class="tag">Neil Rackham • B2B продажи</span>
     </div>
-  </header>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-inner">
-      <button class="nav-btn active" data-section="classic">Классика продаж</button>
-      <button class="nav-btn" data-section="influence">Техники влияния</button>
-      <button class="nav-btn" data-section="psychology">Психология</button>
-      <button class="nav-btn" data-section="modern">Современные</button>
-      <button class="nav-btn" data-section="ethics">Этика</button>
+    <!-- AIDA -->
+    <div class="technique">
+      <h3><span class="icon">🗣️</span> AIDA — полная воронка</h3>
+      <p>Классическая структура любого продающего текста, письма, презентации и разговора.</p>
+      <ul>
+        <li><strong>Attention</strong> — привлечь внимание (сильный заголовок, неожиданный факт, вопрос).</li>
+        <li><strong>Interest</strong> — удержать интерес (история, проблема клиента, цифры).</li>
+        <li><strong>Desire</strong> — вызвать желание (выгоды, доказательства, эмоции, социальное доказательство).</li>
+        <li><strong>Action</strong> — подтолкнуть к действию (чёткий призыв + снижение риска).</li>
+      </ul>
+
+      <div class="script-box">
+        <div class="label">Пример структуры письма / сообщения</div>
+        <strong>Attention:</strong> «Вы теряете 18% клиентов из-за медленного ответа на заявки?»<br>
+        <strong>Interest:</strong> «Мы проанализировали 47 компаний вашей отрасли…»<br>
+        <strong>Desire:</strong> «После внедрения среднее время ответа упало с 4 часов до 11 минут, а конверсия выросла на 31%.»<br>
+        <strong>Action:</strong> «Давайте я покажу на ваших цифрах за 15 минут. Когда удобно — завтра в 11:00 или в 15:00?»
+      </div>
     </div>
-  </nav>
 
-  <main>
-    <!-- 1. Классика продаж -->
-    <section id="classic" class="active">
-      <h2 class="section-title">📈 Классические техники продаж</h2>
-      <p class="section-desc">Проверенные временем этапы и приёмы, которые лежат в основе почти любой успешной продажи.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon">🎯</div>
-          <h3>SPIN-продажи</h3>
-          <p>Ситуация → Проблема → Извлечение → Нужда. Вместо того чтобы сразу продавать, задавай вопросы, которые помогают клиенту самому осознать свою боль.</p>
-          <span class="tag">Neil Rackham</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🗣️</div>
-          <h3>AIDA</h3>
-          <p>Attention → Interest → Desire → Action. Классическая воронка: привлеки внимание, вызови интерес, создай желание и подтолкни к действию.</p>
-          <span class="tag">Классика маркетинга</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🤝</div>
-          <h3>Техника «Да-лестница»</h3>
-          <p>Задавай вопросы, на которые клиент почти наверняка ответит «да». Серия согласий повышает вероятность согласия в конце.</p>
-          <span class="tag">Психологическое обязательство</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">💰</div>
-          <h3>Якорение цены</h3>
-          <p>Сначала покажи более дорогой вариант. После него основная цена кажется более выгодной. Работает даже с премиум-позиционированием.</p>
-          <span class="tag">Ценообразование</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🔁</div>
-          <h3>Техника «Feel-Felt-Found»</h3>
-          <p>«Я понимаю, как вы себя чувствуете… Многие чувствовали то же самое… Но они обнаружили, что…» — мягкое преодоление возражений.</p>
-          <span class="tag">Работа с возражениями</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">📦</div>
-          <h3>Бандлы и комплекты</h3>
-          <p>Предлагай продукт в связке с другими. Клиент воспринимает комплексное решение как более ценное и реже сравнивает с конкурентами.</p>
-          <span class="tag">Увеличение среднего чека</span>
-        </div>
+    <!-- Да-лестница -->
+    <div class="technique">
+      <h3><span class="icon">🤝</span> Техника «Да-лестница»</h3>
+      <p>Серия вопросов, на которые человек почти наверняка ответит «да». Каждое «да» повышает вероятность согласия в конце (принцип последовательности).</p>
+      
+      <div class="script-box">
+        <div class="label">Пример диалога</div>
+        — Вам важно, чтобы клиенты получали ответ быстро?<br>
+        — Да.<br>
+        — И чтобы менеджеры не тратили время на рутину?<br>
+        — Да.<br>
+        — А если бы система сама подсказывала лучший ответ — это было бы полезно?<br>
+        — Да.<br>
+        — Тогда давайте я покажу, как это выглядит на практике. Удобно сейчас или лучше записаться на 20 минут?
       </div>
-    </section>
+      <p><strong>Правило:</strong> вопросы должны быть искренними и логичными, иначе человек почувствует давление.</p>
+    </div>
 
-    <!-- 2. Техники влияния -->
-    <section id="influence">
-      <h2 class="section-title">🧠 Техники влияния (по Чалдини)</h2>
-      <p class="section-desc">Шесть универсальных принципов влияния Роберта Чалдини. Это не «грязные» трюки — это понимание человеческой психологии.</p>
+    <!-- Якорение цены -->
+    <div class="technique">
+      <h3><span class="icon">💰</span> Якорение цены (полный разбор)</h3>
+      <p>Первая названная цифра сильно влияет на восприятие всех последующих. Поэтому всегда начинайте с более высокой позиции.</p>
+      <ul>
+        <li>Сначала показываете премиум / полный пакет.</li>
+        <li>Потом основной (целевой) вариант выглядит выгоднее.</li>
+        <li>Можно использовать «якорь» даже в разговоре: «Обычно такие проекты стоят от 1,2 млн, но…»</li>
+      </ul>
 
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon"> reciprocal</div>
-          <h3>Взаимность</h3>
-          <p>Люди чувствуют себя обязанными отвечать добром на добро. Дай что-то ценное бесплатно (консультацию, чек-лист, демо) — и вероятность покупки вырастет.</p>
-          <span class="tag">Reciprocity</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">📊</div>
-          <h3>Социальное доказательство</h3>
-          <p>«Уже 12 000 клиентов», отзывы, кейсы, рейтинги. Люди смотрят на поведение других, особенно в неопределённости.</p>
-          <span class="tag">Social Proof</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">👑</div>
-          <h3>Авторитет</h3>
-          <p>Экспертность, регалии, публикации, упоминания в СМИ. Люди доверяют тем, кого считают специалистами.</p>
-          <span class="tag">Authority</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">❤️</div>
-          <h3>Симпатия</h3>
-          <p>Нам легче покупать у тех, кто нам нравится. Общие интересы, комплименты, зеркалирование поведения.</p>
-          <span class="tag">Liking</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">⏳</div>
-          <h3>Дефицит</h3>
-          <p>«Осталось 3 места», «предложение до пятницы». Ограниченность повышает воспринимаемую ценность. Важно не врать.</p>
-          <span class="tag">Scarcity</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🔗</div>
-          <h3>Последовательность</h3>
-          <p>Люди стремятся быть последовательными. Если человек уже сделал маленькое публичное обязательство, ему сложнее отказаться от большого.</p>
-          <span class="tag">Consistency</span>
-        </div>
+      <div class="example-box">
+        <strong>Как говорить:</strong><br>
+        «Есть три варианта. Полный пакет с поддержкой и доработками — 890 000 ₽. Стандартный, который берёт большинство клиентов, — 540 000 ₽. И базовый — 320 000 ₽. Большинству компаний вашего размера оптимально подходит стандартный.»
       </div>
-    </section>
+    </div>
 
-    <!-- 3. Психология -->
-    <section id="psychology">
-      <h2 class="section-title">🧩 Психологические приёмы</h2>
-      <p class="section-desc">Глубже уровень — работа с восприятием, эмоциями и когнитивными искажениями.</p>
+    <!-- Feel-Felt-Found -->
+    <div class="technique">
+      <h3><span class="icon">🔁</span> Feel — Felt — Found (работа с возражениями)</h3>
+      <p>Мягкий и очень эффективный способ обходить возражения без спора.</p>
 
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon">🪞</div>
-          <h3>Зеркалирование</h3>
-          <p>Незаметно копируй позу, темп речи и ключевые слова клиента. Это создаёт ощущение «свой человек» на подсознательном уровне.</p>
-          <span class="tag">Раппорт</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">📉</div>
-          <h3>Потеря vs Приобретение</h3>
-          <p>Люди сильнее боятся потерять, чем радуются приобретению. Формулируй выгоды через «что вы потеряете, если не…».</p>
-          <span class="tag">Loss Aversion</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🎭</div>
-          <h3>Эффект ореола</h3>
-          <p>Одно сильное положительное качество (красивый сайт, сильный кейс) переносится на всё остальное восприятие продукта и компании.</p>
-          <span class="tag">Halo Effect</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🧩</div>
-          <h3>Истории вместо фактов</h3>
-          <p>Мозг лучше запоминает и эмоционально реагирует на истории. Кейсы и истории клиентов работают сильнее сухих характеристик.</p>
-          <span class="tag">Storytelling</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">⚖️</div>
-          <h3>Контраст</h3>
-          <p>Покажи «плохое» решение рядом с «хорошим». Или «дорогое» рядом с «оптимальным». Контраст делает выбор очевидным.</p>
-          <span class="tag">Contrast Principle</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🧘</div>
-          <h3>Снятие напряжения</h3>
-          <p>Многие покупки блокируются страхом ошибки. Снижай риск: гарантии, тестовый период, «можно вернуть».</p>
-          <span class="tag">Risk Reversal</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. Современные -->
-    <section id="modern">
-      <h2 class="section-title">🚀 Современные подходы</h2>
-      <p class="section-desc">Что работает в 2020–2026 годах: консультативные продажи, value-based selling и soft-closing.</p>
-
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon">🧭</div>
-          <h3>Консультативные продажи</h3>
-          <p>Ты не «продавец», а эксперт, который помогает клиенту разобраться в проблеме. Цель — стать доверенным советником.</p>
-          <span class="tag">Consultative Selling</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">💎</div>
-          <h3>Value-Based Selling</h3>
-          <p>Продавай не продукт, а ценность и результат для бизнеса клиента. Считай ROI вместе с ним.</p>
-          <span class="tag">Ценностные продажи</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🎯</div>
-          <h3>Challenge Selling</h3>
-          <p>Не подстраивайся под запрос клиента, а бросай вызов его текущему взгляду. Покажи, что он смотрит на проблему неправильно.</p>
-          <span class="tag">Challenger Sale</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🔄</div>
-          <h3>Мягкое закрытие</h3>
-          <p>Вместо жёсткого «покупаете?» используй: «Как вам кажется, это может решить вашу задачу?» или «Что ещё нужно, чтобы принять решение?».</p>
-          <span class="tag">Soft Close</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">📱</div>
-          <h3>Социальные продажи</h3>
-          <p>LinkedIn, Telegram, экспертный контент. Строй отношения и доверие до того, как предложить продукт.</p>
-          <span class="tag">Social Selling</span>
-        </div>
-
-        <div class="card">
-          <div class="card-icon">🧪</div>
-          <h3>Микро-обязательства</h3>
-          <p>Маленькие шаги: «давайте я пришлю вам короткий разбор», «посмотрите это видео», «заполните форму». Каждый шаг повышает вероятность сделки.</p>
-          <span class="tag">Micro-commitments</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Этика -->
-    <section id="ethics">
-      <h2 class="section-title">⚖️ Этика и границы</h2>
-      <p class="section-desc">Где заканчивается влияние и начинается манипуляция. Важные правила, которые стоит соблюдать.</p>
-
-      <div class="warning">
-        <div class="warning-icon">⚠️</div>
-        <div>
-          <strong>Важно:</strong> Разница между влиянием и манипуляцией — в намерении и прозрачности. 
-          Этичные техники помогают клиенту принять лучшее для него решение. Манипуляция — заставляет принять решение в твою пользу вопреки интересам клиента.
-        </div>
+      <div class="script-box">
+        <div class="label">Универсальный шаблон</div>
+        «Я понимаю, как вы себя <strong>чувствуете</strong>…<br>
+        Многие наши клиенты <strong>чувствовали</strong> то же самое…<br>
+        Но они <strong>обнаружили</strong>, что после внедрения…»
       </div>
 
-      <div class="cards">
-        <div class="card">
-          <div class="card-icon">✅</div>
-          <h3>Что можно</h3>
-          <p>
-            • Показывать реальные кейсы и цифры<br>
-            • Создавать срочность, если она настоящая<br>
-            • Использовать социальные доказательства<br>
-            • Задавать вопросы, которые помогают осознать проблему<br>
-            • Строить долгосрочные отношения
-          </p>
-        </div>
+      <div class="example-box">
+        <strong>Пример на возражение «Дорого»:</strong><br>
+        «Я понимаю, что сейчас сумма выглядит значительной. Многие руководители сначала чувствовали то же самое. Но потом они посчитали, сколько теряют ежемесячно, и обнаружили, что окупаемость наступает уже на 3–4 месяц.»
+      </div>
+    </div>
+  </section>
 
-        <div class="card">
-          <div class="card-icon">❌</div>
-          <h3>Что нельзя</h3>
-          <p>
-            • Врать о дефиците или «последнем месте»<br>
-            • Давить на страх и вину<br>
-            • Скрывать важные недостатки продукта<br>
-            • Использовать ложные отзывы<br>
-            • Продавать то, что клиенту реально не нужно
-          </p>
-        </div>
+  <!-- ==================== ВЛИЯНИЕ ==================== -->
+  <section id="influence">
+    <h2 class="section-title">🧠 Техники влияния (Чалдини + практика)</h2>
+    <p class="section-desc">Шесть принципов Роберта Чалдини с готовыми формулировками, которые можно использовать сразу.</p>
 
-        <div class="card">
-          <div class="card-icon">🧭</div>
-          <h3>Золотое правило</h3>
-          <p>Спрашивай себя: «Если бы я был на месте клиента и знал всё, что знаю я, — я бы сам купил?» Если ответ «нет» — не продавай.</p>
-          <span class="tag">Этичный фильтр</span>
-        </div>
+    <div class="technique">
+      <h3><span class="icon">🔄</span> 1. Взаимность</h3>
+      <p>Люди чувствуют себя обязанными отвечать на услугу или подарок. Дайте ценность <strong>до</strong> просьбы о покупке.</p>
+      <ul>
+        <li>Бесплатный аудит / разбор</li>
+        <li>Полезный чек-лист или шаблон</li>
+        <li>Персональная рекомендация</li>
+        <li>Демо с реальными данными клиента</li>
+      </ul>
+      <div class="script-box">
+        <div class="label">Как предлагать</div>
+        «Давайте я бесплатно разберу ваши текущие показатели и покажу 2–3 точки роста. Без обязательств. Если будет полезно — обсудим, как можем помочь. Удобно на этой неделе?»
+      </div>
+    </div>
 
-        <div class="card">
-          <div class="card-icon">🌱</div>
-          <h3>Долгосрочный эффект</h3>
-          <p>Клиенты, которых «продавили», редко возвращаются и почти никогда не рекомендуют. Этичные продажи строят репутацию и повторные продажи.</p>
-          <span class="tag">LTV > разовая сделка</span>
+    <div class="technique">
+      <h3><span class="icon">👥</span> 2. Социальное доказательство</h3>
+      <p>В ситуации неопределённости люди смотрят на действия других.</p>
+      <div class="example-box">
+        <strong>Сильные формулировки:</strong><br>
+        «Уже 187 компаний вашей отрасли используют…»<br>
+        «Средний рост выручки у клиентов после внедрения — 34% за 6 месяцев»<br>
+        «Вот что написал директор компании X после 3 месяцев работы…»
+      </div>
+      <p>Чем ближе «социальное доказательство» к клиенту (та же отрасль, размер, город), тем сильнее эффект.</p>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">👑</span> 3. Авторитет</h3>
+      <p>Люди доверяют экспертам. Нужно быстро показать компетентность.</p>
+      <ul>
+        <li>Кейсы с цифрами</li>
+        <li>«Мы помогли компаниям уровня…»</li>
+        <li>Упоминание известного клиента (если можно)</li>
+        <li>Собственные исследования / данные</li>
+      </ul>
+      <div class="script-box">
+        <div class="label">Фраза для начала разговора</div>
+        «Мы специализируемся именно на компаниях вашего размера в этой нише. За последние 2 года провели 40+ внедрений и собрали данные, которые обычно не лежат на поверхности…»
+      </div>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">❤️</span> 4. Симпатия</h3>
+      <p>Нам легче покупать у тех, кто нам нравится. Три рычага:</p>
+      <ul>
+        <li>Общие интересы / похожий бэкграунд</li>
+        <li>Искренние комплименты (не лесть)</li>
+        <li>Зеркалирование речи и темпа</li>
+      </ul>
+      <div class="example-box">
+        «Я заметил, что вы тоже вышли из операционки в стратегию — у меня был похожий путь. Поэтому особенно понимаю, как важно сейчас разгрузить команду…»
+      </div>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">⏳</span> 5. Дефицит</h3>
+      <p>Работает только когда дефицит <strong>настоящий</strong>. Ложный дефицит разрушает доверие.</p>
+      <div class="example-box">
+        <strong>Честные формулировки:</strong><br>
+        «Сейчас у нас осталось 2 слота на запуск в этом месяце»<br>
+        «До конца недели действует специальное условие для компаний из вашего сегмента»<br>
+        «После 15-го числа команда внедрения полностью загружена до ноября»
+      </div>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">🔗</span> 6. Последовательность / Обязательство</h3>
+      <p>Люди стремятся быть последовательными. Маленькое «да» облегчает большое.</p>
+      <div class="script-box">
+        <div class="label">Цепочка микро-обязательств</div>
+        1. «Могу я задать несколько вопросов, чтобы понять вашу ситуацию?» → Да<br>
+        2. «Если я покажу, как это решается — будет полезно?» → Да<br>
+        3. «Давайте я подготовлю короткий разбор именно под вас?» → Да<br>
+        4. «После разбора обсудим возможные следующие шаги?» → Да
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ПСИХОЛОГИЯ ==================== -->
+  <section id="psychology">
+    <h2 class="section-title">🧩 Психологические приёмы</h2>
+    <p class="section-desc">Работа с восприятием, эмоциями и когнитивными искажениями. Здесь самые сильные рычаги.</p>
+
+    <div class="technique">
+      <h3><span class="icon">🪞</span> Зеркалирование и раппорт</h3>
+      <p>Незаметно подстраивайтесь под клиента: темп речи, громкость, ключевые слова, иногда позу. Это создаёт ощущение «мы на одной волне».</p>
+      <ul>
+        <li>Если клиент говорит быстро и конкретно — отвечайте так же.</li>
+        <li>Если говорит медленно и с паузами — не торопите.</li>
+        <li>Повторяйте его важные слова: «Вы сказали “прозрачность процессов” — именно это мы и усиливаем».</li>
+      </ul>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">📉</span> Потеря сильнее приобретения (Loss Aversion)</h3>
+      <p>Люди примерно в 2 раза сильнее боятся потерять, чем радуются приобретению той же суммы.</p>
+      <div class="two-col">
+        <div class="example-box">
+          <strong>Слабо:</strong><br>
+          «Вы получите дополнительно 400 000 ₽ в год»
+        </div>
+        <div class="example-box">
+          <strong>Сильно:</strong><br>
+          «Каждый месяц, пока система не внедрена, вы продолжаете терять около 35 000 ₽»
         </div>
       </div>
-    </section>
-  </main>
+      <div class="script-box">
+        <div class="label">Готовая формулировка</div>
+        «Давайте честно посчитаем: сколько вы теряете прямо сейчас из-за этой проблемы? И что будет через полгода, если ничего не менять?»
+      </div>
+    </div>
 
-  <footer>
-    <p>Используй знания ответственно. Лучшие продажи — те, после которых клиент говорит «спасибо».</p>
-  </footer>
+    <div class="technique">
+      <h3><span class="icon">🎭</span> Эффект ореола</h3>
+      <p>Одно сильное впечатление переносится на всё остальное. Поэтому:</p>
+      <ul>
+        <li>Сайт, презентация и первое сообщение должны выглядеть безупречно.</li>
+        <li>Один мощный кейс с цифрами часто важнее десяти средних.</li>
+        <li>Личный бренд продавца тоже работает как «ореол».</li>
+      </ul>
+    </div>
 
-  <script>
-    const buttons = document.querySelectorAll('.nav-btn');
-    const sections = document.querySelectorAll('section');
+    <div class="technique">
+      <h3><span class="icon">📖</span> Сила историй (Storytelling)</h3>
+      <p>Мозг запоминает истории в разы лучше, чем списки преимуществ.</p>
+      <div class="script-box">
+        <div class="label">Структура рабочей истории</div>
+        1. Было плохо (конкретная ситуация клиента)<br>
+        2. Что сделали<br>
+        3. Что стало (цифры + эмоция)<br>
+        4. Связка с текущим клиентом: «У вас похожая ситуация…»
+      </div>
+    </div>
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Убираем активный класс
-        buttons.forEach(b => b.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
+    <div class="technique">
+      <h3><span class="icon">⚖️</span> Принцип контраста</h3>
+      <p>Всё познаётся в сравнении. Всегда давайте точку отсчёта.</p>
+      <div class="example-box">
+        «Большинство компаний в вашей нише тратят на это 180–220 часов в месяц. После внедрения наши клиенты тратят 35–40 часов.»
+      </div>
+    </div>
 
-        // Добавляем активный
-        btn.classList.add('active');
-        const target = document.getElementById(btn.dataset.section);
-        if (target) target.classList.add('active');
-      });
+    <div class="technique">
+      <h3><span class="icon">🛡️</span> Снятие риска (Risk Reversal)</h3>
+      <p>Главный стоп-фактор покупки — страх ошибиться. Убирайте его максимально жёстко.</p>
+      <ul>
+        <li>Гарантия возврата</li>
+        <li>Пилотный проект / тест на 2–4 недели</li>
+        <li>«Платите только после результата»</li>
+        <li>Поэтапная оплата</li>
+      </ul>
+      <div class="script-box">
+        <div class="label">Сильная фраза</div>
+        «Мы настолько уверены в результате, что предлагаем начать с пилота. Если через 30 дней вы не увидите понятный эффект — просто останавливаемся, и вы ничего не должны.»
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== СОВРЕМЕННЫЕ ==================== -->
+  <section id="modern">
+    <h2 class="section-title">🚀 Современные подходы 2024–2026</h2>
+    <p class="section-desc">То, что реально работает сейчас: консультативные продажи, Challenger и value-based selling.</p>
+
+    <div class="technique">
+      <h3><span class="icon">🧭</span> Консультативные продажи</h3>
+      <p>Вы — не продавец, а эксперт, который помогает клиенту разобраться. Цель — стать доверенным советником.</p>
+      <ul>
+        <li>80% времени — вопросы и диагностика</li>
+        <li>20% — предложение решения</li>
+        <li>Никогда не начинайте с продукта</li>
+      </ul>
+      <div class="script-box">
+        <div class="label">Правильное начало разговора</div>
+        «Прежде чем что-то предлагать, мне важно глубоко понять вашу ситуацию. Можно я задам несколько вопросов? Это займёт 10–12 минут и поможет не тратить ваше время на ненужное.»
+      </div>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">💎</span> Value-Based Selling (продажа ценности)</h3>
+      <p>Продаёте не «систему» и не «услугу», а конкретный финансовый и операционный результат.</p>
+      <div class="example-box">
+        Вместо: «У нас есть CRM с искусственным интеллектом»<br>
+        Говорите: «Мы помогаем сократить цикл сделки в среднем на 19 дней и поднять конверсию из лида в оплату на 22–28%»
+      </div>
+      <p>Всегда считайте вместе с клиентом: сколько он теряет сейчас и сколько заработает/сэкономит.</p>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">⚡</span> Challenger Sale (продажи через вызов)</h3>
+      <p>Не подстраивайтесь слепо под запрос клиента. Покажите, что он смотрит на проблему неправильно или неполно.</p>
+      <div class="script-box">
+        <div class="label">Структура Challenger-разговора</div>
+        1. «Большинство компаний думают, что проблема в …»<br>
+        2. «На самом деле данные показывают другое…»<br>
+        3. «Вот что происходит на самом деле…»<br>
+        4. «Именно поэтому решение должно выглядеть вот так…»
+      </div>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">🎯</span> Мягкое закрытие (Soft Close)</h3>
+      <p>Жёсткое «Ну что, берём?» часто вызывает сопротивление. Используйте мягкие варианты:</p>
+      <ul>
+        <li>«Как вам кажется, это может закрыть вашу задачу?»</li>
+        <li>«Что ещё нужно увидеть, чтобы принять решение?»</li>
+        <li>«Если бы мы убрали вот этот риск — вы были бы готовы двигаться?»</li>
+        <li>«Давайте я подготовлю коммерческое на два варианта, а вы скажете, какой ближе?»</li>
+      </ul>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">📱</span> Social Selling</h3>
+      <p>Продажи через экспертность в LinkedIn, Telegram, отраслевых чатах.</p>
+      <ul>
+        <li>Регулярно давайте пользу (посты, разборы, цифры)</li>
+        <li>Комментируйте и помогайте без продажи</li>
+        <li>Только после установления контакта — мягкое предложение разговора</li>
+      </ul>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">🧪</span> Микро-обязательства</h3>
+      <p>Каждый маленький шаг повышает вероятность большого.</p>
+      <div class="example-box">
+        Цепочка:<br>
+        «Могу прислать короткий PDF с разбором?» →<br>
+        «Давайте созвонимся на 15 минут обсудить цифры?» →<br>
+        «Подготовлю коммерческое предложение под вас?» →<br>
+        «Запустим пилот?»
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ЭТИКА ==================== -->
+  <section id="ethics">
+    <h2 class="section-title">⚖️ Этика и границы</h2>
+    <p class="section-desc">Где заканчивается сильное влияние и начинается вредная манипуляция.</p>
+
+    <div class="warning">
+      <div class="warning-icon">⚠️</div>
+      <div>
+        <strong>Главное отличие:</strong><br>
+        Этичное влияние помогает клиенту принять решение, которое выгодно <em>ему</em>.<br>
+        Манипуляция заставляет принять решение, которое выгодно <em>только вам</em>, даже если клиенту это вредит.
+      </div>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">✅</span> Что можно и нужно делать</h3>
+      <ul>
+        <li>Показывать реальные цифры и кейсы</li>
+        <li>Создавать срочность, когда она настоящая</li>
+        <li>Усиливать осознание проблемы через вопросы</li>
+        <li>Использовать социальное доказательство</li>
+        <li>Снимать риски клиента</li>
+        <li>Строить долгосрочные отношения</li>
+        <li>Отказываться от сделки, если продукт реально не подходит</li>
+      </ul>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">❌</span> Что нельзя (разрушает репутацию)</h3>
+      <ul>
+        <li>Врать о дефиците («последнее место», когда мест полно)</li>
+        <li>Давить на страх, вину или стыд</li>
+        <li>Скрывать важные ограничения продукта</li>
+        <li>Использовать фейковые отзывы</li>
+        <li>Продавать то, что клиенту объективно не нужно</li>
+        <li>Создавать искусственную панику</li>
+      </ul>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">🧭</span> Золотой фильтр перед каждой сделкой</h3>
+      <p>Задайте себе три вопроса:</p>
+      <ol style="margin: 12px 0 0 20px; color: #cbd5e1;">
+        <li>Если бы я был на месте клиента и знал всё, что знаю я — я бы купил?</li>
+        <li>Эта покупка улучшит жизнь/бизнес клиента через 6–12 месяцев?</li>
+        <li>Мне не будет стыдно, если клиент потом расскажет всем, как проходила продажа?</li>
+      </ol>
+      <p style="margin-top: 16px;">Если хотя бы на один вопрос ответ «нет» — лучше отказаться от сделки.</p>
+    </div>
+
+    <div class="technique">
+      <h3><span class="icon">🌱</span> Почему этика выгодна</h3>
+      <p>Клиенты, которых «продавили», почти никогда не возвращаются и не рекомендуют. Клиенты, которым реально помогли — становятся источником повторных продаж и тёплых рекомендаций. В долгосрочной перспективе этичные продажи всегда прибыльнее.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Используй эти техники с уважением к клиенту. Лучшие продажи — те, после которых говорят «спасибо» и возвращаются.</p>
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.nav-btn');
+  const sections = document.querySelectorAll('section');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.section);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     });
-  </script>
+  });
+</script>
 </body>
 </html>
