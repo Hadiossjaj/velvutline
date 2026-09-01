@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sales Fire | Продажи и Мотивация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff4d00;
+            --primary-dark: #e04300;
+            --bg: #0f0f13;
+            --card: #1a1a22;
+            --text: #f0f0f0;
+            --muted: #a0a0b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 15, 19, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 77, 0, 0.25);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        /* Бургер */
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .burger span {
+            width: 26px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover, .btn:active {
+            background: var(--primary-dark);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 110px 16px 60px;
+            background: radial-gradient(circle at 50% 20%, rgba(255, 77, 0, 0.18), transparent 60%);
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.3rem, 8vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .hero-buttons .btn {
+            width: 100%;
+            max-width: 280px;
+            padding: 16px;
+            font-size: 1.05rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 70px 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 1.9rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* Цитаты */
+        .quotes {
+            background: var(--card);
+        }
+
+        .quotes-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .quote-card {
+            background: var(--bg);
+            padding: 24px;
+            border-radius: 14px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .quote-card p {
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .quote-card .author {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Техники */
+        .tips-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .tip-card {
+            background: var(--card);
+            padding: 28px 20px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .tip-icon {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+        }
+
+        .tip-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .tip-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* ===== ФОРМА ===== */
+        .cta {
+            background: linear-gradient(180deg, #1a1a22, #0f0f13);
+        }
+
+        .cta-content {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 1.9rem;
+            margin-bottom: 12px;
+        }
+
+        .cta > .cta-content > p {
+            color: var(--muted);
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+
+        .form-card {
+            background: var(--card);
+            padding: 28px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 77, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 14px;
+            background: var(--bg);
+            border: 1px solid #333;
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 17px;
+            font-size: 1.1rem;
+            margin-top: 8px;
+        }
+
+        .success-message {
+            display: none;
+            background: rgba(0, 200, 80, 0.15);
+            border: 1px solid #00c850;
+            color: #00e676;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 18px;
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a0a0e;
+            padding: 30px 16px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        /* ===== МОБИЛЬНОЕ МЕНЮ ===== */
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #121218;
+                flex-direction: column;
+                padding: 20px;
+                gap: 8px;
+                transform: translateY(-150%);
+                transition: 0.35s ease;
+                border-bottom: 1px solid rgba(255,77,0,0.2);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 14px;
+                font-size: 1.1rem;
+                border-radius: 10px;
+            }
+
+            .nav-links a:active {
+                background: rgba(255,77,0,0.15);
+            }
+
+            .nav .btn {
+                display: none;
+            }
+        }
+
+        /* Планшеты и больше */
+        @media (min-width: 769px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .hero-buttons .btn {
+                width: auto;
+            }
+
+            .quotes-grid,
+            .tips-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+
+            .form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav class="nav">
+            <div class="logo">Sales<span>Fire</span></div>
+
+            <div class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#motivation">Мотивация</a></li>
+                <li><a href="#tips">Техники продаж</a></li>
+                <li><a href="#cta">Оставить заявку</a></li>
+            </ul>
+
+            <a href="#cta" class="btn">Оставить заявку</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Продавай <span>огненно</span>.<br>Живи мотивированно.</h1>
+            <p>Система, которая превращает обычных людей в топ-продавцов.</p>
+            <div class="hero-buttons">
+                <a href="#cta" class="btn">Оставить заявку</a>
+                <a href="#tips" class="btn btn-outline">Смотреть техники</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOTIVATION -->
+    <section class="quotes" id="motivation">
+        <div class="container">
+            <div class="section-title">
+                <h2>Топливо для твоих продаж</h2>
+                <p>Цитаты, которые поднимают даже в тяжёлый день</p>
+            </div>
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <p>«Успех в продажах — это не талант. Это дисциплина + правильный скрипт.»</p>
+                    <div class="author">— Грант Кардон</div>
+                </div>
+                <div class="quote-card">
+                    <p>«Каждый отказ — это просто шаг ближе к следующей сделке.»</p>
+                    <div class="author">— Зиг Зиглар</div>
+                </div>
+                <div class="quote-card">
+                    <p>«Мотивация приходит и уходит. Привычка остаётся.»</p>
+                    <div class="author">— Sales Fire</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPS -->
+    <section id="tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>Рабочие техники продаж</h2>
+                <p>Только то, что реально закрывает сделки</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🎯</div>
+                    <h3>Правило 3 «Да»</h3>
+                    <p>Получи три маленьких согласия — и большое «да» становится почти автоматическим.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🔥</div>
+                    <h3>Боль → Решение</h3>
+                    <p>Сначала глубоко раскопай боль клиента, потом предлагай продукт.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⏱</div>
+                    <h3>Дефицит времени</h3>
+                    <p>«Только сегодня» работает сильнее любой скидки.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🧠</div>
+                    <h3>Истории вместо фактов</h3>
+                    <p>Люди покупают эмоции. Рассказывай истории клиентов.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📞</div>
+                    <h3>Follow-up система</h3>
+                    <p>80% сделок закрываются после 5-го контакта.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⚡</div>
+                    <h3>Энергия продавца</h3>
+                    <p>Клиент покупает твоё состояние.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОРМА -->
+    <section class="cta" id="cta">
+        <div class="cta-content">
+            <h2>Оставь заявку<br>и начни расти</h2>
+            <p>Заполни форму — свяжемся в течение 15 минут</p>
+
+            <div class="form-card">
+                <form id="leadForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" required placeholder="Александр">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" required placeholder="+7 (999) 123-45-67">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="alex@mail.ru">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Что вас интересует?</label>
+                        <textarea id="message" placeholder="Хочу получить доступ / Нужна консультация"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn submit-btn">Отправить заявку</button>
+
+                    <div class="success-message" id="successMessage">
+                        ✅ Заявка отправлена! Мы скоро свяжемся.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Sales Fire. Создано для тех, кто хочет продавать больше.</p>
+    </footer>
+
+    <script>
+        // Бургер-меню
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Форма (пока пустышка)
+        const form = document.getElementById('leadForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            successMessage.style.display = 'block';
+            form.reset();
+
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
