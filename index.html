@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Техники продаж</title>
+  <title>Техники продаж — Тренажёр</title>
   <style>
     :root {
       --primary: #3b82f6;
       --accent: #0ea5e9;
       --success: #22c55e;
+      --danger: #ef4444;
     }
 
     [data-theme="dark"] {
@@ -16,7 +17,7 @@
       --card: #1e293b;
       --text: #f1f5f9;
       --muted: #94a3b8;
-      --border: rgba(148, 163, 184, 0.15);
+      --border: rgba(148, 163, 184, 0.18);
       --nav-bg: rgba(15, 23, 42, 0.95);
     }
 
@@ -29,11 +30,7 @@
       --nav-bg: rgba(255, 255, 255, 0.95);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -43,43 +40,10 @@
       min-height: 100vh;
     }
 
-    /* Простой космический фон */
-    .cosmos {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: #020617;
-      overflow: hidden;
-    }
-
-    [data-theme="light"] .cosmos {
-      background: #e0e7ff;
-    }
-
-    .stars {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
-        radial-gradient(1.5px 1.5px at 40px 70px, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-        radial-gradient(1.5px 1.5px at 130px 80px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(1px 1px at 160px 120px, #fff, transparent);
-      background-size: 200px 200px;
-      opacity: 0.6;
-      animation: moveStars 120s linear infinite;
-    }
-
-    @keyframes moveStars {
-      from { transform: translateY(0); }
-      to { transform: translateY(-200px); }
-    }
-
-    /* Кнопка темы */
     .theme-btn {
       position: fixed;
-      top: 16px;
-      right: 16px;
+      top: 14px;
+      right: 14px;
       z-index: 1000;
       width: 42px;
       height: 42px;
@@ -94,43 +58,40 @@
       justify-content: center;
     }
 
-    /* Шапка */
     header {
       text-align: center;
-      padding: 60px 20px 30px;
+      padding: 50px 16px 20px;
     }
 
     .badge {
       display: inline-block;
       background: rgba(34, 197, 94, 0.15);
       color: var(--success);
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 50px;
-      font-size: 0.85rem;
-      margin-bottom: 16px;
+      font-size: 0.84rem;
+      margin-bottom: 14px;
       border: 1px solid rgba(34, 197, 94, 0.3);
     }
 
     h1 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      margin-bottom: 12px;
+      font-size: clamp(1.7rem, 5vw, 2.6rem);
+      margin-bottom: 10px;
       background: linear-gradient(90deg, #60a5fa, #38bdf8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .subtitle {
       color: var(--muted);
-      max-width: 560px;
-      margin: 0 auto 24px;
-      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 20px;
+      font-size: 1rem;
     }
 
-    /* Прогресс */
     .progress-box {
-      max-width: 360px;
-      margin: 0 auto 8px;
+      max-width: 340px;
+      margin: 0 auto 6px;
       background: rgba(30, 41, 59, 0.5);
       border-radius: 20px;
       padding: 3px;
@@ -146,31 +107,35 @@
     }
 
     .progress-text {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--muted);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    /* Кнопки инструментов */
     .tools {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       justify-content: center;
-      padding: 0 16px 20px;
-      max-width: 900px;
+      padding: 0 14px 18px;
+      max-width: 920px;
       margin: 0 auto;
     }
 
-    .tool-btn {
-      padding: 10px 14px;
-      border-radius: 10px;
+    .tool-btn, .search-input {
+      padding: 9px 13px;
+      border-radius: 9px;
       border: 1px solid var(--border);
       background: var(--card);
       color: var(--text);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       cursor: pointer;
-      transition: 0.2s;
+    }
+
+    .search-input {
+      min-width: 180px;
+      outline: none;
+      cursor: text;
     }
 
     .tool-btn:hover {
@@ -178,18 +143,6 @@
       color: var(--accent);
     }
 
-    .search-input {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      font-size: 0.9rem;
-      min-width: 200px;
-      outline: none;
-    }
-
-    /* Навигация */
     nav {
       background: var(--nav-bg);
       border-bottom: 1px solid var(--border);
@@ -203,8 +156,8 @@
       max-width: 900px;
       margin: 0 auto;
       display: flex;
-      gap: 6px;
-      padding: 10px 16px;
+      gap: 5px;
+      padding: 9px 14px;
       overflow-x: auto;
     }
 
@@ -212,115 +165,83 @@
       background: transparent;
       border: none;
       color: var(--muted);
-      padding: 9px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       white-space: nowrap;
-      transition: 0.2s;
     }
 
-    .nav-btn:hover {
-      color: #60a5fa;
-      background: rgba(59, 130, 246, 0.1);
-    }
+    .nav-btn:hover { color: #60a5fa; background: rgba(59,130,246,0.1); }
+    .nav-btn.active { background: #3b82f6; color: white; }
 
-    .nav-btn.active {
-      background: #3b82f6;
-      color: white;
-    }
-
-    /* Основной контент */
     main {
-      max-width: 860px;
+      max-width: 840px;
       margin: 0 auto;
-      padding: 30px 16px 80px;
+      padding: 28px 14px 70px;
     }
 
-    section {
-      display: none;
-    }
+    section { display: none; }
+    section.active { display: block; }
 
-    section.active {
-      display: block;
-    }
+    .section-title { font-size: 1.4rem; margin-bottom: 4px; }
+    .section-desc { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
 
-    .section-title {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-    }
-
-    .section-desc {
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
-    /* Карточки */
     .technique {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 16px;
+      padding: 18px;
+      margin-bottom: 14px;
     }
 
     .tech-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 10px;
+      gap: 10px;
+      margin-bottom: 8px;
     }
 
     .tech-header h3 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
 
     .icon {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       background: rgba(59, 130, 246, 0.15);
-      border-radius: 10px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
     }
 
-    .actions {
-      display: flex;
-      gap: 6px;
-    }
+    .actions { display: flex; gap: 5px; }
 
     .icon-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
       border: 1px solid var(--border);
       background: transparent;
       color: var(--muted);
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
-    .icon-btn.active {
-      color: #22c55e;
-      border-color: #22c55e;
-    }
-
-    .icon-btn.fav.active {
-      color: #ef4444;
-      border-color: #ef4444;
-    }
+    .icon-btn.active { color: var(--success); border-color: var(--success); }
+    .icon-btn.fav.active { color: var(--danger); border-color: var(--danger); }
 
     .example, .script {
-      padding: 12px 14px;
-      border-radius: 10px;
-      margin: 12px 0;
-      font-size: 0.92rem;
+      padding: 11px 13px;
+      border-radius: 9px;
+      margin: 10px 0;
+      font-size: 0.9rem;
     }
 
     .example {
@@ -331,42 +252,75 @@
     .script {
       background: rgba(34, 197, 94, 0.1);
       border: 1px solid rgba(34, 197, 94, 0.25);
+      position: relative;
     }
 
     .script .label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--success);
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       text-transform: uppercase;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(34, 197, 94, 0.2);
+      border: none;
+      color: var(--success);
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
     .expand-btn {
       background: none;
       border: none;
       color: var(--accent);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       cursor: pointer;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .more {
       display: none;
-      margin-top: 12px;
-      padding-top: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
       border-top: 1px dashed var(--border);
       color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    .more.open {
-      display: block;
+    .more.open { display: block; }
+
+    .notes-area {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .notes-area.open { display: block; }
+
+    .notes-area textarea {
+      width: 100%;
+      min-height: 70px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.15);
+      color: var(--text);
+      font-size: 0.88rem;
+      resize: vertical;
+      outline: none;
     }
 
     .tag {
       display: inline-block;
-      margin-top: 8px;
-      font-size: 0.75rem;
-      padding: 3px 10px;
+      margin-top: 7px;
+      font-size: 0.73rem;
+      padding: 2px 9px;
       border-radius: 20px;
       background: rgba(14, 165, 233, 0.15);
       color: var(--accent);
@@ -381,67 +335,56 @@
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 18px;
     }
 
-    .modal-bg.open {
-      display: flex;
-    }
+    .modal-bg.open { display: flex; }
 
     .modal {
       background: var(--card);
-      border-radius: 16px;
-      max-width: 500px;
+      border-radius: 14px;
+      max-width: 480px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
-      padding: 24px;
+      padding: 22px;
       position: relative;
       border: 1px solid var(--border);
     }
 
-    .modal h2 {
-      font-size: 1.3rem;
-      margin-bottom: 16px;
-    }
+    .modal h2 { font-size: 1.25rem; margin-bottom: 14px; }
 
     .close-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 32px;
-      height: 32px;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
       border: none;
       background: rgba(148,163,184,0.2);
       border-radius: 50%;
       color: var(--text);
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
     }
 
-    .quiz-q {
-      margin-bottom: 16px;
-    }
-
-    .quiz-q p {
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
+    .quiz-q { margin-bottom: 14px; }
+    .quiz-q p { font-weight: 500; margin-bottom: 7px; }
     .quiz-q label {
       display: block;
-      padding: 8px 12px;
-      margin-bottom: 6px;
+      padding: 7px 11px;
+      margin-bottom: 5px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 7px;
       cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .result {
       background: rgba(34, 197, 94, 0.1);
       border: 1px solid rgba(34, 197, 94, 0.3);
-      border-radius: 12px;
-      padding: 16px;
+      border-radius: 10px;
+      padding: 14px;
       margin-top: 12px;
     }
 
@@ -449,497 +392,668 @@
       display: block;
       width: 100%;
       text-align: left;
-      padding: 10px 14px;
+      padding: 9px 12px;
       margin-bottom: 6px;
       border: 1px solid var(--border);
       border-radius: 8px;
       background: transparent;
       color: var(--text);
       cursor: pointer;
+      font-size: 0.9rem;
     }
 
-    .obj-btn:hover {
-      border-color: var(--accent);
-    }
+    .obj-btn:hover { border-color: var(--accent); }
 
     footer {
       text-align: center;
-      padding: 30px 20px;
+      padding: 28px 16px;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       border-top: 1px solid var(--border);
     }
 
     .creator {
-      margin-top: 10px;
+      margin-top: 8px;
       color: var(--text);
       font-weight: 500;
     }
 
-    .creator span {
-      color: #38bdf8;
+    .creator span { color: #38bdf8; }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #22c55e;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      z-index: 3000;
+      display: none;
+    }
+
+    .toast.show { display: block; animation: fade 0.3s ease; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    .keys {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="cosmos">
-    <div class="stars"></div>
+<button class="theme-btn" id="themeBtn" title="Сменить тему">🌙</button>
+
+<header>
+  <div class="badge">Тренажёр продаж</div>
+  <h1>Техники продаж<br>и правильные манипуляции</h1>
+  <p class="subtitle">Практический инструмент с квизом, практикой и заметками</p>
+
+  <div class="progress-box">
+    <div class="progress-bar" id="progressBar"></div>
   </div>
+  <div class="progress-text" id="progressText">Освоено: 0 из 12</div>
+</header>
 
-  <button class="theme-btn" id="themeBtn">🌙</button>
+<div class="tools">
+  <input type="text" class="search-input" id="searchInput" placeholder="Поиск техник...">
+  <button class="tool-btn" id="randomBtn">🎲 Техника дня</button>
+  <button class="tool-btn" id="quizBtn">🧠 Квиз</button>
+  <button class="tool-btn" id="practiceBtn">🎯 Практика</button>
+  <button class="tool-btn" id="motivationBtn">🔥 Мотивация</button>
+  <button class="tool-btn" id="favBtn">❤️ Избранное</button>
+</div>
 
-  <header>
-    <div class="badge">Техники продаж + Практика</div>
-    <h1>Техники продаж<br>и правильные манипуляции</h1>
-    <p class="subtitle">Практический тренажёр по продажам и этичному влиянию</p>
-
-    <div class="progress-box">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-    <div class="progress-text" id="progressText">Освоено: 0 из 12</div>
-  </header>
-
-  <div class="tools">
-    <input type="text" class="search-input" id="searchInput" placeholder="Поиск...">
-    <button class="tool-btn" id="randomBtn">🎲 Техника дня</button>
-    <button class="tool-btn" id="quizBtn">🧠 Квиз</button>
-    <button class="tool-btn" id="practiceBtn">🎯 Практика</button>
-    <button class="tool-btn" id="favBtn">❤️ Избранное</button>
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" data-section="classic">Классика</button>
+    <button class="nav-btn" data-section="influence">Влияние</button>
+    <button class="nav-btn" data-section="psychology">Психология</button>
+    <button class="nav-btn" data-section="modern">Современные</button>
+    <button class="nav-btn" data-section="ethics">Этика</button>
   </div>
+</nav>
 
-  <nav>
-    <div class="nav-inner">
-      <button class="nav-btn active" data-section="classic">Классика</button>
-      <button class="nav-btn" data-section="influence">Влияние</button>
-      <button class="nav-btn" data-section="psychology">Психология</button>
-      <button class="nav-btn" data-section="modern">Современные</button>
-      <button class="nav-btn" data-section="ethics">Этика</button>
+<main>
+  <!-- КЛАССИКА -->
+  <section id="classic" class="active">
+    <h2 class="section-title">📈 Классика</h2>
+    <p class="section-desc">Базовые техники, которые работают всегда</p>
+
+    <div class="technique" data-id="spin">
+      <div class="tech-header">
+        <h3><span class="icon">🎯</span> SPIN-продажи</h3>
+        <div class="actions">
+          <button class="icon-btn check" title="Освоено">✓</button>
+          <button class="icon-btn fav" title="Избранное">♡</button>
+          <button class="icon-btn note-btn" title="Заметка">📝</button>
+        </div>
+      </div>
+      <p>Система вопросов: Situation → Problem → Implication → Need-payoff</p>
+      <div class="example"><strong>Implication:</strong> «Если проблема останется — какие потери через 6 месяцев?»</div>
+      <div class="script">
+        <div class="label">Скрипт</div>
+        «Главная боль — это … Если не решить, вы потеряете … А если уберём — сможете …?»
+        <button class="copy-btn">Копировать</button>
+      </div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Самый мощный инструмент для сложных B2B-продаж. Особенно сильны Implication-вопросы.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка к этой технике..."></textarea></div>
     </div>
-  </nav>
 
-  <main>
-    <!-- КЛАССИКА -->
-    <section id="classic" class="active">
-      <h2 class="section-title">📈 Классические техники</h2>
-      <p class="section-desc">Основные методы продаж</p>
-
-      <div class="technique" data-id="spin">
-        <div class="tech-header">
-          <h3><span class="icon">🎯</span> SPIN-продажи</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <p>Система вопросов: Situation → Problem → Implication → Need-payoff</p>
-        <div class="example"><strong>Implication:</strong> «Если проблема останется — какие потери через 6 месяцев?»</div>
-        <div class="script">
-          <div class="label">Скрипт</div>
-          «Главная боль — это … Если не решить, потеряете … А если уберём — сможете …?»
-        </div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">
-          Самый сильный инструмент для сложных B2B-продаж. Главное — хорошо прорабатывать Implication-вопросы.
+    <div class="technique" data-id="aida">
+      <div class="tech-header">
+        <h3><span class="icon">🗣️</span> AIDA</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
         </div>
       </div>
-
-      <div class="technique" data-id="aida">
-        <div class="tech-header">
-          <h3><span class="icon">🗣️</span> AIDA</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <p>Attention → Interest → Desire → Action</p>
-        <div class="script">
-          <div class="label">Пример</div>
-          Attention: «Теряете 18% клиентов из-за медленного ответа?»<br>
-          Action: «Покажу на ваших цифрах. Завтра в 11 или 15?»
-        </div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Классическая структура любого продающего текста и разговора.</div>
+      <p>Attention → Interest → Desire → Action</p>
+      <div class="script">
+        <div class="label">Пример</div>
+        Attention: «Теряете 18% клиентов из-за медленного ответа?»<br>
+        Action: «Покажу на ваших цифрах. Завтра в 11 или 15?»
+        <button class="copy-btn">Копировать</button>
       </div>
-
-      <div class="technique" data-id="fff">
-        <div class="tech-header">
-          <h3><span class="icon">🔁</span> Feel-Felt-Found</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="script">
-          <div class="label">Шаблон</div>
-          «Понимаю, как вы себя чувствуете… Многие чувствовали то же самое… Но они обнаружили, что...»
-        </div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Один из лучших способов мягко обходить возражения.</div>
-      </div>
-    </section>
-
-    <!-- ВЛИЯНИЕ -->
-    <section id="influence">
-      <h2 class="section-title">🧠 Техники влияния</h2>
-      <p class="section-desc">Принципы Чалдини</p>
-
-      <div class="technique" data-id="reciprocity">
-        <div class="tech-header">
-          <h3><span class="icon">🔄</span> Взаимность</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="script">
-          <div class="label">Как использовать</div>
-          «Давайте я бесплатно разберу ваши показатели и покажу 2–3 точки роста. Без обязательств.»
-        </div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Дайте ценность до того, как просить о покупке.</div>
-      </div>
-
-      <div class="technique" data-id="social">
-        <div class="tech-header">
-          <h3><span class="icon">👥</span> Социальное доказательство</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="example">«Уже 187 компаний вашей отрасли используют… Средний рост — 34% за 6 месяцев»</div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Чем ближе пример к клиенту, тем сильнее работает.</div>
-      </div>
-
-      <div class="technique" data-id="scarcity">
-        <div class="tech-header">
-          <h3><span class="icon">⏳</span> Дефицит</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="example">Только честный дефицит: «Осталось 2 места в этом месяце»</div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Ложный дефицит разрушает доверие.</div>
-      </div>
-    </section>
-
-    <!-- ПСИХОЛОГИЯ -->
-    <section id="psychology">
-      <h2 class="section-title">🧩 Психология</h2>
-      <p class="section-desc">Работа с восприятием</p>
-
-      <div class="technique" data-id="loss">
-        <div class="tech-header">
-          <h3><span class="icon">📉</span> Loss Aversion</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="example">Люди сильнее боятся потерять, чем радуются приобретению. Говорите через потери.</div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Вместо «получите +400 тыс» → «каждый месяц теряете ~35 тыс»</div>
-      </div>
-
-      <div class="technique" data-id="risk">
-        <div class="tech-header">
-          <h3><span class="icon">🛡️</span> Снятие риска</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="script">
-          <div class="label">Фраза</div>
-          «Начнём с пилота. Если через 30 дней не увидите эффект — просто остановимся.»
-        </div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Убирает главный страх клиента — ошибку.</div>
-      </div>
-    </section>
-
-    <!-- СОВРЕМЕННЫЕ -->
-    <section id="modern">
-      <h2 class="section-title">🚀 Современные подходы</h2>
-      <p class="section-desc">Актуальные методы</p>
-
-      <div class="technique" data-id="consultative">
-        <div class="tech-header">
-          <h3><span class="icon">🧭</span> Консультативные продажи</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="script">
-          <div class="label">Начало разговора</div>
-          «Прежде чем что-то предлагать, хочу хорошо понять вашу ситуацию. Можно задать несколько вопросов?»
-        </div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Сначала диагноз, потом решение.</div>
-      </div>
-
-      <div class="technique" data-id="challenger">
-        <div class="tech-header">
-          <h3><span class="icon">⚡</span> Challenger Sale</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <div class="script">
-          <div class="label">Структура</div>
-          1. Большинство думают...<br>
-          2. Данные показывают другое...<br>
-          3. Вот что происходит на самом деле...<br>
-          4. Поэтому решение должно быть таким...
-        </div>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Бросаете вызов текущему взгляду клиента.</div>
-      </div>
-    </section>
-
-    <!-- ЭТИКА -->
-    <section id="ethics">
-      <h2 class="section-title">⚖️ Этика</h2>
-      <p class="section-desc">Важные границы</p>
-
-      <div class="technique" data-id="ethics">
-        <div class="tech-header">
-          <h3><span class="icon">🧭</span> Золотой фильтр</h3>
-          <div class="actions">
-            <button class="icon-btn check">✓</button>
-            <button class="icon-btn fav">♡</button>
-          </div>
-        </div>
-        <p>Три вопроса перед сделкой:</p>
-        <ol style="margin: 10px 0 0 20px; color: var(--muted);">
-          <li>Если бы я был клиентом и знал всё — я бы купил?</li>
-          <li>Это улучшит его бизнес через 6–12 месяцев?</li>
-          <li>Мне не будет стыдно, если он расскажет, как проходила продажа?</li>
-        </ol>
-        <button class="expand-btn">Развернуть ↓</button>
-        <div class="more">Если хотя бы на один вопрос ответ «нет» — лучше отказаться от сделки.</div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>Используй техники с уважением к клиенту</p>
-    <div class="creator">Creator: <span>Баграмов Владислав Витальевич</span></div>
-  </footer>
-
-  <!-- Модалки -->
-  <div class="modal-bg" id="quizModal">
-    <div class="modal">
-      <button class="close-btn" data-close>&times;</button>
-      <h2>Какой стиль продаж тебе подходит?</h2>
-      <div id="quizContent"></div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Классическая структура любого продающего текста и разговора.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
     </div>
+
+    <div class="technique" data-id="fff">
+      <div class="tech-header">
+        <h3><span class="icon">🔁</span> Feel-Felt-Found</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="script">
+        <div class="label">Шаблон</div>
+        «Понимаю, как вы себя чувствуете… Многие чувствовали то же самое… Но они обнаружили, что...»
+        <button class="copy-btn">Копировать</button>
+      </div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Один из самых мягких и эффективных способов работы с возражениями.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+  </section>
+
+  <!-- ВЛИЯНИЕ -->
+  <section id="influence">
+    <h2 class="section-title">🧠 Влияние (Чалдини)</h2>
+    <p class="section-desc">Универсальные принципы</p>
+
+    <div class="technique" data-id="reciprocity">
+      <div class="tech-header">
+        <h3><span class="icon">🔄</span> Взаимность</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="script">
+        <div class="label">Как использовать</div>
+        «Давайте я бесплатно разберу ваши показатели и покажу 2–3 точки роста. Без обязательств.»
+        <button class="copy-btn">Копировать</button>
+      </div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Сначала дайте ценность, потом просите о покупке.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+
+    <div class="technique" data-id="social">
+      <div class="tech-header">
+        <h3><span class="icon">👥</span> Социальное доказательство</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="example">«Уже 187 компаний вашей отрасли… Средний рост 34% за 6 месяцев»</div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Чем ближе пример к клиенту — тем сильнее работает.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+
+    <div class="technique" data-id="scarcity">
+      <div class="tech-header">
+        <h3><span class="icon">⏳</span> Дефицит</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="example">Только честный дефицит: «Осталось 2 места в этом месяце»</div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Ложный дефицит убивает доверие.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+  </section>
+
+  <!-- ПСИХОЛОГИЯ -->
+  <section id="psychology">
+    <h2 class="section-title">🧩 Психология</h2>
+    <p class="section-desc">Работа с восприятием</p>
+
+    <div class="technique" data-id="loss">
+      <div class="tech-header">
+        <h3><span class="icon">📉</span> Loss Aversion</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="example">Люди сильнее боятся потерять, чем радуются приобретению. Говорите через потери.</div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Вместо «получите +400 тыс» лучше «каждый месяц теряете ~35 тыс».</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+
+    <div class="technique" data-id="risk">
+      <div class="tech-header">
+        <h3><span class="icon">🛡️</span> Снятие риска</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="script">
+        <div class="label">Фраза</div>
+        «Начнём с пилота. Если через 30 дней не увидите эффект — просто остановимся.»
+        <button class="copy-btn">Копировать</button>
+      </div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Убирает главный страх клиента — совершить ошибку.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+  </section>
+
+  <!-- СОВРЕМЕННЫЕ -->
+  <section id="modern">
+    <h2 class="section-title">🚀 Современные</h2>
+    <p class="section-desc">Актуальные подходы</p>
+
+    <div class="technique" data-id="consultative">
+      <div class="tech-header">
+        <h3><span class="icon">🧭</span> Консультативные продажи</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="script">
+        <div class="label">Начало</div>
+        «Прежде чем что-то предлагать, хочу хорошо понять вашу ситуацию. Можно задать несколько вопросов?»
+        <button class="copy-btn">Копировать</button>
+      </div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Сначала диагноз, потом решение. Вы — эксперт, а не продавец.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+
+    <div class="technique" data-id="challenger">
+      <div class="tech-header">
+        <h3><span class="icon">⚡</span> Challenger Sale</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <div class="script">
+        <div class="label">Структура</div>
+        1. Большинство думают...<br>
+        2. Данные показывают другое...<br>
+        3. Вот что происходит на самом деле...<br>
+        4. Поэтому решение должно быть таким...
+        <button class="copy-btn">Копировать</button>
+      </div>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Бросаете вызов текущему взгляду клиента на проблему.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+  </section>
+
+  <!-- ЭТИКА -->
+  <section id="ethics">
+    <h2 class="section-title">⚖️ Этика</h2>
+    <p class="section-desc">Самое важное</p>
+
+    <div class="technique" data-id="ethics">
+      <div class="tech-header">
+        <h3><span class="icon">🧭</span> Золотой фильтр</h3>
+        <div class="actions">
+          <button class="icon-btn check">✓</button>
+          <button class="icon-btn fav">♡</button>
+          <button class="icon-btn note-btn">📝</button>
+        </div>
+      </div>
+      <p>Три вопроса перед любой сделкой:</p>
+      <ol style="margin: 8px 0 0 18px; color: var(--muted); font-size: 0.92rem;">
+        <li>Если бы я был клиентом и знал всё — купил бы?</li>
+        <li>Это улучшит его бизнес через 6–12 месяцев?</li>
+        <li>Мне не будет стыдно, если он расскажет, как проходила продажа?</li>
+      </ol>
+      <button class="expand-btn">Развернуть ↓</button>
+      <div class="more">Если хотя бы на один вопрос ответ «нет» — лучше отказаться от сделки.</div>
+      <div class="notes-area"><textarea placeholder="Твоя заметка..."></textarea></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Используй техники с уважением к клиенту</p>
+  <div class="creator">Creator: <span>Баграмов Владислав Витальевич</span></div>
+  <div class="keys">Клавиши: 1-5 — разделы · R — техника дня · Q — квиз · P — практика</div>
+</footer>
+
+<div class="toast" id="toast">Скопировано!</div>
+
+<!-- Модалки -->
+<div class="modal-bg" id="quizModal">
+  <div class="modal">
+    <button class="close-btn" data-close>&times;</button>
+    <h2>Какой стиль продаж тебе подходит?</h2>
+    <div id="quizContent"></div>
   </div>
+</div>
 
-  <div class="modal-bg" id="practiceModal">
-    <div class="modal">
-      <button class="close-btn" data-close>&times;</button>
-      <h2>Практика: возражения</h2>
-      <div id="practiceContent"></div>
-    </div>
+<div class="modal-bg" id="practiceModal">
+  <div class="modal">
+    <button class="close-btn" data-close>&times;</button>
+    <h2>Практика: возражения</h2>
+    <div id="practiceContent"></div>
   </div>
+</div>
 
-  <div class="modal-bg" id="randomModal">
-    <div class="modal">
-      <button class="close-btn" data-close>&times;</button>
-      <h2>Техника дня</h2>
-      <div id="randomContent"></div>
-    </div>
+<div class="modal-bg" id="randomModal">
+  <div class="modal">
+    <button class="close-btn" data-close>&times;</button>
+    <h2>Техника дня</h2>
+    <div id="randomContent"></div>
   </div>
+</div>
 
-  <script>
-    // ===== Хранилище =====
-    const store = {
-      get(key, def) {
-        try {
-          return JSON.parse(localStorage.getItem(key)) || def;
-        } catch {
-          return def;
-        }
-      },
-      set(key, val) {
-        localStorage.setItem(key, JSON.stringify(val));
-      }
-    };
+<div class="modal-bg" id="motivationModal">
+  <div class="modal">
+    <button class="close-btn" data-close>&times;</button>
+    <h2>🔥 Мотивация</h2>
+    <div id="motivationContent"></div>
+  </div>
+</div>
 
-    let mastered = store.get('mastered', []);
-    let favorites = store.get('favorites', []);
-    let showOnlyFav = false;
-
-    // ===== Прогресс =====
-    function updateProgress() {
-      const total = document.querySelectorAll('.technique').length;
-      const done = mastered.length;
-      const percent = total ? Math.round((done / total) * 100) : 0;
-      document.getElementById('progressBar').style.width = percent + '%';
-      document.getElementById('progressText').textContent = `Освоено: ${done} из ${total}`;
+<script>
+  const store = {
+    get(key, def) {
+      try { return JSON.parse(localStorage.getItem(key)) || def; } 
+      catch { return def; }
+    },
+    set(key, val) {
+      localStorage.setItem(key, JSON.stringify(val));
     }
+  };
 
-    // ===== Карточки =====
-    function initCards() {
-      document.querySelectorAll('.technique').forEach(card => {
-        const id = card.dataset.id;
-        const checkBtn = card.querySelector('.check');
-        const favBtn = card.querySelector('.fav');
-        const expandBtn = card.querySelector('.expand-btn');
-        const more = card.querySelector('.more');
+  let mastered = store.get('mastered', []);
+  let favorites = store.get('favorites', []);
+  let notes = store.get('notes', {});
+  let showOnlyFav = false;
 
-        if (mastered.includes(id)) checkBtn.classList.add('active');
+  function showToast(text) {
+    const t = document.getElementById('toast');
+    t.textContent = text;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  function updateProgress() {
+    const total = document.querySelectorAll('.technique').length;
+    const done = mastered.length;
+    const percent = total ? Math.round((done / total) * 100) : 0;
+    document.getElementById('progressBar').style.width = percent + '%';
+    document.getElementById('progressText').textContent = `Освоено: ${done} из ${total}`;
+  }
+
+  function initCards() {
+    document.querySelectorAll('.technique').forEach(card => {
+      const id = card.dataset.id;
+      const checkBtn = card.querySelector('.check');
+      const favBtn = card.querySelector('.fav');
+      const noteBtn = card.querySelector('.note-btn');
+      const expandBtn = card.querySelector('.expand-btn');
+      const more = card.querySelector('.more');
+      const notesArea = card.querySelector('.notes-area');
+      const textarea = notesArea?.querySelector('textarea');
+
+      if (mastered.includes(id)) checkBtn.classList.add('active');
+      if (favorites.includes(id)) {
+        favBtn.classList.add('active');
+        favBtn.textContent = '♥';
+      }
+      if (notes[id]) {
+        textarea.value = notes[id];
+      }
+
+      checkBtn.onclick = () => {
+        if (mastered.includes(id)) {
+          mastered = mastered.filter(x => x !== id);
+          checkBtn.classList.remove('active');
+        } else {
+          mastered.push(id);
+          checkBtn.classList.add('active');
+        }
+        store.set('mastered', mastered);
+        updateProgress();
+      };
+
+      favBtn.onclick = () => {
         if (favorites.includes(id)) {
+          favorites = favorites.filter(x => x !== id);
+          favBtn.classList.remove('active');
+          favBtn.textContent = '♡';
+        } else {
+          favorites.push(id);
           favBtn.classList.add('active');
           favBtn.textContent = '♥';
         }
+        store.set('favorites', favorites);
+        if (showOnlyFav) filterCards();
+      };
 
-        checkBtn.addEventListener('click', () => {
-          if (mastered.includes(id)) {
-            mastered = mastered.filter(x => x !== id);
-            checkBtn.classList.remove('active');
-          } else {
-            mastered.push(id);
-            checkBtn.classList.add('active');
-          }
-          store.set('mastered', mastered);
-          updateProgress();
-        });
+      noteBtn.onclick = () => {
+        notesArea.classList.toggle('open');
+      };
 
-        favBtn.addEventListener('click', () => {
-          if (favorites.includes(id)) {
-            favorites = favorites.filter(x => x !== id);
-            favBtn.classList.remove('active');
-            favBtn.textContent = '♡';
-          } else {
-            favorites.push(id);
-            favBtn.classList.add('active');
-            favBtn.textContent = '♥';
-          }
-          store.set('favorites', favorites);
-          if (showOnlyFav) filterCards();
-        });
+      if (textarea) {
+        textarea.oninput = () => {
+          notes[id] = textarea.value;
+          store.set('notes', notes);
+        };
+      }
 
-        if (expandBtn && more) {
-          expandBtn.addEventListener('click', () => {
-            more.classList.toggle('open');
-            expandBtn.textContent = more.classList.contains('open') ? 'Свернуть ↑' : 'Развернуть ↓';
-          });
-        }
-      });
+      if (expandBtn && more) {
+        expandBtn.onclick = () => {
+          more.classList.toggle('open');
+          expandBtn.textContent = more.classList.contains('open') ? 'Свернуть ↑' : 'Развернуть ↓';
+        };
+      }
+    });
 
-      updateProgress();
-    }
+    // Кнопки копирования
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.onclick = () => {
+        const script = btn.parentElement;
+        const text = script.innerText.replace('Копировать', '').replace('Скрипт', '').replace('Пример', '').replace('Шаблон', '').replace('Как использовать', '').replace('Фраза', '').replace('Начало', '').replace('Структура', '').trim();
+        navigator.clipboard.writeText(text).then(() => showToast('Скопировано!'));
+      };
+    });
 
-    // ===== Поиск и избранное =====
-    function filterCards() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      document.querySelectorAll('.technique').forEach(card => {
-        const id = card.dataset.id;
-        const text = card.textContent.toLowerCase();
-        const matchSearch = !query || text.includes(query);
-        const matchFav = !showOnlyFav || favorites.includes(id);
-        card.style.display = (matchSearch && matchFav) ? '' : 'none';
-      });
-    }
+    updateProgress();
+  }
 
-    document.getElementById('searchInput').addEventListener('input', filterCards);
+  function filterCards() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.technique').forEach(card => {
+      const id = card.dataset.id;
+      const text = card.textContent.toLowerCase();
+      const matchSearch = !query || text.includes(query);
+      const matchFav = !showOnlyFav || favorites.includes(id);
+      card.style.display = (matchSearch && matchFav) ? '' : 'none';
+    });
+  }
 
-    document.getElementById('favBtn').addEventListener('click', () => {
-      showOnlyFav = !showOnlyFav;
-      document.getElementById('favBtn').textContent = showOnlyFav ? '❤️ Показать все' : '❤️ Избранное';
+  document.getElementById('searchInput').oninput = filterCards;
+
+  document.getElementById('favBtn').onclick = () => {
+    showOnlyFav = !showOnlyFav;
+    document.getElementById('favBtn').textContent = showOnlyFav ? '❤️ Все техники' : '❤️ Избранное';
+    filterCards();
+  };
+
+  // Навигация
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.section).classList.add('active');
+      showOnlyFav = false;
+      document.getElementById('favBtn').textContent = '❤️ Избранное';
       filterCards();
-    });
+    };
+  });
 
-    // ===== Навигация =====
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.section).classList.add('active');
-        showOnlyFav = false;
-        document.getElementById('favBtn').textContent = '❤️ Избранное';
-        filterCards();
-      });
-    });
+  // Тема
+  const themeBtn = document.getElementById('themeBtn');
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-    // ===== Тема =====
-    const themeBtn = document.getElementById('themeBtn');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  themeBtn.onclick = () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+  };
 
-    themeBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-      themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
-    });
+  // Модалки
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+  }
+  function closeModals() {
+    document.querySelectorAll('.modal-bg').forEach(m => m.classList.remove('open'));
+  }
+  document.querySelectorAll('[data-close]').forEach(btn => btn.onclick = closeModals);
+  document.querySelectorAll('.modal-bg').forEach(bg => {
+    bg.onclick = e => { if (e.target === bg) closeModals(); };
+  });
 
-    // ===== Модалки =====
-    function openModal(id) {
-      document.getElementById(id).classList.add('open');
-    }
+  // Техника дня
+  const techList = [
+    { title: 'SPIN-продажи', text: 'Задавайте Implication-вопросы: «Если проблема останется — какие потери через полгода?»' },
+    { title: 'Feel-Felt-Found', text: '«Понимаю, как вы себя чувствуете… Многие чувствовали то же… Но обнаружили, что...»' },
+    { title: 'Взаимность', text: 'Сначала дайте ценность бесплатно, потом просите о покупке.' },
+    { title: 'Loss Aversion', text: 'Говорите о потерях, а не только о выгодах.' },
+    { title: 'Снятие риска', text: 'Предлагайте пилот или гарантию результата.' },
+    { title: 'Мягкое закрытие', text: '«Как вам кажется, это решает задачу?» вместо давления.' }
+  ];
 
-    function closeModals() {
-      document.querySelectorAll('.modal-bg').forEach(m => m.classList.remove('open'));
-    }
+  document.getElementById('randomBtn').onclick = () => {
+    const t = techList[Math.floor(Math.random() * techList.length)];
+    document.getElementById('randomContent').innerHTML = `<h3 style="margin-bottom:8px">${t.title}</h3><p style="color:var(--muted)">${t.text}</p>`;
+    openModal('randomModal');
+  };
 
-    document.querySelectorAll('[data-close]').forEach(btn => {
-      btn.addEventListener('click', closeModals);
-    });
+  // Мотивация
+  const motivations = [
+    'Каждая встреча — это практика. Даже отказ делает тебя сильнее.',
+    'Лучшие продавцы не продают — они помогают принять правильное решение.',
+    'Сегодня ты можешь сделать один разговор лучше, чем вчера.',
+    'Доверие зарабатывается медленно и теряется быстро. Береги его.',
+    'Вопрос сильнее утверждения. Задавай больше вопросов.',
+    'Результат приходит к тем, кто продолжает после «нет».'
+  ];
 
-    document.querySelectorAll('.modal-bg').forEach(bg => {
-      bg.addEventListener('click', e => {
-        if (e.target === bg) closeModals();
-      });
-    });
+  document.getElementById('motivationBtn').onclick = () => {
+    const m = motivations[Math.floor(Math.random() * motivations.length)];
+    document.getElementById('motivationContent').innerHTML = `<p style="font-size:1.1rem;line-height:1.5">${m}</p>`;
+    openModal('motivationModal');
+  };
 
-    // ===== Техника дня =====
-    const techniquesList = [
-      { title: 'SPIN-продажи', text: 'Задавайте вопросы Situation → Problem → Implication → Need-payoff. Особенно сильно работают Implication-вопросы.' },
-      { title: 'Feel-Felt-Found', text: '«Понимаю, как вы себя чувствуете… Многие чувствовали то же… Но обнаружили, что...»' },
-      { title: 'Взаимность', text: 'Сначала дайте ценность бесплатно, потом просите о покупке.' },
-      { title: 'Loss Aversion', text: 'Говорите о потерях, а не только о выгодах. Люди сильнее боятся потерять.' },
-      { title: 'Снятие риска', text: 'Предлагайте пилот, гарантию или поэтапную оплату.' },
-      { title: 'Мягкое закрытие', text: '«Как вам кажется, это решает задачу?» вместо жёсткого давления.' }
-    ];
+  // Квиз
+  document.getElementById('quizBtn').onclick = () => {
+    document.getElementById('quizContent').innerHTML = `
+      <div class="quiz-q">
+        <p>1. Что тебе ближе?</p>
+        <label><input type="radio" name="q1" value="0"> Задавать много вопросов</label>
+        <label><input type="radio" name="q1" value="1"> Давать сильную экспертизу</label>
+        <label><input type="radio" name="q1" value="2"> Строить доверие</label>
+      </div>
+      <div class="quiz-q">
+        <p>2. Клиент говорит «надо подумать». Ты:</p>
+        <label><input type="radio" name="q2" value="0"> Выясняешь причину вопросами</label>
+        <label><input type="radio" name="q2" value="1"> Показываешь, сколько он теряет</label>
+        <label><input type="radio" name="q2" value="2"> Предлагаешь помочь разобраться</label>
+      </div>
+      <button class="tool-btn" id="quizSubmit">Узнать результат</button>
+      <div id="quizResult"></div>
+    `;
 
-    document.getElementById('randomBtn').addEventListener('click', () => {
-      const t = techniquesList[Math.floor(Math.random() * techniquesList.length)];
-      document.getElementById('randomContent').innerHTML = `
-        <h3 style="margin-bottom:10px">${t.title}</h3>
-        <p style="color:var(--muted)">${t.text}</p>
+    document.getElementById('quizSubmit').onclick = () => {
+      let scores = [0, 0, 0];
+      for (let i = 1; i <= 2; i++) {
+        const c = document.querySelector(`input[name="q${i}"]:checked`);
+        if (c) scores[c.value]++;
+      }
+      const max = Math.max(...scores);
+      let res;
+      if (scores[0] === max) res = { title: 'SPIN-стиль', desc: 'Ты силён в вопросах. Развивай Implication.' };
+      else if (scores[1] === max) res = { title: 'Challenger-стиль', desc: 'Тебе близко менять взгляд клиента.' };
+      else res = { title: 'Консультативный стиль', desc: 'Твоя сила — доверие и отношения.' };
+
+      document.getElementById('quizResult').innerHTML = `
+        <div class="result"><strong>${res.title}</strong><p style="margin-top:6px">${res.desc}</p></div>
       `;
-      openModal('randomModal');
+    };
+    openModal('quizModal');
+  };
+
+  // Практика
+  const objections = {
+    'Дорого': [
+      '«Понимаю. Давайте посчитаем, сколько вы теряете сейчас каждый месяц?»',
+      '«Многие сначала так говорили. Потом увидели окупаемость на 3–4 месяц.»'
+    ],
+    'Надо подумать': [
+      '«Конечно. А что именно хотите обдумать? Может, сразу проясню.»',
+      '«Пока думаете — ситуация прежняя. Сколько это стоит вам в неделю?»'
+    ],
+    'Уже работаем с другими': [
+      '«Хорошо. А что сейчас нравится и чего не хватает?»',
+      '«Могу показать, чем подход отличается. Будет полезно даже для сравнения.»'
+    ],
+    'Пришлите КП': [
+      '«Сделаю. Чтобы оно было точным — задам 3 коротких вопроса?»',
+      '«Пришлю. А чтобы не было очередной простыни — давайте 10 минут созвонимся.»'
+    ],
+    'Нет бюджета': [
+      '«Понимаю. А если бы решение окупалось за 2–3 месяца — как бы это изменило ситуацию?»',
+      '«Часто бюджет появляется, когда видна конкретная экономия. Давайте посчитаем?»'
+    ]
+  };
+
+  document.getElementById('practiceBtn').onclick = () => {
+    let html = '<p style="margin-bottom:10px;color:var(--muted)">Выбери возражение:</p>';
+    for (let key in objections) {
+      html += `<button class="obj-btn" data-obj="${key}">${key}</button>`;
+    }
+    html += '<div id="answers" style="margin-top:14px"></div>';
+    document.getElementById('practiceContent').innerHTML = html;
+
+    document.querySelectorAll('.obj-btn').forEach(btn => {
+      btn.onclick = () => {
+        const list = objections[btn.dataset.obj];
+        document.getElementById('answers').innerHTML = list.map(a => 
+          `<div class="script" style="margin-bottom:7px">${a}</div>`
+        ).join('');
+      };
     });
+    openModal('practiceModal');
+  };
 
-    // ===== Квиз =====
-    document.getElementById('quizBtn').addEventListener('click', () => {
-      document.getElementById('quizContent').innerHTML = `
-        <div class="quiz-q">
-          <p>1. Что тебе ближе?</p>
-          <label><input type="radio" name="q1" value="0"> Задавать много вопросов</label>
-          <label><input type="radio" name="q1" value="1"> Давать сильную экспертизу и новый взгляд</label>
-          <label><input type="radio" name="q1" value="2"> Строить доверие и отношения</label>
-        </div>
-        <div class="quiz-q">
-          <p>2. Клиент говорит «надо подумать». Ты:</p>
-          <label><input type="radio" name="q2" value="0"> Выясняешь настоящую причину вопросами</label>
-          <label><input type="radio" name="q2" value="1"> Показываешь, сколько он теряет, пока думает</label>
-          <label><input type="radio" name="q2" value="2"> Предлагаешь помочь разобраться вместе</label>
-        </div>
-        <button class="tool-btn" id="quizSubmit" style="margin-top:10px">Узнать результат</button>
-        <div id="quizResult"></div>
-      `;
+  // Горячие клавиши
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === '1') document.querySelector('[data-section="classic"]').click();
+    if (e.key === '2') document.querySelector('[data-section="influence"]').click();
+    if (e.key === '3') document.querySelector('[data-section="psychology"]').click();
+    if (e.key === '4') document.querySelector('[data-section="modern"]').click();
+    if (e.key === '5') document.querySelector('[data-section="ethics"]').click();
+    if (e.key.toLowerCase() === 'r') document.getElementById('randomBtn').click();
+    if (e.key.toLowerCase() === 'q') document.getElementById('quizBtn').click();
+    if (e.key.toLowerCase() === 'p') document.getElementById('practiceBtn').click();
+  });
 
-      document.getElementById
+  // Запуск
+  initCards();
+</script>
+</body>
+</html>
