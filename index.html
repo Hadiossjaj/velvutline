@@ -3,86 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Система продаж — Полная версия</title>
+<title>Система продаж — Максимальная версия</title>
 <style>
 :root{--primary:#3b82f6;--accent:#0ea5e9;--success:#22c55e;--danger:#ef4444;--warning:#f59e0b}
-[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--border:rgba(148,163,184,.18);--nav-bg:rgba(15,23,42,.96)}
-[data-theme="light"]{--bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;--border:rgba(15,23,42,.1);--nav-bg:rgba(255,255,255,.96)}
+[data-theme="dark"]{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--border:rgba(148,163,184,.18);--nav-bg:rgba(15,23,42,.97)}
+[data-theme="light"]{--bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#64748b;--border:rgba(15,23,42,.1);--nav-bg:rgba(255,255,255,.97)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
-.theme-btn{position:fixed;top:10px;right:10px;z-index:1000;width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1.1rem;cursor:pointer}
-header{text-align:center;padding:36px 12px 10px}
-.badge{display:inline-block;background:rgba(34,197,94,.15);color:var(--success);padding:4px 11px;border-radius:50px;font-size:.8rem;margin-bottom:8px;border:1px solid rgba(34,197,94,.3)}
-h1{font-size:clamp(1.45rem,4.2vw,2.1rem);margin-bottom:5px;background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.subtitle{color:var(--muted);max-width:500px;margin:0 auto 10px;font-size:.9rem}
-.progress-box{max-width:280px;margin:0 auto 3px;background:rgba(30,41,59,.5);border-radius:20px;padding:2px;border:1px solid var(--border)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.theme-btn{position:fixed;top:8px;right:8px;z-index:1000;width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1.05rem;cursor:pointer}
+header{text-align:center;padding:32px 10px 8px}
+.badge{display:inline-block;background:rgba(34,197,94,.15);color:var(--success);padding:3px 10px;border-radius:50px;font-size:.78rem;margin-bottom:7px;border:1px solid rgba(34,197,94,.3)}
+h1{font-size:clamp(1.35rem,4vw,1.95rem);margin-bottom:4px;background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:var(--muted);max-width:480px;margin:0 auto 8px;font-size:.87rem}
+.progress-box{max-width:260px;margin:0 auto 2px;background:rgba(30,41,59,.5);border-radius:20px;padding:2px;border:1px solid var(--border)}
 .progress-bar{height:6px;border-radius:10px;background:linear-gradient(90deg,#3b82f6,#22c55e);width:0%;transition:width .4s}
-.progress-text{font-size:.78rem;color:var(--muted);margin-bottom:10px}
-.tools{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;padding:0 8px 10px;max-width:920px;margin:0 auto}
-.tool-btn,.search-input{padding:6px 10px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.82rem;cursor:pointer}
-.search-input{min-width:140px;outline:none;cursor:text}
+.progress-text{font-size:.76rem;color:var(--muted);margin-bottom:8px}
+.tools{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;padding:0 6px 8px;max-width:940px;margin:0 auto}
+.tool-btn,.search-input{padding:5px 9px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:.8rem;cursor:pointer}
+.search-input{min-width:130px;outline:none;cursor:text}
 .tool-btn:hover{border-color:var(--accent);color:var(--accent)}
 nav{background:var(--nav-bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-.nav-inner{max-width:980px;margin:0 auto;display:flex;gap:2px;padding:6px 8px;overflow-x:auto}
-.nav-btn{background:transparent;border:none;color:var(--muted);padding:5px 9px;border-radius:5px;cursor:pointer;font-size:.8rem;white-space:nowrap}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;gap:2px;padding:5px 6px;overflow-x:auto}
+.nav-btn{background:transparent;border:none;color:var(--muted);padding:5px 8px;border-radius:5px;cursor:pointer;font-size:.78rem;white-space:nowrap}
 .nav-btn:hover{color:#60a5fa;background:rgba(59,130,246,.1)}
 .nav-btn.active{background:#3b82f6;color:#fff}
-main{max-width:760px;margin:0 auto;padding:16px 10px 45px}
+main{max-width:740px;margin:0 auto;padding:14px 10px 40px}
 section{display:none}section.active{display:block}
-.section-title{font-size:1.22rem;margin-bottom:2px}
-.section-desc{color:var(--muted);margin-bottom:12px;font-size:.87rem}
-.info-block{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:9px;padding:11px 13px;margin-bottom:14px;font-size:.86rem;color:var(--muted)}
+.section-title{font-size:1.15rem;margin-bottom:2px}
+.section-desc{color:var(--muted);margin-bottom:10px;font-size:.84rem}
+.info-block{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:.83rem;color:var(--muted)}
 .info-block strong{color:var(--text)}
-.technique,.step{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px;margin-bottom:11px}
-.tech-header{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:5px}
-.tech-header h3,.step h3{font-size:.98rem;display:flex;align-items:center;gap:6px}
-.icon{width:30px;height:30px;background:rgba(59,130,246,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem}
-.step-num{display:inline-flex;align-items:center;justify-content:center;background:#3b82f6;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.75rem;font-weight:600;margin-right:5px;flex-shrink:0}
+.technique,.step{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:12px;margin-bottom:10px}
+.tech-header{display:flex;justify-content:space-between;align-items:flex-start;gap:5px;margin-bottom:4px}
+.tech-header h3,.step h3{font-size:.94rem;display:flex;align-items:center;gap:5px}
+.icon{width:28px;height:28px;background:rgba(59,130,246,.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.step-num{display:inline-flex;align-items:center;justify-content:center;background:#3b82f6;color:#fff;width:20px;height:20px;border-radius:50%;font-size:.72rem;font-weight:600;margin-right:5px;flex-shrink:0}
 .actions{display:flex;gap:2px}
-.icon-btn{width:26px;height:26px;border-radius:5px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.82rem}
+.icon-btn{width:24px;height:24px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.78rem}
 .icon-btn.active{color:var(--success);border-color:var(--success)}
 .icon-btn.fav.active{color:var(--danger);border-color:var(--danger)}
 .icon-btn.note-btn.active{color:var(--warning);border-color:var(--warning)}
-.example,.script{padding:8px 10px;border-radius:6px;margin:7px 0;font-size:.85rem}
+.example,.script{padding:7px 9px;border-radius:6px;margin:6px 0;font-size:.82rem}
 .example{background:rgba(14,165,233,.1);border-left:3px solid var(--accent)}
 .script{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);position:relative}
-.script .label{font-size:.68rem;color:var(--success);font-weight:600;margin-bottom:2px;text-transform:uppercase}
-.copy-btn{position:absolute;top:5px;right:5px;background:rgba(34,197,94,.2);border:none;color:var(--success);font-size:.68rem;padding:2px 5px;border-radius:4px;cursor:pointer}
-.expand-btn{background:none;border:none;color:var(--accent);font-size:.81rem;cursor:pointer;margin-top:3px;font-weight:500}
-.more{display:none;margin-top:7px;padding-top:7px;border-top:1px dashed var(--border);color:var(--muted);font-size:.85rem}
+.script .label{font-size:.66rem;color:var(--success);font-weight:600;margin-bottom:2px;text-transform:uppercase}
+.copy-btn{position:absolute;top:4px;right:4px;background:rgba(34,197,94,.2);border:none;color:var(--success);font-size:.66rem;padding:1px 5px;border-radius:3px;cursor:pointer}
+.expand-btn{background:none;border:none;color:var(--accent);font-size:.78rem;cursor:pointer;margin-top:2px;font-weight:500}
+.more{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);color:var(--muted);font-size:.82rem}
 .more.open{display:block}
-.more ul{margin:5px 0 5px 15px}.more li{margin-bottom:3px}
-.notes-area{display:none;margin-top:7px;padding-top:7px;border-top:1px dashed var(--border)}
+.more ul{margin:4px 0 4px 14px}.more li{margin-bottom:2px}
+.notes-area{display:none;margin-top:6px;padding-top:6px;border-top:1px dashed var(--border)}
 .notes-area.open{display:block}
-.notes-area textarea{width:100%;min-height:70px;padding:7px;border-radius:6px;border:1px solid var(--border);background:rgba(0,0,0,.18);color:var(--text);font-size:.83rem;resize:vertical;outline:none}
-.notes-label{font-size:.76rem;color:var(--warning);margin-bottom:3px;font-weight:500}
-.checklist{list-style:none;margin:7px 0}
-.checklist li{padding:3px 0 3px 20px;position:relative;font-size:.85rem;color:var(--muted)}
+.notes-area textarea{width:100%;min-height:65px;padding:6px;border-radius:5px;border:1px solid var(--border);background:rgba(0,0,0,.18);color:var(--text);font-size:.8rem;resize:vertical;outline:none}
+.notes-label{font-size:.74rem;color:var(--warning);margin-bottom:2px;font-weight:500}
+.checklist{list-style:none;margin:6px 0}
+.checklist li{padding:2px 0 2px 18px;position:relative;font-size:.82rem;color:var(--muted)}
 .checklist li:before{content:"☐";position:absolute;left:0;color:var(--accent)}
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:none;align-items:center;justify-content:center;padding:12px}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:none;align-items:center;justify-content:center;padding:10px}
 .modal-bg.open{display:flex}
-.modal{background:var(--card);border-radius:11px;max-width:460px;width:100%;max-height:86vh;overflow-y:auto;padding:16px;position:relative;border:1px solid var(--border)}
-.modal h2{font-size:1.1rem;margin-bottom:9px}
-.close-btn{position:absolute;top:7px;right:7px;width:25px;height:25px;border:none;background:rgba(148,163,184,.2);border-radius:50%;color:var(--text);font-size:.95rem;cursor:pointer}
-.quiz-q{margin-bottom:10px}.quiz-q p{font-weight:500;margin-bottom:4px;font-size:.88rem}
-.quiz-q label{display:block;padding:5px 8px;margin-bottom:3px;border:1px solid var(--border);border-radius:5px;cursor:pointer;font-size:.83rem}
-.result{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:7px;padding:10px;margin-top:7px}
-.obj-btn{display:block;width:100%;text-align:left;padding:7px 10px;margin-bottom:3px;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--text);cursor:pointer;font-size:.83rem}
+.modal{background:var(--card);border-radius:10px;max-width:440px;width:100%;max-height:86vh;overflow-y:auto;padding:14px;position:relative;border:1px solid var(--border)}
+.modal h2{font-size:1.05rem;margin-bottom:8px}
+.close-btn{position:absolute;top:6px;right:6px;width:24px;height:24px;border:none;background:rgba(148,163,184,.2);border-radius:50%;color:var(--text);font-size:.9rem;cursor:pointer}
+.quiz-q{margin-bottom:9px}.quiz-q p{font-weight:500;margin-bottom:3px;font-size:.85rem}
+.quiz-q label{display:block;padding:5px 7px;margin-bottom:3px;border:1px solid var(--border);border-radius:5px;cursor:pointer;font-size:.8rem}
+.result{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:6px;padding:9px;margin-top:6px}
+.obj-btn{display:block;width:100%;text-align:left;padding:6px 9px;margin-bottom:3px;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--text);cursor:pointer;font-size:.8rem}
 .obj-btn:hover{border-color:var(--accent)}
-footer{text-align:center;padding:16px 10px;color:var(--muted);font-size:.81rem;border-top:1px solid var(--border)}
-.creator{margin-top:4px;color:var(--text);font-weight:500}.creator span{color:#38bdf8}
-.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:7px 13px;border-radius:6px;font-size:.83rem;z-index:3000;display:none}
+footer{text-align:center;padding:14px 8px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border)}
+.creator{margin-top:3px;color:var(--text);font-weight:500}.creator span{color:#38bdf8}
+.toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#22c55e;color:#fff;padding:6px 12px;border-radius:5px;font-size:.8rem;z-index:3000;display:none}
 .toast.show{display:block}
-.keys{font-size:.72rem;color:var(--muted);margin-top:4px}
+.keys{font-size:.7rem;color:var(--muted);margin-top:3px}
+.q-list{margin:6px 0 6px 14px;font-size:.83rem;color:var(--muted)}
+.q-list li{margin-bottom:4px}
 </style>
 </head>
 <body>
 <button class="theme-btn" id="themeBtn">🌙</button>
 
 <header>
-  <div class="badge">Полная система продаж</div>
+  <div class="badge">Максимальная система продаж</div>
   <h1>Техники продаж<br>и этичное влияние</h1>
-  <p class="subtitle">Путь сделки • Возражения • Чек-листы • ЛПР • Ошибки • Рост</p>
+  <p class="subtitle">Полный набор: путь сделки, вопросы, КП, метрики, послепродажи</p>
   <div class="progress-box"><div class="progress-bar" id="progressBar"></div></div>
   <div class="progress-text" id="progressText">Освоено: 0</div>
 </header>
@@ -99,13 +101,17 @@ footer{text-align:center;padding:16px 10px;color:var(--muted);font-size:.81rem;b
 <nav>
   <div class="nav-inner">
     <button class="nav-btn active" data-section="path">Путь сделки</button>
+    <button class="nav-btn" data-section="questions">Вопросы</button>
     <button class="nav-btn" data-section="objections">Возражения</button>
+    <button class="nav-btn" data-section="kp">КП</button>
+    <button class="nav-btn" data-section="metrics">Метрики</button>
+    <button class="nav-btn" data-section="after">Послепродажи</button>
+    <button class="nav-btn" data-section="discounts">Скидки</button>
     <button class="nav-btn" data-section="checklists">Чек-листы</button>
     <button class="nav-btn" data-section="lpr">ЛПР</button>
     <button class="nav-btn" data-section="sleeping">Заснувшие</button>
     <button class="nav-btn" data-section="mistakes">Ошибки</button>
-    <button class="nav-btn" data-section="growth">Рост 30-60-90</button>
-    <button class="nav-btn" data-section="classic">Классика</button>
+    <button class="nav-btn" data-section="growth">Рост</button>
     <button class="nav-btn" data-section="ethics">Этика</button>
   </div>
 </nav>
@@ -116,68 +122,108 @@ footer{text-align:center;padding:16px 10px;color:var(--muted);font-size:.81rem;b
 <section id="path" class="active">
   <h2 class="section-title">🗺️ Полный путь сделки</h2>
   <p class="section-desc">От подготовки до повторных продаж</p>
-  <div class="info-block"><strong>Как пользоваться:</strong> Иди по этапам последовательно. Не перепрыгивай диагностику.</div>
+  <div class="info-block"><strong>Главное:</strong> Не перепрыгивай диагностику. Сила — в последовательности этапов.</div>
 
-  <div class="step">
-    <h3><span class="step-num">1</span> Подготовка</h3>
+  <div class="step"><h3><span class="step-num">1</span> Подготовка</h3>
     <ul class="checklist">
-      <li>Изучи компанию клиента (сайт, новости, соцсети)</li>
-      <li>Найди общие точки или похожие кейсы</li>
-      <li>Подготовь 6–8 сильных вопросов</li>
-      <li>Выбери 1–2 релевантных кейса с цифрами</li>
+      <li>Изучи компанию клиента</li>
+      <li>Найди точки пересечения и кейсы</li>
+      <li>Подготовь 6–8 вопросов</li>
       <li>Определи цель встречи</li>
     </ul>
   </div>
-
-  <div class="step">
-    <h3><span class="step-num">2</span> Раппорт</h3>
-    <div class="script">
-      <div class="label">Фраза</div>
-      «Спасибо за время. Задача сегодня — понять вашу ситуацию и разобраться, можем ли мы быть полезны. Если нет — честно скажу. Можно задам несколько вопросов?»
-      <button class="copy-btn">Копировать</button>
-    </div>
+  <div class="step"><h3><span class="step-num">2</span> Раппорт</h3>
+    <div class="script"><div class="label">Фраза</div>«Спасибо за время. Задача — понять вашу ситуацию и разобраться, можем ли быть полезны. Можно задам несколько вопросов?»<button class="copy-btn">Копировать</button></div>
   </div>
-
-  <div class="step">
-    <h3><span class="step-num">3</span> Диагностика (SPIN)</h3>
-    <div class="example">S — факты · P — боли · I — последствия бездействия · N — ценность решения</div>
-    <div class="script">
-      <div class="label">Сильный вопрос</div>
-      «Если ситуация останется как есть — какие потери или риски через 6–12 месяцев?»
-      <button class="copy-btn">Копировать</button>
-    </div>
+  <div class="step"><h3><span class="step-num">3</span> Диагностика (SPIN)</h3>
+    <div class="example">S — факты · P — боли · I — последствия · N — ценность решения</div>
+    <div class="script"><div class="label">Сильный вопрос</div>«Если ситуация останется как есть — какие потери через 6–12 месяцев?»<button class="copy-btn">Копировать</button></div>
   </div>
-
-  <div class="step">
-    <h3><span class="step-num">4</span> Презентация ценности</h3>
-    <div class="script">
-      <div class="label">Структура</div>
-      «Исходя из того, что вы рассказали… Вот как мы закрываем именно эту задачу… Кейс с цифрами… Как вам кажется, это решает вашу ситуацию?»
-      <button class="copy-btn">Копировать</button>
-    </div>
+  <div class="step"><h3><span class="step-num">4</span> Презентация ценности</h3>
+    <div class="script"><div class="label">Структура</div>«Исходя из вашего рассказа… Вот как закрываем эту задачу… Кейс с цифрами… Это решает ситуацию?»<button class="copy-btn">Копировать</button></div>
   </div>
-
-  <div class="step">
-    <h3><span class="step-num">5</span> Возражения</h3>
+  <div class="step"><h3><span class="step-num">5</span> Возражения</h3>
     <div class="example">Выслушай → Присоединись → Уточни → Отработай → Проверь → Верни в процесс</div>
   </div>
+  <div class="step"><h3><span class="step-num">6</span> Закрытие</h3>
+    <div class="script"><div class="label">Мягкие вопросы</div>«Это решает задачу?» · «Что ещё важно увидеть?» · «Если уберём риск — готовы двигаться?»<button class="copy-btn">Копировать</button></div>
+  </div>
+  <div class="step"><h3><span class="step-num">7</span> После сделки</h3>
+    <ul class="checklist">
+      <li>Зафиксируй следующие шаги</li>
+      <li>Точка контроля через 7–14 дней</li>
+      <li>Собери отзыв и рекомендацию</li>
+    </ul>
+  </div>
+</section>
 
-  <div class="step">
-    <h3><span class="step-num">6</span> Закрытие</h3>
-    <div class="script">
-      <div class="label">Мягкие вопросы</div>
-      «Как вам кажется, это решает задачу?» · «Что ещё важно увидеть?» · «Если уберём этот риск — готовы двигаться?»
-      <button class="copy-btn">Копировать</button>
-    </div>
+<!-- БИБЛИОТЕКА ВОПРОСОВ -->
+<section id="questions">
+  <h2 class="section-title">❓ Библиотека сильных вопросов</h2>
+  <p class="section-desc">Готовые вопросы по этапам — бери и используй</p>
+  <div class="info-block">Хороший вопрос сильнее любого монолога. Чем точнее вопрос — тем глубже диагностика и выше доверие.</div>
+
+  <div class="technique" data-id="q-rapport">
+    <div class="tech-header"><h3><span class="icon">🤝</span> На раппорт и начало</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="q-list">
+      <li>«Что сейчас для вас самое важное в этом направлении?»</li>
+      <li>«Как вообще пришли к тому, что хотите этим заняться?»</li>
+      <li>«Можно я задам несколько вопросов, чтобы не тратить время на ненужное?»</li>
+    </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 
-  <div class="step">
-    <h3><span class="step-num">7</span> После сделки</h3>
-    <ul class="checklist">
-      <li>Подтверди следующие шаги сразу</li>
-      <li>Точка контроля через 7–14 дней</li>
-      <li>Собери отзыв и попроси рекомендацию</li>
+  <div class="technique" data-id="q-situation">
+    <div class="tech-header"><h3><span class="icon">📋</span> Situation (факты)</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="q-list">
+      <li>«Как сейчас устроен процесс…?»</li>
+      <li>«Сколько человек в это вовлечено?»</li>
+      <li>«Какими инструментами пользуетесь?»</li>
+      <li>«Как давно работаете в такой схеме?»</li>
     </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+
+  <div class="technique" data-id="q-problem">
+    <div class="tech-header"><h3><span class="icon">⚡</span> Problem (боли)</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="q-list">
+      <li>«Что больше всего раздражает в текущей схеме?»</li>
+      <li>«Где чаще всего возникают сбои или потери?»</li>
+      <li>«Что уже пробовали менять и какой был результат?»</li>
+    </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+
+  <div class="technique" data-id="q-implication">
+    <div class="tech-header"><h3><span class="icon">🔥</span> Implication (последствия)</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="q-list">
+      <li>«Если ничего не менять — к чему это приведёт через 6–12 месяцев?»</li>
+      <li>«Сколько примерно времени/денег это съедает сейчас?»</li>
+      <li>«Как это влияет на команду / клиентов / результат?»</li>
+      <li>«Что будет самым болезненным, если ситуация останется прежней?»</li>
+    </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+
+  <div class="technique" data-id="q-need">
+    <div class="tech-header"><h3><span class="icon">💎</span> Need-payoff + закрытие</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="q-list">
+      <li>«Если бы эту проблему убрать — что бы изменилось?»</li>
+      <li>«Насколько это было бы важно для вас?»</li>
+      <li>«Что ещё нужно увидеть, чтобы принять решение?»</li>
+      <li>«Как вам кажется, это закрывает вашу задачу?»</li>
+    </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+
+  <div class="technique" data-id="q-lpr">
+    <div class="tech-header"><h3><span class="icon">👥</span> На выявление ЛПР</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="q-list">
+      <li>«Кто ещё будет участвовать в принятии решения?»</li>
+      <li>«Чьё мнение для вас особенно важно?»</li>
+      <li>«Кто обычно смотрит на такие вещи с точки зрения бюджета?»</li>
+    </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 </section>
 
@@ -185,16 +231,16 @@ footer{text-align:center;padding:16px 10px;color:var(--muted);font-size:.81rem;b
 <section id="objections">
   <h2 class="section-title">🛡️ Возражения</h2>
   <p class="section-desc">Алгоритм + готовые ответы</p>
-  <div class="info-block">Возражение — запрос на информацию или снижение риска. Не спорь, а присоединяйся.</div>
+  <div class="info-block">Сначала присоединись, потом уточни, потом отрабатывай. Не спорь.</div>
 
   <div class="technique" data-id="obj-algo">
     <div class="tech-header"><h3><span class="icon">📋</span> Алгоритм</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <ol style="margin:6px 0 0 16px;color:var(--muted);font-size:.85rem">
+    <ol style="margin:5px 0 0 15px;color:var(--muted);font-size:.82rem">
       <li>Выслушай до конца</li>
-      <li>Присоединись («Понимаю…»)</li>
-      <li>Уточни настоящее возражение</li>
+      <li>Присоединись</li>
+      <li>Уточни суть</li>
       <li>Отработай</li>
-      <li>Проверь («Я ответил на вопрос?»)</li>
+      <li>Проверь («Я ответил?»)</li>
       <li>Верни в процесс</li>
     </ol>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
@@ -202,54 +248,161 @@ footer{text-align:center;padding:16px 10px;color:var(--muted);font-size:.81rem;b
 
   <div class="technique" data-id="obj-price">
     <div class="tech-header"><h3><span class="icon">💰</span> «Дорого»</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <div class="script"><div class="label">Ответы</div>«Давайте посчитаем стоимость бездействия каждый месяц.»<br>«Многие сначала так говорили — потом видели окупаемость на 3–4 месяц.»<br>«По сравнению с чем именно дорого?»<button class="copy-btn">Копировать</button></div>
+    <div class="script"><div class="label">Ответы</div>«Давайте посчитаем стоимость бездействия.»<br>«Многие сначала так говорили — потом видели окупаемость.»<br>«По сравнению с чем именно дорого?»<button class="copy-btn">Копировать</button></div>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 
   <div class="technique" data-id="obj-think">
     <div class="tech-header"><h3><span class="icon">🤔</span> «Надо подумать»</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <div class="script"><div class="label">Ответы</div>«Что именно хотите обдумать? Могу сразу прояснить.»<br>«Пока пауза — ситуация прежняя. Сколько это стоит в неделю?»<br>«Подготовлю короткий разбор под вас.»<button class="copy-btn">Копировать</button></div>
+    <div class="script"><div class="label">Ответы</div>«Что именно хотите обдумать?»<br>«Пока пауза — ситуация прежняя. Сколько это стоит в неделю?»<br>«Подготовлю короткий разбор под вас.»<button class="copy-btn">Копировать</button></div>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+</section>
+
+<!-- КП -->
+<section id="kp">
+  <h2 class="section-title">📄 Как готовить сильное КП</h2>
+  <p class="section-desc">Структура коммерческого предложения, которое читают и на которое отвечают</p>
+  <div class="info-block">Большинство КП — это простыни про себя. Сильное КП говорит о клиенте и его результате.</div>
+
+  <div class="technique" data-id="kp-structure">
+    <div class="tech-header"><h3><span class="icon">📐</span> Структура сильного КП</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ol style="margin:5px 0 0 15px;color:var(--muted);font-size:.82rem">
+      <li><strong>Кратко о ситуации клиента</strong> (показать, что понял)</li>
+      <li><strong>Цель / желаемый результат</strong></li>
+      <li><strong>Предлагаемое решение</strong> (как именно закроем задачу)</li>
+      <li><strong>Ожидаемый эффект</strong> (цифры, сроки)</li>
+      <li><strong>Формат работы и этапы</strong></li>
+      <li><strong>Инвестиции</strong> (цена + что входит)</li>
+      <li><strong>Снятие риска</strong> (пилот, гарантия)</li>
+      <li><strong>Следующий шаг</strong> (чёткий и простой)</li>
+    </ol>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 
-  <div class="technique" data-id="obj-other">
-    <div class="tech-header"><h3><span class="icon">🏢</span> «Уже работаем с другими»</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <div class="script"><div class="label">Ответы</div>«Что сейчас нравится, а чего не хватает?»<br>«Могу показать отличия — полезно даже для сравнения.»<button class="copy-btn">Копировать</button></div>
+  <div class="technique" data-id="kp-rules">
+    <div class="tech-header"><h3><span class="icon">✅</span> Правила сильного КП</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="example">
+      • Пиши коротко и по делу<br>
+      • Говори языком результата, а не функций<br>
+      • Вставляй цифры и сроки<br>
+      • Всегда указывай следующий шаг<br>
+      • Делай персонализированно (не шаблон «на всех»)
+    </div>
+    <button class="expand-btn">Чего избегать ↓</button>
+    <div class="more">Избегай: длинных текстов о компании, общих фраз «мы лучшие», отсутствия цены, отсутствия следующего шага, копипаста без адаптации под клиента.</div>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+</section>
+
+<!-- МЕТРИКИ -->
+<section id="metrics">
+  <h2 class="section-title">📊 Метрики и воронка</h2>
+  <p class="section-desc">Что измерять, чтобы расти системно</p>
+  <div class="info-block">Без цифр ты действуешь вслепую. Метрики показывают, где именно теряются сделки.</div>
+
+  <div class="technique" data-id="met-funnel">
+    <div class="tech-header"><h3><span class="icon">🔻</span> Основные этапы воронки</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="checklist">
+      <li>Лиды / первые касания</li>
+      <li>Диагностические разговоры</li>
+      <li>Отправленные КП / предложения</li>
+      <li>Согласования / переговоры</li>
+      <li>Закрытые сделки</li>
+    </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+
+  <div class="technique" data-id="met-key">
+    <div class="tech-header"><h3><span class="icon">📈</span> Ключевые метрики</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="example">
+      • Конверсия из касания в разговор<br>
+      • Конверсия из разговора в КП<br>
+      • Конверсия из КП в сделку<br>
+      • Средний цикл сделки (дни)<br>
+      • Средний чек<br>
+      • Процент «заснувших» сделок
+    </div>
+    <button class="expand-btn">Как использовать ↓</button>
+    <div class="more">Смотри, на каком этапе самая большая просадка. Именно там нужно усиливать навыки и процессы. Улучшение одного узкого места часто даёт больше, чем попытка улучшить всё сразу.</div>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+</section>
+
+<!-- ПОСЛЕПРОДАЖИ -->
+<section id="after">
+  <h2 class="section-title">🔁 Послепродажный цикл</h2>
+  <p class="section-desc">Как из одной сделки сделать поток</p>
+  <div class="info-block">Большинство продавцов бросают клиента после оплаты. А именно послепродажи дают рекомендации, кейсы и повторные деньги.</div>
+
+  <div class="technique" data-id="after-steps">
+    <div class="tech-header"><h3><span class="icon">📋</span> Что делать после сделки</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <ul class="checklist">
+      <li>Сразу подтвердить следующие шаги и сроки</li>
+      <li>Через 7–14 дней — точка контроля «Как всё идёт?»</li>
+      <li>Когда есть результат — попросить отзыв</li>
+      <li>Попросить рекомендацию (когда клиент доволен)</li>
+      <li>Предложить следующий логичный шаг (upsell / развитие)</li>
+    </ul>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+
+  <div class="technique" data-id="after-ask">
+    <div class="tech-header"><h3><span class="icon">💬</span> Как просить рекомендацию</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="script"><div class="label">Фраза</div>«Рад, что всё хорошо работает. Если будет кто-то из знакомых с похожей задачей — буду благодарен за рекомендацию. Могу и сам аккуратно написать, если удобно.»<button class="copy-btn">Копировать</button></div>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+</section>
+
+<!-- СКИДКИ -->
+<section id="discounts">
+  <h2 class="section-title">🏷️ Работа со скидками</h2>
+  <p class="section-desc">Когда можно, когда нельзя, и как не убить ценность</p>
+  <div class="info-block">Скидка — инструмент, а не привычка. Бесконтрольные скидки снижают воспринимаемую ценность и приучают клиентов торговаться всегда.</div>
+
+  <div class="technique" data-id="disc-rules">
+    <div class="tech-header"><h3><span class="icon">⚖️</span> Правила скидок</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="example">
+      • Не давай скидку первым<br>
+      • Сначала выясни настоящее возражение<br>
+      • Если даёшь — меняй условия (объём, срок, пакет)<br>
+      • Лучше добавить ценность, чем просто снизить цену<br>
+      • Фиксируй, за что именно скидка
+    </div>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
+  </div>
+
+  <div class="technique" data-id="disc-how">
+    <div class="tech-header"><h3><span class="icon">💬</span> Как говорить о скидке</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="script"><div class="label">Фраза</div>«Могу сделать специальное условие, если зафиксируем объём / срок / старт в этом месяце. Тогда смогу согласовать более интересную стоимость.»<button class="copy-btn">Копировать</button></div>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 </section>
 
 <!-- ЧЕК-ЛИСТЫ -->
 <section id="checklists">
-  <h2 class="section-title">✅ Чек-листы сильного продавца</h2>
-  <p class="section-desc">Что делать каждый день и каждую неделю</p>
-
-  <div class="info-block">Дисциплина ежедневных и еженедельных действий даёт больше результата, чем разовые «героические» рывки.</div>
+  <h2 class="section-title">✅ Чек-листы</h2>
+  <p class="section-desc">Ежедневные и еженедельные действия</p>
 
   <div class="technique" data-id="daily">
-    <div class="tech-header"><h3><span class="icon">📅</span> Ежедневный чек-лист</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="tech-header"><h3><span class="icon">📅</span> Каждый день</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
     <ul class="checklist">
-      <li>Просмотреть все новые лиды / входящие</li>
-      <li>Сделать минимум 5–8 качественных касаний (звонки + сообщения)</li>
-      <li>Провести или запланировать хотя бы 1 диагностическую беседу</li>
-      <li>Зафиксировать следующий шаг по каждой активной сделке</li>
-      <li>Записать 1 вывод / ошибку / удачную фразу дня</li>
-      <li>Проверить «заснувшие» сделки и сделать по ним действие</li>
+      <li>5–8 качественных касаний</li>
+      <li>Хотя бы 1 диагностический разговор</li>
+      <li>Следующий шаг по каждой активной сделке</li>
+      <li>Касание по 1–2 «заснувшим»</li>
+      <li>1 вывод / сильная фраза дня</li>
     </ul>
-    <button class="expand-btn">Зачем это нужно ↓</button>
-    <div class="more">Ежедневный минимум убирает хаос и прокрастинацию. Когда есть чёткий список — меньше энергии уходит на «что делать», больше — на сами действия.</div>
-    <div class="notes-area"><div class="notes-label">Твой ежедневный ритуал:</div><textarea></textarea></div>
+    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 
   <div class="technique" data-id="weekly">
-    <div class="tech-header"><h3><span class="icon">📊</span> Еженедельный чек-лист</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="tech-header"><h3><span class="icon">📊</span> Каждую неделю</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
     <ul class="checklist">
-      <li>Разобрать воронку: где больше всего теряется</li>
-      <li>Послушать/пересмотреть 1–2 своих разговора</li>
-      <li>Выписать 3 сильные и 3 слабые стороны за неделю</li>
-      <li>Обновить кейсы и цифры</li>
-      <li>Сделать касание по всем «тёплым», но застрявшим сделкам</li>
-      <li>Поставить 1–2 конкретные цели на следующую неделю</li>
+      <li>Разбор воронки</li>
+      <li>Прослушать 1–2 своих разговора</li>
+      <li>Обновить кейсы</li>
+      <li>Цели на следующую неделю</li>
     </ul>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
@@ -257,191 +410,102 @@ footer{text-align:center;padding:16px 10px;color:var(--muted);font-size:.81rem;b
 
 <!-- ЛПР -->
 <section id="lpr">
-  <h2 class="section-title">👥 Работа с несколькими ЛПР</h2>
-  <p class="section-desc">Когда решение принимают несколько человек</p>
-
-  <div class="info-block">В B2B почти всегда участвует больше одного человека. Если ты работаешь только с одним — сделка часто «умирает» на согласовании.</div>
+  <h2 class="section-title">👥 Работа с ЛПР</h2>
+  <p class="section-desc">Несколько лиц, принимающих решение</p>
+  <div class="info-block">Если работаешь только с одним человеком — сделка часто умирает на согласовании.</div>
 
   <div class="technique" data-id="lpr-map">
     <div class="tech-header"><h3><span class="icon">🗺️</span> Карта участников</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <p style="font-size:.87rem;margin-bottom:6px">Выясни как можно раньше:</p>
     <ul class="checklist">
-      <li>Кто пользователь (будет работать с решением)</li>
-      <li>Кто влияет на решение</li>
-      <li>Кто принимает финальное решение</li>
-      <li>Кто блокирует / согласует бюджет</li>
-      <li>У кого какие интересы и страхи</li>
+      <li>Кто пользователь</li>
+      <li>Кто влияет</li>
+      <li>Кто принимает решение</li>
+      <li>Кто согласовывает бюджет</li>
     </ul>
-    <div class="script">
-      <div class="label">Вопросы</div>
-      «Кто ещё будет участвовать в принятии решения?»<br>
-      «Чьё мнение для вас особенно важно?»<br>
-      «Кто обычно смотрит на такие вещи с точки зрения бюджета / рисков?»
-      <button class="copy-btn">Копировать</button>
-    </div>
-    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
-  </div>
-
-  <div class="technique" data-id="lpr-strategy">
-    <div class="tech-header"><h3><span class="icon">🎯</span> Как работать с разными ролями</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <div class="example">
-      <strong>Пользователь</strong> — удобство, скорость, «как мне станет легче»<br>
-      <strong>Руководитель</strong> — результат, цифры, риски<br>
-      <strong>Финансист</strong> — окупаемость, прозрачность затрат<br>
-      <strong>Безопасность / юристы</strong> — риски, соответствие требованиям
-    </div>
-    <button class="expand-btn">Подробнее ↓</button>
-    <div class="more">Подстраивай акценты под каждого. Одно и то же решение разным людям подавай через разные выгоды. И всегда старайся получить доступ к реальному ЛПР, а не только к «посреднику».</div>
+    <div class="script"><div class="label">Вопросы</div>«Кто ещё участвует в решении?» · «Чьё мнение особенно важно?» · «Кто смотрит с точки зрения бюджета?»<button class="copy-btn">Копировать</button></div>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 </section>
 
 <!-- ЗАСНУВШИЕ -->
 <section id="sleeping">
-  <h2 class="section-title">😴 Возврат заснувших клиентов</h2>
-  <p class="section-desc">Один из самых недооценённых источников сделок</p>
-
-  <div class="info-block">Много сделок умирает не потому, что клиенту не нужно, а потому что пропал контакт и не было системного возврата.</div>
-
-  <div class="technique" data-id="sleep-when">
-    <div class="tech-header"><h3><span class="icon">⏰</span> Когда клиент «засыпает»</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <ul class="checklist">
-      <li>После встречи не ответил на follow-up</li>
-      <li>Получил КП и пропал</li>
-      <li>Сказал «надо подумать» и исчез</li>
-      <li>Просил «вернуться позже» и срок уже прошёл</li>
-    </ul>
-    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
-  </div>
+  <h2 class="section-title">😴 Заснувшие клиенты</h2>
+  <p class="section-desc">Как возвращать</p>
 
   <div class="technique" data-id="sleep-scripts">
     <div class="tech-header"><h3><span class="icon">💬</span> Скрипты возврата</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <div class="script">
-      <div class="label">Мягкий возврат</div>
-      «Добрый день! Кратко возвращаюсь по нашему разговору. Остались ли вопросы или ситуация уже изменилась?»
-      <button class="copy-btn">Копировать</button>
-    </div>
-    <div class="script">
-      <div class="label">С ценностью</div>
-      «Подготовил короткий обновлённый разбор / кейс, который может быть полезен именно в вашей ситуации. Могу скинуть?»
-      <button class="copy-btn">Копировать</button>
-    </div>
-    <div class="script">
-      <div class="label">Прямой</div>
-      «Хотел уточнить: вопрос ещё актуален или пока закрыли для себя эту тему?»
-      <button class="copy-btn">Копировать</button>
-    </div>
+    <div class="script"><div class="label">Мягкий</div>«Кратко возвращаюсь по нашему разговору. Остались вопросы или ситуация изменилась?»<button class="copy-btn">Копировать</button></div>
+    <div class="script"><div class="label">С ценностью</div>«Подготовил короткий разбор/кейс под вашу ситуацию. Могу скинуть?»<button class="copy-btn">Копировать</button></div>
+    <div class="script"><div class="label">Прямой</div>«Вопрос ещё актуален или пока закрыли тему?»<button class="copy-btn">Копировать</button></div>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 </section>
 
 <!-- ОШИБКИ -->
 <section id="mistakes">
-  <h2 class="section-title">❌ Типичные ошибки и как их исправлять</h2>
-  <p class="section-desc">Что чаще всего убивает сделки</p>
+  <h2 class="section-title">❌ Типичные ошибки</h2>
+  <p class="section-desc">Что убивает сделки</p>
 
   <div class="technique" data-id="err-early">
-    <div class="tech-header"><h3><span class="icon">⚡</span> Слишком рано цена / презентация</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <p style="font-size:.86rem;color:var(--muted)">Продавец начинает рассказывать о продукте или цене до того, как клиент осознал проблему и ценность решения.</p>
-    <div class="example"><strong>Что делать:</strong> Сначала диагностика (SPIN). Цена и презентация — только после Implication и Need-payoff.</div>
-    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
-  </div>
-
-  <div class="technique" data-id="err-questions">
-    <div class="tech-header"><h3><span class="icon">❓</span> Мало вопросов, много монолога</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <p style="font-size:.86rem;color:var(--muted)">Продавец говорит 70–80% времени. Клиент не вовлечён и не чувствует, что его поняли.</p>
-    <div class="example"><strong>Что делать:</strong> Цель — чтобы клиент говорил большую часть времени. Готовь вопросы заранее.</div>
+    <div class="tech-header"><h3><span class="icon">⚡</span> Рано цена / презентация</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="example">Сначала диагностика и осознание боли. Потом ценность. Потом цена.</div>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 
   <div class="technique" data-id="err-next">
-    <div class="tech-header"><h3><span class="icon">➡️</span> Нет чёткого следующего шага</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <p style="font-size:.86rem;color:var(--muted)">Разговор закончился на «ну давайте вы пришлёте, а мы посмотрим». Без даты, без ответственности, без конкретики.</p>
-    <div class="example"><strong>Что делать:</strong> Всегда фиксируй следующий шаг: что, кто, когда.</div>
+    <div class="tech-header"><h3><span class="icon">➡️</span> Нет следующего шага</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="example">Всегда фиксируй: что, кто, когда.</div>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 
-  <div class="technique" data-id="err-pressure">
-    <div class="tech-header"><h3><span class="icon">💢</span> Давление вместо помощи</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <p style="font-size:.86rem;color:var(--muted)">Попытки «дожать» вызывают сопротивление и разрушают доверие.</p>
-    <div class="example"><strong>Что делать:</strong> Используй мягкие закрытия и снятие риска. Помогай принять решение, а не вдавливай в него.</div>
+  <div class="technique" data-id="err-talk">
+    <div class="tech-header"><h3><span class="icon">🗣️</span> Много говоришь сам</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
+    <div class="example">Клиент должен говорить большую часть времени. Готовь вопросы.</div>
     <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 </section>
 
-<!-- РОСТ 30-60-90 -->
+<!-- РОСТ -->
 <section id="growth">
-  <h2 class="section-title">📈 План прокачки 30 / 60 / 90 дней</h2>
-  <p class="section-desc">Как системно вырасти за 3 месяца</p>
+  <h2 class="section-title">📈 Рост 30 / 60 / 90</h2>
+  <p class="section-desc">План прокачки</p>
 
-  <div class="info-block">Лучше маленькие ежедневные улучшения, чем попытка изменить всё сразу.</div>
-
-  <div class="step">
-    <h3><span class="step-num">30</span> Первые 30 дней — фундамент</h3>
+  <div class="step"><h3><span class="step-num">30</span> Первые 30 дней</h3>
     <ul class="checklist">
-      <li>Освоить и применять SPIN (особенно Implication)</li>
-      <li>Ввести ежедневный чек-лист касаний</li>
-      <li>Начать записывать/разбирать свои разговоры</li>
-      <li>Собрать 3–5 сильных кейсов с цифрами</li>
-      <li>Отработать 2–3 основных возражения до автоматизма</li>
+      <li>SPIN + Implication</li>
+      <li>Ежедневный минимум касаний</li>
+      <li>Разбор своих разговоров</li>
+      <li>3–5 сильных кейсов</li>
     </ul>
   </div>
-
-  <div class="step">
-    <h3><span class="step-num">60</span> 60 дней — усиление</h3>
+  <div class="step"><h3><span class="step-num">60</span> 60 дней</h3>
     <ul class="checklist">
-      <li>Начать системно возвращать «заснувших»</li>
-      <li>Работать с картой ЛПР в каждой сделке</li>
-      <li>Улучшить follow-up и фиксацию следующих шагов</li>
-      <li>Добавить снятие риска в каждое предложение</li>
-      <li>Разобрать воронку: где теряется больше всего</li>
+      <li>Системный возврат заснувших</li>
+      <li>Карта ЛПР в сделках</li>
+      <li>Снятие риска в предложениях</li>
     </ul>
   </div>
-
-  <div class="step">
-    <h3><span class="step-num">90</span> 90 дней — система</h3>
+  <div class="step"><h3><span class="step-num">90</span> 90 дней</h3>
     <ul class="checklist">
-      <li>Иметь стабильный еженедельный разбор своих звонков</li>
-      <li>Вести личную базу сильных фраз и кейсов</li>
-      <li>Уметь быстро диагностировать и закрывать простые сделки</li>
-      <li>Сфокусироваться на повышении среднего чека и конверсии</li>
-      <li>Поставить новые цели на следующий квартал</li>
+      <li>Стабильный разбор звонков</li>
+      <li>База фраз и кейсов</li>
+      <li>Фокус на конверсии и чеке</li>
     </ul>
-  </div>
-</section>
-
-<!-- КЛАССИКА -->
-<section id="classic">
-  <h2 class="section-title">📈 Классика</h2>
-  <p class="section-desc">Базовые техники</p>
-
-  <div class="technique" data-id="spin">
-    <div class="tech-header"><h3><span class="icon">🎯</span> SPIN</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <div class="script"><div class="label">Implication</div>«Если проблема останется — какие потери через 6–12 месяцев?»<button class="copy-btn">Копировать</button></div>
-    <button class="expand-btn">Подробнее ↓</button>
-    <div class="more">Главная сила SPIN — в Implication. Пока клиент не прочувствовал цену бездействия, ценность решения будет низкой.</div>
-    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
-  </div>
-
-  <div class="technique" data-id="fff">
-    <div class="tech-header"><h3><span class="icon">🔁</span> Feel-Felt-Found</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <div class="script"><div class="label">Шаблон</div>«Понимаю, как вы себя чувствуете… Многие чувствовали то же… Но обнаружили, что…»<button class="copy-btn">Копировать</button></div>
-    <div class="notes-area"><div class="notes-label">Заметка:</div><textarea></textarea></div>
   </div>
 </section>
 
 <!-- ЭТИКА -->
 <section id="ethics">
   <h2 class="section-title">⚖️ Этика</h2>
-  <p class="section-desc">Границы профессионала</p>
-  <div class="info-block">Этичное влияние помогает клиенту. Манипуляция работает против его интересов.</div>
+  <p class="section-desc">Границы</p>
+  <div class="info-block">Этичное влияние помогает клиенту. Манипуляция работает против него.</div>
 
   <div class="technique" data-id="ethics">
     <div class="tech-header"><h3><span class="icon">🧭</span> Золотой фильтр</h3><div class="actions"><button class="icon-btn check">✓</button><button class="icon-btn fav">♡</button><button class="icon-btn note-btn">📝</button></div></div>
-    <ol style="margin:6px 0 0 16px;color:var(--muted);font-size:.85rem">
+    <ol style="margin:5px 0 0 15px;color:var(--muted);font-size:.82rem">
       <li>Если бы я был клиентом и знал всё — купил бы?</li>
       <li>Это улучшит его ситуацию через 6–12 месяцев?</li>
-      <li>Мне не будет стыдно за то, как проходила продажа?</li>
+      <li>Мне не будет стыдно за продажу?</li>
     </ol>
     <div class="notes-area"><div class="notes-label">Твои принципы:</div><textarea></textarea></div>
   </div>
@@ -452,12 +516,12 @@ footer{text-align:center;padding:16px 10px;color:var(--muted);font-size:.81rem;b
 <footer>
   <p>Используй с уважением к клиенту</p>
   <div class="creator">Creator: <span>Баграмов Владислав Витальевич</span></div>
-  <div class="keys">1-9 разделы · R техника дня · Q квиз · P практика</div>
+  <div class="keys">Разделы в меню · R — техника дня · Q — квиз · P — практика</div>
 </footer>
 
 <div class="toast" id="toast">Скопировано!</div>
 
-<div class="modal-bg" id="quizModal"><div class="modal"><button class="close-btn" data-close>&times;</button><h2>Квиз стиля</h2><div id="quizContent"></div></div></div>
+<div class="modal-bg" id="quizModal"><div class="modal"><button class="close-btn" data-close>&times;</button><h2>Квиз</h2><div id="quizContent"></div></div></div>
 <div class="modal-bg" id="practiceModal"><div class="modal"><button class="close-btn" data-close>&times;</button><h2>Практика</h2><div id="practiceContent"></div></div></div>
 <div class="modal-bg" id="randomModal"><div class="modal"><button class="close-btn" data-close>&times;</button><h2>Техника дня</h2><div id="randomContent"></div></div></div>
 <div class="modal-bg" id="motivationModal"><div class="modal"><button class="close-btn" data-close>&times;</button><h2>Мотивация</h2><div id="motivationContent"></div></div></div>
@@ -485,7 +549,7 @@ function initCards(){
     if(expand&&more)expand.onclick=()=>{more.classList.toggle('open');expand.textContent=more.classList.contains('open')?'Свернуть ↑':'Подробнее ↓'};
   });
   document.querySelectorAll('.copy-btn').forEach(btn=>{
-    btn.onclick=()=>{let t=btn.parentElement.innerText.replace('Копировать','').replace(/^(Скрипт|Ответы|Фраза|Структура|Шаблон|Вопросы|Мягкий возврат|С ценностью|Прямой|Implication)\s*/i,'').trim();navigator.clipboard.writeText(t).then(()=>showToast('Скопировано!'))};
+    btn.onclick=()=>{let t=btn.parentElement.innerText.replace('Копировать','').replace(/^(Скрипт|Ответы|Фраза|Структура|Шаблон|Вопросы|Мягкий|С ценностью|Прямой|Implication|Сильный вопрос|Мягкие вопросы)\s*/i,'').trim();navigator.clipboard.writeText(t).then(()=>showToast('Скопировано!'))};
   });
   updateProgress();
 }
@@ -507,25 +571,23 @@ function closeModals(){document.querySelectorAll('.modal-bg').forEach(m=>m.class
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeModals);
 document.querySelectorAll('.modal-bg').forEach(bg=>bg.onclick=e=>{if(e.target===bg)closeModals()});
 
-const techList=[{title:'Implication',text:'Самый сильный вопрос: «Если не решить — какие потери через 6–12 месяцев?»'},{title:'Feel-Felt-Found',text:'Присоединись → покажи, что не одинок → дай новый взгляд'},{title:'Снятие риска',text:'Пилот и гарантия убирают страх ошибки'},{title:'Следующий шаг',text:'Всегда фиксируй: что, кто, когда'},{title:'Возврат заснувших',text:'Системные касания по пропавшим клиентам дают много сделок'}];
-document.getElementById('randomBtn').onclick=()=>{const t=techList[Math.floor(Math.random()*techList.length)];document.getElementById('randomContent').innerHTML=`<h3 style="margin-bottom:5px">${t.title}</h3><p style="color:var(--muted)">${t.text}</p>`;openModal('randomModal')};
+const techList=[{title:'Implication',text:'«Если не решить — какие потери через 6–12 месяцев?»'},{title:'Следующий шаг',text:'Всегда фиксируй: что, кто, когда'},{title:'Возврат заснувших',text:'Системные касания дают много сделок'},{title:'Снятие риска',text:'Пилот и гарантия убирают страх'},{title:'Вопросы важнее монолога',text:'Клиент должен говорить большую часть времени'}];
+document.getElementById('randomBtn').onclick=()=>{const t=techList[Math.floor(Math.random()*techList.length)];document.getElementById('randomContent').innerHTML=`<h3 style="margin-bottom:4px">${t.title}</h3><p style="color:var(--muted)">${t.text}</p>`;openModal('randomModal')};
 
 const mots=['Лучшие продавцы помогают принять правильное решение.','Каждый отказ — практика.','Доверие зарабатывается долго.','Вопрос сильнее утверждения.','Сила — в умении отказаться от ненужной сделки.'];
-document.getElementById('motivationBtn').onclick=()=>{document.getElementById('motivationContent').innerHTML=`<p style="font-size:1.02rem">${mots[Math.floor(Math.random()*mots.length)]}</p>`;openModal('motivationModal')};
+document.getElementById('motivationBtn').onclick=()=>{document.getElementById('motivationContent').innerHTML=`<p style="font-size:1rem">${mots[Math.floor(Math.random()*mots.length)]}</p>`;openModal('motivationModal')};
 
 document.getElementById('quizBtn').onclick=()=>{
-  document.getElementById('quizContent').innerHTML=`<div class="quiz-q"><p>1. Что ближе?</p><label><input type="radio" name="q1" value="0"> Много вопросов</label><label><input type="radio" name="q1" value="1"> Новый взгляд</label><label><input type="radio" name="q1" value="2"> Доверие</label></div><div class="quiz-q"><p>2. «Надо подумать»:</p><label><input type="radio" name="q2" value="0"> Выясняю причину</label><label><input type="radio" name="q2" value="1"> Показываю потери</label><label><input type="radio" name="q2" value="2"> Предлагаю разобраться вместе</label></div><button class="tool-btn" id="quizSubmit">Результат</button><div id="quizResult"></div>`;
-  document.getElementById('quizSubmit').onclick=()=>{let s=[0,0,0];for(let i=1;i<=2;i++){const c=document.querySelector(`input[name="q${i}"]:checked`);if(c)s[+c.value]++}const m=Math.max(...s);let r=s[0]===m?{t:'SPIN-стиль',d:'Силён в вопросах. Качай Implication.'}:s[1]===m?{t:'Challenger',d:'Близко менять взгляд клиента.'}:{t:'Консультативный',d:'Сила — в доверии.'};document.getElementById('quizResult').innerHTML=`<div class="result"><strong>${r.t}</strong><p style="margin-top:4px">${r.d}</p></div>`};
+  document.getElementById('quizContent').innerHTML=`<div class="quiz-q"><p>1. Что ближе?</p><label><input type="radio" name="q1" value="0"> Много вопросов</label><label><input type="radio" name="q1" value="1"> Новый взгляд</label><label><input type="radio" name="q1" value="2"> Доверие</label></div><div class="quiz-q"><p>2. «Надо подумать»:</p><label><input type="radio" name="q2" value="0"> Выясняю причину</label><label><input type="radio" name="q2" value="1"> Показываю потери</label><label><input type="radio" name="q2" value="2"> Предлагаю разобраться</label></div><button class="tool-btn" id="quizSubmit">Результат</button><div id="quizResult"></div>`;
+  document.getElementById('quizSubmit').onclick=()=>{let s=[0,0,0];for(let i=1;i<=2;i++){const c=document.querySelector(`input[name="q${i}"]:checked`);if(c)s[+c.value]++}const m=Math.max(...s);let r=s[0]===m?{t:'SPIN-стиль',d:'Силён в вопросах.'}:s[1]===m?{t:'Challenger',d:'Близко менять взгляд.'}:{t:'Консультативный',d:'Сила в доверии.'};document.getElementById('quizResult').innerHTML=`<div class="result"><strong>${r.t}</strong><p style="margin-top:3px">${r.d}</p></div>`};
   openModal('quizModal');
 };
 
-const objs={'Дорого':['«Давайте посчитаем стоимость бездействия.»','«Многие сначала так говорили — потом видели окупаемость.»'],'Надо подумать':['«Что именно хотите обдумать?»','«Пока пауза — ситуация прежняя. Сколько это стоит в неделю?»'],'Уже работаем с другими':['«Что нравится, а чего не хватает?»','«Могу показать отличия для сравнения.»'],'Пришлите КП':['«Чтобы было точно — 3 коротких вопроса?»','«Чтобы не простыня — 10 минут созвонимся?»']};
-document.getElementById('practiceBtn').onclick=()=>{let h='<p style="margin-bottom:7px;color:var(--muted)">Выбери возражение:</p>';for(let k in objs)h+=`<button class="obj-btn" data-obj="${k}">${k}</button>`;h+='<div id="answers" style="margin-top:9px"></div>';document.getElementById('practiceContent').innerHTML=h;document.querySelectorAll('.obj-btn').forEach(b=>b.onclick=()=>{document.getElementById('answers').innerHTML=objs[b.dataset.obj].map(a=>`<div class="script" style="margin-bottom:4px">${a}</div>`).join('')});openModal('practiceModal')};
+const objs={'Дорого':['«Давайте посчитаем стоимость бездействия.»','«Многие сначала так говорили — потом видели окупаемость.»'],'Надо подумать':['«Что именно хотите обдумать?»','«Пока пауза — ситуация прежняя.»'],'Уже работаем с другими':['«Что нравится, а чего не хватает?»'],'Пришлите КП':['«Чтобы было точно — 3 коротких вопроса?»']};
+document.getElementById('practiceBtn').onclick=()=>{let h='<p style="margin-bottom:6px;color:var(--muted)">Выбери возражение:</p>';for(let k in objs)h+=`<button class="obj-btn" data-obj="${k}">${k}</button>`;h+='<div id="answers" style="margin-top:8px"></div>';document.getElementById('practiceContent').innerHTML=h;document.querySelectorAll('.obj-btn').forEach(b=>b.onclick=()=>{document.getElementById('answers').innerHTML=objs[b.dataset.obj].map(a=>`<div class="script" style="margin-bottom:3px">${a}</div>`).join('')});openModal('practiceModal')};
 
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
-  const map={'1':'path','2':'objections','3':'checklists','4':'lpr','5':'sleeping','6':'mistakes','7':'growth','8':'classic','9':'ethics'};
-  if(map[e.key])document.querySelector(`[data-section="${map[e.key]}"]`)?.click();
   if(e.key.toLowerCase()==='r')document.getElementById('randomBtn').click();
   if(e.key.toLowerCase()==='q')document.getElementById('quizBtn').click();
   if(e.key.toLowerCase()==='p')document.getElementById('practiceBtn').click();
