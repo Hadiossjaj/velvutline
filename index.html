@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Техники продаж и этичные манипуляции — Полная версия</title>
+  <title>Техники продаж и этичные манипуляции — 3D версия</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -16,228 +16,410 @@
       --muted: #94a3b8;
       --success: #22c55e;
       --warning: #f59e0b;
-      --danger: #ef4444;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
+      overflow-x: hidden;
+      perspective: 1200px;
     }
 
+    /* ===== HEADER ===== */
     header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-      padding: 70px 20px 90px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+      padding: 80px 20px 100px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
     }
 
-    header::before {
-      content: '';
+    .header-bg {
       position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 60%);
-      animation: pulse 14s ease-in-out infinite;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(37,99,235,0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(14,165,233,0.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(99,102,241,0.15) 0%, transparent 50%);
+      animation: headerPulse 10s ease-in-out infinite alternate;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.15); opacity: 1; }
+    @keyframes headerPulse {
+      0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+      100% { transform: scale(1.15) rotate(3deg); opacity: 1; }
     }
 
-    .header-content { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
-
-    h1 {
-      font-size: clamp(2rem, 5vw, 3.3rem);
-      font-weight: 700;
-      margin-bottom: 14px;
-      background: linear-gradient(90deg, #60a5fa, #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .floating-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.4;
+      animation: float 12s ease-in-out infinite;
     }
 
-    .subtitle {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 640px;
-      margin: 0 auto 28px;
+    .orb1 { width: 280px; height: 280px; background: #2563eb; top: -80px; left: 10%; animation-delay: 0s; }
+    .orb2 { width: 200px; height: 200px; background: #0ea5e9; bottom: -40px; right: 15%; animation-delay: -4s; }
+    .orb3 { width: 160px; height: 160px; background: #6366f1; top: 40%; right: 5%; animation-delay: -7s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      33% { transform: translateY(-30px) translateX(20px); }
+      66% { transform: translateY(20px) translateX(-15px); }
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 5;
+      max-width: 820px;
+      margin: 0 auto;
+      transform: translateZ(40px);
     }
 
     .badge {
       display: inline-block;
       background: rgba(34, 197, 94, 0.15);
       color: var(--success);
-      padding: 6px 16px;
+      padding: 7px 18px;
       border-radius: 50px;
       font-size: 0.9rem;
       font-weight: 500;
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      margin-bottom: 18px;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      margin-bottom: 20px;
+      animation: badgePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
     }
 
+    @keyframes badgePop {
+      from { opacity: 0; transform: scale(0.6) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5.5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #60a5fa, #38bdf8, #818cf8);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShine 5s linear infinite, titleIn 1s ease both;
+    }
+
+    @keyframes textShine {
+      to { background-position: 200% center; }
+    }
+
+    @keyframes titleIn {
+      from { opacity: 0; transform: translateY(30px) rotateX(15deg); }
+      to { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== NAV ===== */
     nav {
-      background: rgba(15, 23, 42, 0.92);
-      backdrop-filter: blur(14px);
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
       z-index: 100;
       border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     .nav-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
-      gap: 6px;
-      padding: 10px 16px;
+      gap: 8px;
+      padding: 12px 16px;
       overflow-x: auto;
     }
 
     .nav-btn {
-      background: transparent;
-      border: none;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.15);
       color: var(--muted);
-      padding: 11px 18px;
-      border-radius: 9px;
+      padding: 12px 20px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 0.95rem;
       font-weight: 500;
       white-space: nowrap;
-      transition: all 0.2s;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
     }
 
-    .nav-btn:hover { background: rgba(37, 99, 235, 0.15); color: #93c5fd; }
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(14,165,233,0.2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .nav-btn:hover {
+      color: #93c5fd;
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
+      border-color: rgba(37, 99, 235, 0.4);
+    }
+
+    .nav-btn:hover::before { opacity: 1; }
+
     .nav-btn.active {
-      background: rgba(37, 99, 235, 0.25);
-      color: #60a5fa;
-      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45), 0 0 20px rgba(37, 99, 235, 0.3);
     }
 
+    .nav-btn:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    /* ===== MAIN ===== */
     main {
       max-width: 980px;
       margin: 0 auto;
-      padding: 50px 20px 90px;
+      padding: 50px 20px 100px;
     }
 
     section {
       display: none;
-      animation: fadeIn 0.35s ease;
+      opacity: 0;
+      transform: translateY(40px) rotateX(8deg);
+      transform-origin: top center;
     }
 
-    section.active { display: block; }
+    section.active {
+      display: block;
+      animation: sectionIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes sectionIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+      }
     }
 
     .section-title {
-      font-size: 1.75rem;
-      margin-bottom: 10px;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      animation: fadeUp 0.6s ease both;
     }
 
     .section-desc {
       color: var(--muted);
-      margin-bottom: 36px;
+      margin-bottom: 40px;
       font-size: 1.05rem;
+      animation: fadeUp 0.6s 0.1s ease both;
     }
 
-    /* Большие блоки техник */
+    /* ===== TECHNIQUE CARDS (3D) ===== */
     .technique {
-      background: var(--card);
-      border-radius: 16px;
+      background: linear-gradient(145deg, #1e293b, #162032);
+      border-radius: 20px;
       padding: 32px;
-      margin-bottom: 28px;
-      border: 1px solid rgba(148, 163, 184, 0.1);
+      margin-bottom: 32px;
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    }
+
+    .technique::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #0ea5e9, #6366f1);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .technique:hover::before { opacity: 1; }
+
+    .technique:hover {
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 40px rgba(37,99,235,0.15);
     }
 
     .technique h3 {
       font-size: 1.35rem;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
+      transform: translateZ(30px);
     }
 
     .technique .icon {
-      width: 42px;
-      height: 42px;
-      background: rgba(37, 99, 235, 0.18);
-      border-radius: 10px;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(14,165,233,0.2));
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform: translateZ(40px);
     }
 
-    .technique p { color: #cbd5e1; margin-bottom: 14px; }
+    .technique:hover .icon {
+      transform: translateZ(50px) scale(1.15) rotateY(15deg);
+    }
+
+    .technique p,
+    .technique ul,
+    .technique li {
+      color: #cbd5e1;
+      transform: translateZ(20px);
+    }
 
     .technique ul {
-      margin: 12px 0 16px 20px;
-      color: #cbd5e1;
+      margin: 14px 0 18px 22px;
     }
 
-    .technique li { margin-bottom: 8px; }
+    .technique li {
+      margin-bottom: 9px;
+      transition: transform 0.25s, color 0.25s;
+    }
 
+    .technique li:hover {
+      color: #e2e8f0;
+      transform: translateX(6px);
+    }
+
+    /* Example & Script boxes */
     .example-box {
-      background: rgba(14, 165, 233, 0.08);
+      background: rgba(14, 165, 233, 0.1);
       border-left: 4px solid var(--accent);
-      padding: 16px 20px;
-      border-radius: 0 10px 10px 0;
-      margin: 18px 0;
+      padding: 18px 22px;
+      border-radius: 0 14px 14px 0;
+      margin: 20px 0;
       font-size: 0.97rem;
+      transform: translateZ(25px);
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(14,165,233,0.08);
+    }
+
+    .example-box:hover {
+      background: rgba(14, 165, 233, 0.16);
+      transform: translateZ(35px) scale(1.01);
     }
 
     .example-box strong { color: #38bdf8; }
 
     .script-box {
-      background: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.25);
-      border-radius: 12px;
-      padding: 18px 22px;
-      margin: 18px 0;
+      background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.08));
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 20px 0;
+      transform: translateZ(25px);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 25px rgba(34,197,94,0.1);
+    }
+
+    .script-box:hover {
+      transform: translateZ(40px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(34,197,94,0.2);
+      border-color: rgba(34, 197, 94, 0.5);
     }
 
     .script-box .label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       color: var(--success);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-weight: 600;
     }
 
     .tag {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 14px;
       font-size: 0.8rem;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 20px;
       background: rgba(14, 165, 233, 0.15);
       color: var(--accent);
+      transform: translateZ(15px);
+      transition: all 0.3s;
     }
 
+    .technique:hover .tag {
+      background: rgba(14, 165, 233, 0.25);
+      box-shadow: 0 0 15px rgba(14,165,233,0.3);
+    }
+
+    /* Warning */
     .warning {
       background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      border-radius: 12px;
-      padding: 18px 22px;
-      margin-bottom: 32px;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 36px;
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: flex-start;
+      transform-style: preserve-3d;
+      transition: all 0.4s;
+      animation: warningPulse 3s ease-in-out infinite;
     }
 
-    .warning-icon { font-size: 1.4rem; flex-shrink: 0; }
+    @keyframes warningPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.2); }
+      50% { box-shadow: 0 0 25px 0 rgba(245,158,11,0.25); }
+    }
+
+    .warning:hover {
+      transform: translateY(-5px) scale(1.01);
+    }
+
+    .warning-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      animation: iconBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
 
     .two-col {
       display: grid;
@@ -249,26 +431,53 @@
     @media (max-width: 700px) {
       .two-col { grid-template-columns: 1fr; }
       .technique { padding: 24px 18px; }
+      .nav-btn { padding: 10px 14px; font-size: 0.88rem; }
     }
 
+    /* Footer */
     footer {
       text-align: center;
-      padding: 36px 20px;
+      padding: 40px 20px;
       color: var(--muted);
       font-size: 0.9rem;
       border-top: 1px solid rgba(148, 163, 184, 0.1);
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #2563eb, transparent);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#2563eb, #0ea5e9);
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
 <header>
+  <div class="header-bg"></div>
+  <div class="floating-orb orb1"></div>
+  <div class="floating-orb orb2"></div>
+  <div class="floating-orb orb3"></div>
+
   <div class="header-content">
-    <div class="badge">Полные рабочие скрипты и алгоритмы</div>
+    <div class="badge">3D + мощные анимации + полные скрипты</div>
     <h1>Техники продаж<br>и правильные манипуляции</h1>
     <p class="subtitle">
       Каждая кнопка открывает полный практический разбор с примерами фраз, 
-      пошаговыми алгоритмами и готовыми скриптами. Всё, что реально работает.
+      алгоритмами и готовыми скриптами. Всё усилено 3D-эффектами.
     </p>
   </div>
 </header>
@@ -288,208 +497,147 @@
   <!-- ==================== КЛАССИКА ==================== -->
   <section id="classic" class="active">
     <h2 class="section-title">📈 Классические техники продаж</h2>
-    <p class="section-desc">Проверенные методы, которые дают результат в B2B и B2C. Здесь — полные алгоритмы и готовые фразы.</p>
+    <p class="section-desc">Проверенные методы с полными алгоритмами и готовыми фразами.</p>
 
-    <!-- SPIN -->
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🎯</span> SPIN-продажи (полный алгоритм)</h3>
-      <p>Самая мощная система вопросов. Вместо того чтобы «продавать», вы помогаете клиенту самому осознать проблему и захотеть её решить.</p>
-      
-      <p><strong>4 этапа вопросов:</strong></p>
+      <p>Самая мощная система вопросов. Вы помогаете клиенту самому осознать проблему.</p>
       <ul>
-        <li><strong>S — Situation (Ситуация)</strong> — собираем факты о текущем положении клиента.</li>
-        <li><strong>P — Problem (Проблема)</strong> — выявляем трудности и боли.</li>
-        <li><strong>I — Implication (Извлечение / Последствия)</strong> — усиливаем боль, показываем цену бездействия.</li>
-        <li><strong>N — Need-payoff (Нужда / Выгода)</strong> — клиент сам формулирует ценность решения.</li>
+        <li><strong>S — Situation</strong> — факты о текущем положении</li>
+        <li><strong>P — Problem</strong> — боли и трудности</li>
+        <li><strong>I — Implication</strong> — цена бездействия (самое важное!)</li>
+        <li><strong>N — Need-payoff</strong> — клиент сам формулирует ценность</li>
       </ul>
 
       <div class="example-box">
-        <strong>Примеры вопросов Situation:</strong><br>
-        «Расскажите, как у вас сейчас организован процесс…?»<br>
-        «Сколько человек занимается этим?»<br>
-        «Какие инструменты вы используете сейчас?»
+        <strong>Situation:</strong> «Как сейчас организован процесс…?», «Сколько человек этим занимается?»
       </div>
-
       <div class="example-box">
-        <strong>Примеры Problem:</strong><br>
-        «Что вас больше всего раздражает в текущей системе?»<br>
-        «Где чаще всего возникают сбои?»<br>
-        «Насколько это влияет на скорость работы команды?»
+        <strong>Problem:</strong> «Что больше всего раздражает?», «Где чаще всего сбои?»
       </div>
-
       <div class="example-box">
-        <strong>Примеры Implication (самое важное!):</strong><br>
-        «Если эта проблема останется, к каким потерям это может привести через 3–6 месяцев?»<br>
-        «Как это влияет на мотивацию сотрудников?»<br>
-        «Сколько примерно денег/времени вы теряете из-за этого?»
+        <strong>Implication:</strong> «Если проблема останется — какие потери через 6 месяцев?», «Сколько денег/времени теряете?»
       </div>
-
       <div class="example-box">
-        <strong>Примеры Need-payoff:</strong><br>
-        «Если бы вы могли сократить эти потери на 40–50%, насколько это было бы важно?»<br>
-        «Что изменилось бы в работе команды, если бы эта проблема исчезла?»
+        <strong>Need-payoff:</strong> «Если сократить потери на 40–50% — насколько это важно?»
       </div>
 
       <div class="script-box">
-        <div class="label">Готовый мини-скрипт перехода</div>
-        «Я правильно понимаю, что сейчас главная боль — это …, и если её не решить, то через полгода вы можете потерять …? А если мы уберём эту проблему, то команда сможет …?»
+        <div class="label">Готовый мини-скрипт</div>
+        «Я правильно понимаю, что главная боль — это …, и если её не решить, то через полгода вы можете потерять …? А если уберём проблему — команда сможет …?»
       </div>
-      <span class="tag">Neil Rackham • B2B продажи</span>
+      <span class="tag">Neil Rackham • B2B</span>
     </div>
 
-    <!-- AIDA -->
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🗣️</span> AIDA — полная воронка</h3>
-      <p>Классическая структура любого продающего текста, письма, презентации и разговора.</p>
-      <ul>
-        <li><strong>Attention</strong> — привлечь внимание (сильный заголовок, неожиданный факт, вопрос).</li>
-        <li><strong>Interest</strong> — удержать интерес (история, проблема клиента, цифры).</li>
-        <li><strong>Desire</strong> — вызвать желание (выгоды, доказательства, эмоции, социальное доказательство).</li>
-        <li><strong>Action</strong> — подтолкнуть к действию (чёткий призыв + снижение риска).</li>
-      </ul>
-
+      <p>Attention → Interest → Desire → Action. Структура любого продающего разговора и текста.</p>
       <div class="script-box">
-        <div class="label">Пример структуры письма / сообщения</div>
-        <strong>Attention:</strong> «Вы теряете 18% клиентов из-за медленного ответа на заявки?»<br>
+        <div class="label">Пример письма / сообщения</div>
+        <strong>Attention:</strong> «Вы теряете 18% клиентов из-за медленного ответа?»<br>
         <strong>Interest:</strong> «Мы проанализировали 47 компаний вашей отрасли…»<br>
-        <strong>Desire:</strong> «После внедрения среднее время ответа упало с 4 часов до 11 минут, а конверсия выросла на 31%.»<br>
-        <strong>Action:</strong> «Давайте я покажу на ваших цифрах за 15 минут. Когда удобно — завтра в 11:00 или в 15:00?»
+        <strong>Desire:</strong> «Среднее время ответа упало с 4 часов до 11 минут, конверсия +31%.»<br>
+        <strong>Action:</strong> «Покажу на ваших цифрах за 15 минут. Завтра в 11:00 или 15:00?»
       </div>
     </div>
 
-    <!-- Да-лестница -->
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🤝</span> Техника «Да-лестница»</h3>
-      <p>Серия вопросов, на которые человек почти наверняка ответит «да». Каждое «да» повышает вероятность согласия в конце (принцип последовательности).</p>
-      
+      <p>Серия вопросов с почти гарантированным «да». Каждое согласие повышает вероятность финального «да».</p>
       <div class="script-box">
         <div class="label">Пример диалога</div>
-        — Вам важно, чтобы клиенты получали ответ быстро?<br>
-        — Да.<br>
-        — И чтобы менеджеры не тратили время на рутину?<br>
-        — Да.<br>
-        — А если бы система сама подсказывала лучший ответ — это было бы полезно?<br>
-        — Да.<br>
-        — Тогда давайте я покажу, как это выглядит на практике. Удобно сейчас или лучше записаться на 20 минут?
+        — Вам важно, чтобы клиенты получали ответ быстро? → Да<br>
+        — И чтобы менеджеры не тратили время на рутину? → Да<br>
+        — Если система сама подсказывала лучший ответ — было бы полезно? → Да<br>
+        — Тогда покажу, как это выглядит. Удобно сейчас или записать на 20 минут?
       </div>
-      <p><strong>Правило:</strong> вопросы должны быть искренними и логичными, иначе человек почувствует давление.</p>
     </div>
 
-    <!-- Якорение цены -->
-    <div class="technique">
-      <h3><span class="icon">💰</span> Якорение цены (полный разбор)</h3>
-      <p>Первая названная цифра сильно влияет на восприятие всех последующих. Поэтому всегда начинайте с более высокой позиции.</p>
-      <ul>
-        <li>Сначала показываете премиум / полный пакет.</li>
-        <li>Потом основной (целевой) вариант выглядит выгоднее.</li>
-        <li>Можно использовать «якорь» даже в разговоре: «Обычно такие проекты стоят от 1,2 млн, но…»</li>
-      </ul>
-
+    <div class="technique" data-tilt>
+      <h3><span class="icon">💰</span> Якорение цены</h3>
+      <p>Первая названная цифра сильно влияет на восприятие всех остальных. Всегда начинайте с более высокой позиции.</p>
       <div class="example-box">
-        <strong>Как говорить:</strong><br>
-        «Есть три варианта. Полный пакет с поддержкой и доработками — 890 000 ₽. Стандартный, который берёт большинство клиентов, — 540 000 ₽. И базовый — 320 000 ₽. Большинству компаний вашего размера оптимально подходит стандартный.»
+        «Есть три варианта. Полный пакет — 890 000 ₽. Стандартный (его берёт большинство) — 540 000 ₽. Базовый — 320 000 ₽. Большинству компаний вашего размера оптимален стандартный.»
       </div>
     </div>
 
-    <!-- Feel-Felt-Found -->
-    <div class="technique">
-      <h3><span class="icon">🔁</span> Feel — Felt — Found (работа с возражениями)</h3>
-      <p>Мягкий и очень эффективный способ обходить возражения без спора.</p>
-
+    <div class="technique" data-tilt>
+      <h3><span class="icon">🔁</span> Feel — Felt — Found</h3>
+      <p>Мягкий способ обходить возражения без спора.</p>
       <div class="script-box">
         <div class="label">Универсальный шаблон</div>
-        «Я понимаю, как вы себя <strong>чувствуете</strong>…<br>
-        Многие наши клиенты <strong>чувствовали</strong> то же самое…<br>
-        Но они <strong>обнаружили</strong>, что после внедрения…»
+        «Я понимаю, как вы себя <strong>чувствуете</strong>… Многие клиенты <strong>чувствовали</strong> то же самое… Но они <strong>обнаружили</strong>, что после внедрения…»
       </div>
-
       <div class="example-box">
-        <strong>Пример на возражение «Дорого»:</strong><br>
-        «Я понимаю, что сейчас сумма выглядит значительной. Многие руководители сначала чувствовали то же самое. Но потом они посчитали, сколько теряют ежемесячно, и обнаружили, что окупаемость наступает уже на 3–4 месяц.»
+        <strong>На «Дорого»:</strong> «Понимаю, сумма выглядит значительной. Многие сначала чувствовали то же самое. Потом посчитали потери и увидели, что окупаемость на 3–4 месяц.»
       </div>
     </div>
   </section>
 
   <!-- ==================== ВЛИЯНИЕ ==================== -->
   <section id="influence">
-    <h2 class="section-title">🧠 Техники влияния (Чалдини + практика)</h2>
-    <p class="section-desc">Шесть принципов Роберта Чалдини с готовыми формулировками, которые можно использовать сразу.</p>
+    <h2 class="section-title">🧠 Техники влияния (Чалдини)</h2>
+    <p class="section-desc">Шесть принципов с готовыми формулировками, которые можно использовать сразу.</p>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🔄</span> 1. Взаимность</h3>
-      <p>Люди чувствуют себя обязанными отвечать на услугу или подарок. Дайте ценность <strong>до</strong> просьбы о покупке.</p>
+      <p>Дайте ценность до просьбы о покупке. Люди чувствуют себя обязанными ответить.</p>
       <ul>
         <li>Бесплатный аудит / разбор</li>
         <li>Полезный чек-лист или шаблон</li>
         <li>Персональная рекомендация</li>
-        <li>Демо с реальными данными клиента</li>
+        <li>Демо на реальных данных клиента</li>
       </ul>
       <div class="script-box">
         <div class="label">Как предлагать</div>
-        «Давайте я бесплатно разберу ваши текущие показатели и покажу 2–3 точки роста. Без обязательств. Если будет полезно — обсудим, как можем помочь. Удобно на этой неделе?»
+        «Давайте я бесплатно разберу ваши показатели и покажу 2–3 точки роста. Без обязательств. Если будет полезно — обсудим, как помочь. Удобно на этой неделе?»
       </div>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">👥</span> 2. Социальное доказательство</h3>
-      <p>В ситуации неопределённости люди смотрят на действия других.</p>
       <div class="example-box">
-        <strong>Сильные формулировки:</strong><br>
         «Уже 187 компаний вашей отрасли используют…»<br>
-        «Средний рост выручки у клиентов после внедрения — 34% за 6 месяцев»<br>
-        «Вот что написал директор компании X после 3 месяцев работы…»
+        «Средний рост выручки у клиентов — 34% за 6 месяцев»<br>
+        «Вот что написал директор компании X после 3 месяцев…»
       </div>
-      <p>Чем ближе «социальное доказательство» к клиенту (та же отрасль, размер, город), тем сильнее эффект.</p>
+      <p>Чем ближе доказательство к клиенту (отрасль, размер, город) — тем сильнее эффект.</p>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">👑</span> 3. Авторитет</h3>
-      <p>Люди доверяют экспертам. Нужно быстро показать компетентность.</p>
-      <ul>
-        <li>Кейсы с цифрами</li>
-        <li>«Мы помогли компаниям уровня…»</li>
-        <li>Упоминание известного клиента (если можно)</li>
-        <li>Собственные исследования / данные</li>
-      </ul>
       <div class="script-box">
-        <div class="label">Фраза для начала разговора</div>
-        «Мы специализируемся именно на компаниях вашего размера в этой нише. За последние 2 года провели 40+ внедрений и собрали данные, которые обычно не лежат на поверхности…»
+        <div class="label">Фраза для начала</div>
+        «Мы специализируемся именно на компаниях вашего размера в этой нише. За 2 года провели 40+ внедрений и собрали данные, которые обычно не лежат на поверхности…»
       </div>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">❤️</span> 4. Симпатия</h3>
-      <p>Нам легче покупать у тех, кто нам нравится. Три рычага:</p>
-      <ul>
-        <li>Общие интересы / похожий бэкграунд</li>
-        <li>Искренние комплименты (не лесть)</li>
-        <li>Зеркалирование речи и темпа</li>
-      </ul>
+      <p>Общие интересы, искренние комплименты, зеркалирование речи и темпа.</p>
       <div class="example-box">
-        «Я заметил, что вы тоже вышли из операционки в стратегию — у меня был похожий путь. Поэтому особенно понимаю, как важно сейчас разгрузить команду…»
+        «Заметил, что вы тоже вышли из операционки в стратегию — у меня был похожий путь. Поэтому особенно понимаю, как важно разгрузить команду…»
       </div>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">⏳</span> 5. Дефицит</h3>
-      <p>Работает только когда дефицит <strong>настоящий</strong>. Ложный дефицит разрушает доверие.</p>
+      <p>Работает только когда дефицит настоящий.</p>
       <div class="example-box">
-        <strong>Честные формулировки:</strong><br>
-        «Сейчас у нас осталось 2 слота на запуск в этом месяце»<br>
-        «До конца недели действует специальное условие для компаний из вашего сегмента»<br>
-        «После 15-го числа команда внедрения полностью загружена до ноября»
+        «Сейчас осталось 2 слота на запуск в этом месяце»<br>
+        «До конца недели действует специальное условие для вашего сегмента»<br>
+        «После 15-го команда внедрения загружена до ноября»
       </div>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">🔗</span> 6. Последовательность / Обязательство</h3>
-      <p>Люди стремятся быть последовательными. Маленькое «да» облегчает большое.</p>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">🔗</span> 6. Последовательность</h3>
       <div class="script-box">
         <div class="label">Цепочка микро-обязательств</div>
-        1. «Могу я задать несколько вопросов, чтобы понять вашу ситуацию?» → Да<br>
-        2. «Если я покажу, как это решается — будет полезно?» → Да<br>
-        3. «Давайте я подготовлю короткий разбор именно под вас?» → Да<br>
-        4. «После разбора обсудим возможные следующие шаги?» → Да
+        1. «Могу задать несколько вопросов, чтобы понять ситуацию?» → Да<br>
+        2. «Если покажу, как это решается — будет полезно?» → Да<br>
+        3. «Подготовлю короткий разбор именно под вас?» → Да<br>
+        4. «После разбора обсудим следующие шаги?» → Да
       </div>
     </div>
   </section>
@@ -497,79 +645,64 @@
   <!-- ==================== ПСИХОЛОГИЯ ==================== -->
   <section id="psychology">
     <h2 class="section-title">🧩 Психологические приёмы</h2>
-    <p class="section-desc">Работа с восприятием, эмоциями и когнитивными искажениями. Здесь самые сильные рычаги.</p>
+    <p class="section-desc">Работа с восприятием, эмоциями и когнитивными искажениями.</p>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🪞</span> Зеркалирование и раппорт</h3>
-      <p>Незаметно подстраивайтесь под клиента: темп речи, громкость, ключевые слова, иногда позу. Это создаёт ощущение «мы на одной волне».</p>
+      <p>Подстраивайтесь под темп речи, громкость и ключевые слова клиента. Повторяйте важные формулировки.</p>
       <ul>
-        <li>Если клиент говорит быстро и конкретно — отвечайте так же.</li>
-        <li>Если говорит медленно и с паузами — не торопите.</li>
-        <li>Повторяйте его важные слова: «Вы сказали “прозрачность процессов” — именно это мы и усиливаем».</li>
+        <li>Говорит быстро и конкретно → отвечайте так же</li>
+        <li>Говорит медленно → не торопите</li>
+        <li>«Вы сказали “прозрачность процессов” — именно это мы и усиливаем»</li>
       </ul>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">📉</span> Потеря сильнее приобретения (Loss Aversion)</h3>
-      <p>Люди примерно в 2 раза сильнее боятся потерять, чем радуются приобретению той же суммы.</p>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">📉</span> Loss Aversion (потеря сильнее выгоды)</h3>
       <div class="two-col">
-        <div class="example-box">
-          <strong>Слабо:</strong><br>
-          «Вы получите дополнительно 400 000 ₽ в год»
-        </div>
-        <div class="example-box">
-          <strong>Сильно:</strong><br>
-          «Каждый месяц, пока система не внедрена, вы продолжаете терять около 35 000 ₽»
-        </div>
+        <div class="example-box"><strong>Слабо:</strong><br>«Получите +400 000 ₽ в год»</div>
+        <div class="example-box"><strong>Сильно:</strong><br>«Каждый месяц теряете ≈ 35 000 ₽»</div>
       </div>
       <div class="script-box">
-        <div class="label">Готовая формулировка</div>
-        «Давайте честно посчитаем: сколько вы теряете прямо сейчас из-за этой проблемы? И что будет через полгода, если ничего не менять?»
+        <div class="label">Готовая фраза</div>
+        «Давайте честно посчитаем: сколько теряете прямо сейчас? И что будет через полгода, если ничего не менять?»
       </div>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🎭</span> Эффект ореола</h3>
-      <p>Одно сильное впечатление переносится на всё остальное. Поэтому:</p>
-      <ul>
-        <li>Сайт, презентация и первое сообщение должны выглядеть безупречно.</li>
-        <li>Один мощный кейс с цифрами часто важнее десяти средних.</li>
-        <li>Личный бренд продавца тоже работает как «ореол».</li>
-      </ul>
+      <p>Одно сильное впечатление переносится на всё остальное. Сайт, первый кейс и личный бренд должны быть безупречны.</p>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">📖</span> Сила историй (Storytelling)</h3>
-      <p>Мозг запоминает истории в разы лучше, чем списки преимуществ.</p>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">📖</span> Storytelling</h3>
       <div class="script-box">
         <div class="label">Структура рабочей истории</div>
-        1. Было плохо (конкретная ситуация клиента)<br>
+        1. Было плохо (конкретная ситуация)<br>
         2. Что сделали<br>
         3. Что стало (цифры + эмоция)<br>
-        4. Связка с текущим клиентом: «У вас похожая ситуация…»
+        4. Связка: «У вас похожая ситуация…»
       </div>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">⚖️</span> Принцип контраста</h3>
-      <p>Всё познаётся в сравнении. Всегда давайте точку отсчёта.</p>
       <div class="example-box">
-        «Большинство компаний в вашей нише тратят на это 180–220 часов в месяц. После внедрения наши клиенты тратят 35–40 часов.»
+        «Большинство компаний в вашей нише тратят 180–220 часов в месяц. После внедрения наши клиенты — 35–40 часов.»
       </div>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🛡️</span> Снятие риска (Risk Reversal)</h3>
-      <p>Главный стоп-фактор покупки — страх ошибиться. Убирайте его максимально жёстко.</p>
       <ul>
         <li>Гарантия возврата</li>
-        <li>Пилотный проект / тест на 2–4 недели</li>
+        <li>Пилот 2–4 недели</li>
         <li>«Платите только после результата»</li>
         <li>Поэтапная оплата</li>
       </ul>
       <div class="script-box">
         <div class="label">Сильная фраза</div>
-        «Мы настолько уверены в результате, что предлагаем начать с пилота. Если через 30 дней вы не увидите понятный эффект — просто останавливаемся, и вы ничего не должны.»
+        «Мы настолько уверены, что предлагаем начать с пилота. Если через 30 дней не увидите понятный эффект — просто останавливаемся, вы ничего не должны.»
       </div>
     </div>
   </section>
@@ -577,74 +710,55 @@
   <!-- ==================== СОВРЕМЕННЫЕ ==================== -->
   <section id="modern">
     <h2 class="section-title">🚀 Современные подходы 2024–2026</h2>
-    <p class="section-desc">То, что реально работает сейчас: консультативные продажи, Challenger и value-based selling.</p>
+    <p class="section-desc">Консультативные продажи, Challenger и value-based selling.</p>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🧭</span> Консультативные продажи</h3>
-      <p>Вы — не продавец, а эксперт, который помогает клиенту разобраться. Цель — стать доверенным советником.</p>
-      <ul>
-        <li>80% времени — вопросы и диагностика</li>
-        <li>20% — предложение решения</li>
-        <li>Никогда не начинайте с продукта</li>
-      </ul>
+      <p>80% времени — вопросы и диагностика. 20% — предложение. Никогда не начинайте с продукта.</p>
       <div class="script-box">
-        <div class="label">Правильное начало разговора</div>
-        «Прежде чем что-то предлагать, мне важно глубоко понять вашу ситуацию. Можно я задам несколько вопросов? Это займёт 10–12 минут и поможет не тратить ваше время на ненужное.»
+        <div class="label">Правильное начало</div>
+        «Прежде чем что-то предлагать, мне важно глубоко понять вашу ситуацию. Можно задать несколько вопросов? Это займёт 10–12 минут и поможет не тратить время на ненужное.»
       </div>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">💎</span> Value-Based Selling (продажа ценности)</h3>
-      <p>Продаёте не «систему» и не «услугу», а конкретный финансовый и операционный результат.</p>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">💎</span> Value-Based Selling</h3>
       <div class="example-box">
-        Вместо: «У нас есть CRM с искусственным интеллектом»<br>
-        Говорите: «Мы помогаем сократить цикл сделки в среднем на 19 дней и поднять конверсию из лида в оплату на 22–28%»
+        Вместо: «У нас CRM с ИИ»<br>
+        Говорите: «Сокращаем цикл сделки в среднем на 19 дней и поднимаем конверсию на 22–28%»
       </div>
-      <p>Всегда считайте вместе с клиентом: сколько он теряет сейчас и сколько заработает/сэкономит.</p>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">⚡</span> Challenger Sale (продажи через вызов)</h3>
-      <p>Не подстраивайтесь слепо под запрос клиента. Покажите, что он смотрит на проблему неправильно или неполно.</p>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">⚡</span> Challenger Sale</h3>
       <div class="script-box">
-        <div class="label">Структура Challenger-разговора</div>
-        1. «Большинство компаний думают, что проблема в …»<br>
+        <div class="label">Структура</div>
+        1. «Большинство думают, что проблема в …»<br>
         2. «На самом деле данные показывают другое…»<br>
         3. «Вот что происходит на самом деле…»<br>
-        4. «Именно поэтому решение должно выглядеть вот так…»
+        4. «Поэтому решение должно выглядеть вот так…»
       </div>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">🎯</span> Мягкое закрытие (Soft Close)</h3>
-      <p>Жёсткое «Ну что, берём?» часто вызывает сопротивление. Используйте мягкие варианты:</p>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">🎯</span> Мягкое закрытие</h3>
       <ul>
-        <li>«Как вам кажется, это может закрыть вашу задачу?»</li>
+        <li>«Как вам кажется, это может закрыть задачу?»</li>
         <li>«Что ещё нужно увидеть, чтобы принять решение?»</li>
-        <li>«Если бы мы убрали вот этот риск — вы были бы готовы двигаться?»</li>
-        <li>«Давайте я подготовлю коммерческое на два варианта, а вы скажете, какой ближе?»</li>
+        <li>«Если уберём вот этот риск — готовы двигаться?»</li>
+        <li>«Подготовлю коммерческое на два варианта, скажете какой ближе?»</li>
       </ul>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">📱</span> Social Selling</h3>
-      <p>Продажи через экспертность в LinkedIn, Telegram, отраслевых чатах.</p>
-      <ul>
-        <li>Регулярно давайте пользу (посты, разборы, цифры)</li>
-        <li>Комментируйте и помогайте без продажи</li>
-        <li>Только после установления контакта — мягкое предложение разговора</li>
-      </ul>
+      <p>Экспертный контент → помощь без продажи → мягкое предложение разговора.</p>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🧪</span> Микро-обязательства</h3>
-      <p>Каждый маленький шаг повышает вероятность большого.</p>
       <div class="example-box">
-        Цепочка:<br>
-        «Могу прислать короткий PDF с разбором?» →<br>
-        «Давайте созвонимся на 15 минут обсудить цифры?» →<br>
-        «Подготовлю коммерческое предложение под вас?» →<br>
-        «Запустим пилот?»
+        «Прислать короткий PDF?» → «Созвониться на 15 минут?» → «Подготовить КП?» → «Запустить пилот?»
       </div>
     </div>
   </section>
@@ -659,59 +773,57 @@
       <div>
         <strong>Главное отличие:</strong><br>
         Этичное влияние помогает клиенту принять решение, которое выгодно <em>ему</em>.<br>
-        Манипуляция заставляет принять решение, которое выгодно <em>только вам</em>, даже если клиенту это вредит.
+        Манипуляция заставляет принять решение, выгодное <em>только вам</em>.
       </div>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">✅</span> Что можно и нужно делать</h3>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">✅</span> Что можно и нужно</h3>
       <ul>
         <li>Показывать реальные цифры и кейсы</li>
         <li>Создавать срочность, когда она настоящая</li>
-        <li>Усиливать осознание проблемы через вопросы</li>
-        <li>Использовать социальное доказательство</li>
+        <li>Усиливать осознание проблемы вопросами</li>
         <li>Снимать риски клиента</li>
-        <li>Строить долгосрочные отношения</li>
-        <li>Отказываться от сделки, если продукт реально не подходит</li>
+        <li>Отказываться от сделки, если продукт не подходит</li>
       </ul>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">❌</span> Что нельзя (разрушает репутацию)</h3>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">❌</span> Что нельзя</h3>
       <ul>
-        <li>Врать о дефиците («последнее место», когда мест полно)</li>
+        <li>Врать о дефиците</li>
         <li>Давить на страх, вину или стыд</li>
-        <li>Скрывать важные ограничения продукта</li>
+        <li>Скрывать важные ограничения</li>
         <li>Использовать фейковые отзывы</li>
-        <li>Продавать то, что клиенту объективно не нужно</li>
-        <li>Создавать искусственную панику</li>
+        <li>Продавать то, что клиенту не нужно</li>
       </ul>
     </div>
 
-    <div class="technique">
-      <h3><span class="icon">🧭</span> Золотой фильтр перед каждой сделкой</h3>
-      <p>Задайте себе три вопроса:</p>
-      <ol style="margin: 12px 0 0 20px; color: #cbd5e1;">
-        <li>Если бы я был на месте клиента и знал всё, что знаю я — я бы купил?</li>
-        <li>Эта покупка улучшит жизнь/бизнес клиента через 6–12 месяцев?</li>
-        <li>Мне не будет стыдно, если клиент потом расскажет всем, как проходила продажа?</li>
+    <div class="technique" data-tilt>
+      <h3><span class="icon">🧭</span> Золотой фильтр</h3>
+      <p>Три вопроса перед сделкой:</p>
+      <ol style="margin: 12px 0 0 22px; color: #cbd5e1;">
+        <li>Если бы я был клиентом и знал всё — я бы купил?</li>
+        <li>Эта покупка улучшит его бизнес через 6–12 месяцев?</li>
+        <li>Мне не будет стыдно, если он расскажет, как проходила продажа?</li>
       </ol>
-      <p style="margin-top: 16px;">Если хотя бы на один вопрос ответ «нет» — лучше отказаться от сделки.</p>
+      <p style="margin-top: 16px;">Хотя бы один «нет» — лучше отказаться.</p>
     </div>
 
-    <div class="technique">
+    <div class="technique" data-tilt>
       <h3><span class="icon">🌱</span> Почему этика выгодна</h3>
-      <p>Клиенты, которых «продавили», почти никогда не возвращаются и не рекомендуют. Клиенты, которым реально помогли — становятся источником повторных продаж и тёплых рекомендаций. В долгосрочной перспективе этичные продажи всегда прибыльнее.</p>
+      <p>Клиенты, которых «продавили», не возвращаются и не рекомендуют. Те, кому реально помогли — становятся источником повторных продаж и тёплых рекомендаций.</p>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <p>Используй эти техники с уважением к клиенту. Лучшие продажи — те, после которых говорят «спасибо» и возвращаются.</p>
+  <p>Используй эти техники с уважением к клиенту. Лучшие продажи — те, после которых говорят «спасибо».</p>
 </footer>
 
 <script>
+  // Переключение секций
   const buttons = document.querySelectorAll('.nav-btn');
   const sections = document.querySelectorAll('section');
 
@@ -726,6 +838,27 @@
         target.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    });
+  });
+
+  // ===== 3D Tilt Effect =====
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -9;
+      const rotateY = ((x - centerX) / centerX) * 9;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
     });
   });
 </script>
