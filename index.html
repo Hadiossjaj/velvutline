@@ -1,582 +1,558 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sales Fire | Продажи и Мотивация</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ff4d00;
-            --primary-dark: #e04300;
-            --bg: #0f0f13;
-            --card: #1a1a22;
-            --text: #f0f0f0;
-            --muted: #a0a0b0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Техники продаж и этичные манипуляции</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #0ea5e9;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --success: #22c55e;
+      --warning: #f59e0b;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      padding: 80px 20px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* ===== HEADER ===== */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(15, 15, 19, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 77, 0, 0.25);
-        }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 60%);
+      animation: pulse 12s ease-in-out infinite;
+    }
 
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 14px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--primary);
-        }
+    .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-        .logo span {
-            color: white;
-        }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #60a5fa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        /* Бургер */
-        .burger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-        }
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
 
-        .burger span {
-            width: 26px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
+    .badge {
+      display: inline-block;
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--success);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-        }
+    /* Navigation */
+    nav {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
 
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      padding: 12px 20px;
+      overflow-x: auto;
+    }
 
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
 
-        .btn:hover, .btn:active {
-            background: var(--primary-dark);
-        }
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: rgba(37, 99, 235, 0.2);
+      color: #60a5fa;
+    }
 
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 110px 16px 60px;
-            background: radial-gradient(circle at 50% 20%, rgba(255, 77, 0, 0.18), transparent 60%);
-        }
+    /* Main */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px 100px;
+    }
 
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.3rem, 8vw, 3.8rem);
-            line-height: 1.15;
-            margin-bottom: 18px;
-        }
+    section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
 
-        .hero-content h1 span {
-            color: var(--primary);
-        }
+    section.active {
+      display: block;
+    }
 
-        .hero-content p {
-            font-size: 1.1rem;
-            color: var(--muted);
-            margin-bottom: 32px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .hero-buttons .btn {
-            width: 100%;
-            max-width: 280px;
-            padding: 16px;
-            font-size: 1.05rem;
-        }
+    .section-desc {
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
 
-        /* ===== SECTIONS ===== */
-        section {
-            padding: 70px 16px;
-        }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(37, 99, 235, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(37, 99, 235, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
 
-        .section-title h2 {
-            font-size: 1.9rem;
-            margin-bottom: 10px;
-        }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
 
-        .section-title p {
-            color: var(--muted);
-            font-size: 1rem;
-        }
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-        /* Цитаты */
-        .quotes {
-            background: var(--card);
-        }
+    .card .tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: rgba(14, 165, 233, 0.15);
+      color: var(--accent);
+    }
 
-        .quotes-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+    /* Warning box */
+    .warning {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
 
-        .quote-card {
-            background: var(--bg);
-            padding: 24px;
-            border-radius: 14px;
-            border-left: 4px solid var(--primary);
-        }
+    .warning-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
 
-        .quote-card p {
-            font-size: 1.05rem;
-            font-style: italic;
-            margin-bottom: 12px;
-        }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+    }
 
-        .quote-card .author {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        /* Техники */
-        .tips-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .tip-card {
-            background: var(--card);
-            padding: 28px 20px;
-            border-radius: 14px;
-            text-align: center;
-        }
-
-        .tip-icon {
-            font-size: 2.4rem;
-            margin-bottom: 14px;
-        }
-
-        .tip-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .tip-card p {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        /* ===== ФОРМА ===== */
-        .cta {
-            background: linear-gradient(180deg, #1a1a22, #0f0f13);
-        }
-
-        .cta-content {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 1.9rem;
-            margin-bottom: 12px;
-        }
-
-        .cta > .cta-content > p {
-            color: var(--muted);
-            margin-bottom: 28px;
-            font-size: 1.05rem;
-        }
-
-        .form-card {
-            background: var(--card);
-            padding: 28px 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 77, 0, 0.3);
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 14px;
-            background: var(--bg);
-            border: 1px solid #333;
-            border-radius: 12px;
-            color: var(--text);
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 17px;
-            font-size: 1.1rem;
-            margin-top: 8px;
-        }
-
-        .success-message {
-            display: none;
-            background: rgba(0, 200, 80, 0.15);
-            border: 1px solid #00c850;
-            color: #00e676;
-            padding: 14px;
-            border-radius: 12px;
-            text-align: center;
-            margin-top: 18px;
-            font-weight: 600;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: #0a0a0e;
-            padding: 30px 16px;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.85rem;
-        }
-
-        /* ===== МОБИЛЬНОЕ МЕНЮ ===== */
-        @media (max-width: 768px) {
-            .burger {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: #121218;
-                flex-direction: column;
-                padding: 20px;
-                gap: 8px;
-                transform: translateY(-150%);
-                transition: 0.35s ease;
-                border-bottom: 1px solid rgba(255,77,0,0.2);
-            }
-
-            .nav-links.active {
-                transform: translateY(0);
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 14px;
-                font-size: 1.1rem;
-                border-radius: 10px;
-            }
-
-            .nav-links a:active {
-                background: rgba(255,77,0,0.15);
-            }
-
-            .nav .btn {
-                display: none;
-            }
-        }
-
-        /* Планшеты и больше */
-        @media (min-width: 769px) {
-            .hero-buttons {
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .hero-buttons .btn {
-                width: auto;
-            }
-
-            .quotes-grid,
-            .tips-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 20px;
-            }
-
-            .form-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-            }
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 600px) {
+      header { padding: 60px 16px 80px; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <nav class="nav">
-            <div class="logo">Sales<span>Fire</span></div>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="badge">Этичные техники влияния</div>
+      <h1>Техники продаж<br>и правильные манипуляции</h1>
+      <p class="subtitle">
+        Классические и современные методы убеждения, которые работают на доверии, а не на обмане.
+        Используй только этично.
+      </p>
+    </div>
+  </header>
 
-            <div class="burger" id="burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <button class="nav-btn active" data-section="classic">Классика продаж</button>
+      <button class="nav-btn" data-section="influence">Техники влияния</button>
+      <button class="nav-btn" data-section="psychology">Психология</button>
+      <button class="nav-btn" data-section="modern">Современные</button>
+      <button class="nav-btn" data-section="ethics">Этика</button>
+    </div>
+  </nav>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#motivation">Мотивация</a></li>
-                <li><a href="#tips">Техники продаж</a></li>
-                <li><a href="#cta">Оставить заявку</a></li>
-            </ul>
+  <main>
+    <!-- 1. Классика продаж -->
+    <section id="classic" class="active">
+      <h2 class="section-title">📈 Классические техники продаж</h2>
+      <p class="section-desc">Проверенные временем этапы и приёмы, которые лежат в основе почти любой успешной продажи.</p>
 
-            <a href="#cta" class="btn">Оставить заявку</a>
-        </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Продавай <span>огненно</span>.<br>Живи мотивированно.</h1>
-            <p>Система, которая превращает обычных людей в топ-продавцов.</p>
-            <div class="hero-buttons">
-                <a href="#cta" class="btn">Оставить заявку</a>
-                <a href="#tips" class="btn btn-outline">Смотреть техники</a>
-            </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>SPIN-продажи</h3>
+          <p>Ситуация → Проблема → Извлечение → Нужда. Вместо того чтобы сразу продавать, задавай вопросы, которые помогают клиенту самому осознать свою боль.</p>
+          <span class="tag">Neil Rackham</span>
         </div>
+
+        <div class="card">
+          <div class="card-icon">🗣️</div>
+          <h3>AIDA</h3>
+          <p>Attention → Interest → Desire → Action. Классическая воронка: привлеки внимание, вызови интерес, создай желание и подтолкни к действию.</p>
+          <span class="tag">Классика маркетинга</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🤝</div>
+          <h3>Техника «Да-лестница»</h3>
+          <p>Задавай вопросы, на которые клиент почти наверняка ответит «да». Серия согласий повышает вероятность согласия в конце.</p>
+          <span class="tag">Психологическое обязательство</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💰</div>
+          <h3>Якорение цены</h3>
+          <p>Сначала покажи более дорогой вариант. После него основная цена кажется более выгодной. Работает даже с премиум-позиционированием.</p>
+          <span class="tag">Ценообразование</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔁</div>
+          <h3>Техника «Feel-Felt-Found»</h3>
+          <p>«Я понимаю, как вы себя чувствуете… Многие чувствовали то же самое… Но они обнаружили, что…» — мягкое преодоление возражений.</p>
+          <span class="tag">Работа с возражениями</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📦</div>
+          <h3>Бандлы и комплекты</h3>
+          <p>Предлагай продукт в связке с другими. Клиент воспринимает комплексное решение как более ценное и реже сравнивает с конкурентами.</p>
+          <span class="tag">Увеличение среднего чека</span>
+        </div>
+      </div>
     </section>
 
-    <!-- MOTIVATION -->
-    <section class="quotes" id="motivation">
-        <div class="container">
-            <div class="section-title">
-                <h2>Топливо для твоих продаж</h2>
-                <p>Цитаты, которые поднимают даже в тяжёлый день</p>
-            </div>
-            <div class="quotes-grid">
-                <div class="quote-card">
-                    <p>«Успех в продажах — это не талант. Это дисциплина + правильный скрипт.»</p>
-                    <div class="author">— Грант Кардон</div>
-                </div>
-                <div class="quote-card">
-                    <p>«Каждый отказ — это просто шаг ближе к следующей сделке.»</p>
-                    <div class="author">— Зиг Зиглар</div>
-                </div>
-                <div class="quote-card">
-                    <p>«Мотивация приходит и уходит. Привычка остаётся.»</p>
-                    <div class="author">— Sales Fire</div>
-                </div>
-            </div>
+    <!-- 2. Техники влияния -->
+    <section id="influence">
+      <h2 class="section-title">🧠 Техники влияния (по Чалдини)</h2>
+      <p class="section-desc">Шесть универсальных принципов влияния Роберта Чалдини. Это не «грязные» трюки — это понимание человеческой психологии.</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon"> reciprocal</div>
+          <h3>Взаимность</h3>
+          <p>Люди чувствуют себя обязанными отвечать добром на добро. Дай что-то ценное бесплатно (консультацию, чек-лист, демо) — и вероятность покупки вырастет.</p>
+          <span class="tag">Reciprocity</span>
         </div>
+
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Социальное доказательство</h3>
+          <p>«Уже 12 000 клиентов», отзывы, кейсы, рейтинги. Люди смотрят на поведение других, особенно в неопределённости.</p>
+          <span class="tag">Social Proof</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">👑</div>
+          <h3>Авторитет</h3>
+          <p>Экспертность, регалии, публикации, упоминания в СМИ. Люди доверяют тем, кого считают специалистами.</p>
+          <span class="tag">Authority</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">❤️</div>
+          <h3>Симпатия</h3>
+          <p>Нам легче покупать у тех, кто нам нравится. Общие интересы, комплименты, зеркалирование поведения.</p>
+          <span class="tag">Liking</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⏳</div>
+          <h3>Дефицит</h3>
+          <p>«Осталось 3 места», «предложение до пятницы». Ограниченность повышает воспринимаемую ценность. Важно не врать.</p>
+          <span class="tag">Scarcity</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔗</div>
+          <h3>Последовательность</h3>
+          <p>Люди стремятся быть последовательными. Если человек уже сделал маленькое публичное обязательство, ему сложнее отказаться от большого.</p>
+          <span class="tag">Consistency</span>
+        </div>
+      </div>
     </section>
 
-    <!-- TIPS -->
-    <section id="tips">
-        <div class="container">
-            <div class="section-title">
-                <h2>Рабочие техники продаж</h2>
-                <p>Только то, что реально закрывает сделки</p>
-            </div>
-            <div class="tips-grid">
-                <div class="tip-card">
-                    <div class="tip-icon">🎯</div>
-                    <h3>Правило 3 «Да»</h3>
-                    <p>Получи три маленьких согласия — и большое «да» становится почти автоматическим.</p>
-                </div>
-                <div class="tip-card">
-                    <div class="tip-icon">🔥</div>
-                    <h3>Боль → Решение</h3>
-                    <p>Сначала глубоко раскопай боль клиента, потом предлагай продукт.</p>
-                </div>
-                <div class="tip-card">
-                    <div class="tip-icon">⏱</div>
-                    <h3>Дефицит времени</h3>
-                    <p>«Только сегодня» работает сильнее любой скидки.</p>
-                </div>
-                <div class="tip-card">
-                    <div class="tip-icon">🧠</div>
-                    <h3>Истории вместо фактов</h3>
-                    <p>Люди покупают эмоции. Рассказывай истории клиентов.</p>
-                </div>
-                <div class="tip-card">
-                    <div class="tip-icon">📞</div>
-                    <h3>Follow-up система</h3>
-                    <p>80% сделок закрываются после 5-го контакта.</p>
-                </div>
-                <div class="tip-card">
-                    <div class="tip-icon">⚡</div>
-                    <h3>Энергия продавца</h3>
-                    <p>Клиент покупает твоё состояние.</p>
-                </div>
-            </div>
+    <!-- 3. Психология -->
+    <section id="psychology">
+      <h2 class="section-title">🧩 Психологические приёмы</h2>
+      <p class="section-desc">Глубже уровень — работа с восприятием, эмоциями и когнитивными искажениями.</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🪞</div>
+          <h3>Зеркалирование</h3>
+          <p>Незаметно копируй позу, темп речи и ключевые слова клиента. Это создаёт ощущение «свой человек» на подсознательном уровне.</p>
+          <span class="tag">Раппорт</span>
         </div>
+
+        <div class="card">
+          <div class="card-icon">📉</div>
+          <h3>Потеря vs Приобретение</h3>
+          <p>Люди сильнее боятся потерять, чем радуются приобретению. Формулируй выгоды через «что вы потеряете, если не…».</p>
+          <span class="tag">Loss Aversion</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎭</div>
+          <h3>Эффект ореола</h3>
+          <p>Одно сильное положительное качество (красивый сайт, сильный кейс) переносится на всё остальное восприятие продукта и компании.</p>
+          <span class="tag">Halo Effect</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🧩</div>
+          <h3>Истории вместо фактов</h3>
+          <p>Мозг лучше запоминает и эмоционально реагирует на истории. Кейсы и истории клиентов работают сильнее сухих характеристик.</p>
+          <span class="tag">Storytelling</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>Контраст</h3>
+          <p>Покажи «плохое» решение рядом с «хорошим». Или «дорогое» рядом с «оптимальным». Контраст делает выбор очевидным.</p>
+          <span class="tag">Contrast Principle</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🧘</div>
+          <h3>Снятие напряжения</h3>
+          <p>Многие покупки блокируются страхом ошибки. Снижай риск: гарантии, тестовый период, «можно вернуть».</p>
+          <span class="tag">Risk Reversal</span>
+        </div>
+      </div>
     </section>
 
-    <!-- ФОРМА -->
-    <section class="cta" id="cta">
-        <div class="cta-content">
-            <h2>Оставь заявку<br>и начни расти</h2>
-            <p>Заполни форму — свяжемся в течение 15 минут</p>
+    <!-- 4. Современные -->
+    <section id="modern">
+      <h2 class="section-title">🚀 Современные подходы</h2>
+      <p class="section-desc">Что работает в 2020–2026 годах: консультативные продажи, value-based selling и soft-closing.</p>
 
-            <div class="form-card">
-                <form id="leadForm">
-                    <div class="form-group">
-                        <label for="name">Ваше имя *</label>
-                        <input type="text" id="name" required placeholder="Александр">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Телефон *</label>
-                        <input type="tel" id="phone" required placeholder="+7 (999) 123-45-67">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="alex@mail.ru">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Что вас интересует?</label>
-                        <textarea id="message" placeholder="Хочу получить доступ / Нужна консультация"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn submit-btn">Отправить заявку</button>
-
-                    <div class="success-message" id="successMessage">
-                        ✅ Заявка отправлена! Мы скоро свяжемся.
-                    </div>
-                </form>
-            </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🧭</div>
+          <h3>Консультативные продажи</h3>
+          <p>Ты не «продавец», а эксперт, который помогает клиенту разобраться в проблеме. Цель — стать доверенным советником.</p>
+          <span class="tag">Consultative Selling</span>
         </div>
+
+        <div class="card">
+          <div class="card-icon">💎</div>
+          <h3>Value-Based Selling</h3>
+          <p>Продавай не продукт, а ценность и результат для бизнеса клиента. Считай ROI вместе с ним.</p>
+          <span class="tag">Ценностные продажи</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Challenge Selling</h3>
+          <p>Не подстраивайся под запрос клиента, а бросай вызов его текущему взгляду. Покажи, что он смотрит на проблему неправильно.</p>
+          <span class="tag">Challenger Sale</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔄</div>
+          <h3>Мягкое закрытие</h3>
+          <p>Вместо жёсткого «покупаете?» используй: «Как вам кажется, это может решить вашу задачу?» или «Что ещё нужно, чтобы принять решение?».</p>
+          <span class="tag">Soft Close</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Социальные продажи</h3>
+          <p>LinkedIn, Telegram, экспертный контент. Строй отношения и доверие до того, как предложить продукт.</p>
+          <span class="tag">Social Selling</span>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🧪</div>
+          <h3>Микро-обязательства</h3>
+          <p>Маленькие шаги: «давайте я пришлю вам короткий разбор», «посмотрите это видео», «заполните форму». Каждый шаг повышает вероятность сделки.</p>
+          <span class="tag">Micro-commitments</span>
+        </div>
+      </div>
     </section>
 
-    <footer>
-        <p>© 2026 Sales Fire. Создано для тех, кто хочет продавать больше.</p>
-    </footer>
+    <!-- 5. Этика -->
+    <section id="ethics">
+      <h2 class="section-title">⚖️ Этика и границы</h2>
+      <p class="section-desc">Где заканчивается влияние и начинается манипуляция. Важные правила, которые стоит соблюдать.</p>
 
-    <script>
-        // Бургер-меню
-        const burger = document.getElementById('burger');
-        const navLinks = document.getElementById('navLinks');
+      <div class="warning">
+        <div class="warning-icon">⚠️</div>
+        <div>
+          <strong>Важно:</strong> Разница между влиянием и манипуляцией — в намерении и прозрачности. 
+          Этичные техники помогают клиенту принять лучшее для него решение. Манипуляция — заставляет принять решение в твою пользу вопреки интересам клиента.
+        </div>
+      </div>
 
-        burger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">✅</div>
+          <h3>Что можно</h3>
+          <p>
+            • Показывать реальные кейсы и цифры<br>
+            • Создавать срочность, если она настоящая<br>
+            • Использовать социальные доказательства<br>
+            • Задавать вопросы, которые помогают осознать проблему<br>
+            • Строить долгосрочные отношения
+          </p>
+        </div>
 
-        // Закрытие меню при клике на ссылку
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+        <div class="card">
+          <div class="card-icon">❌</div>
+          <h3>Что нельзя</h3>
+          <p>
+            • Врать о дефиците или «последнем месте»<br>
+            • Давить на страх и вину<br>
+            • Скрывать важные недостатки продукта<br>
+            • Использовать ложные отзывы<br>
+            • Продавать то, что клиенту реально не нужно
+          </p>
+        </div>
 
-        // Форма (пока пустышка)
-        const form = document.getElementById('leadForm');
-        const successMessage = document.getElementById('successMessage');
+        <div class="card">
+          <div class="card-icon">🧭</div>
+          <h3>Золотое правило</h3>
+          <p>Спрашивай себя: «Если бы я был на месте клиента и знал всё, что знаю я, — я бы сам купил?» Если ответ «нет» — не продавай.</p>
+          <span class="tag">Этичный фильтр</span>
+        </div>
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            successMessage.style.display = 'block';
-            form.reset();
+        <div class="card">
+          <div class="card-icon">🌱</div>
+          <h3>Долгосрочный эффект</h3>
+          <p>Клиенты, которых «продавили», редко возвращаются и почти никогда не рекомендуют. Этичные продажи строят репутацию и повторные продажи.</p>
+          <span class="tag">LTV > разовая сделка</span>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 4000);
-        });
-    </script>
+  <footer>
+    <p>Используй знания ответственно. Лучшие продажи — те, после которых клиент говорит «спасибо».</p>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('section');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Убираем активный класс
+        buttons.forEach(b => b.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        // Добавляем активный
+        btn.classList.add('active');
+        const target = document.getElementById(btn.dataset.section);
+        if (target) target.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
